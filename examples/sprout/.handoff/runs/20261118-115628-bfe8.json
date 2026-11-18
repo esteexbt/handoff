@@ -1,0 +1,106 @@
+{
+  "id": "20261118-115628-bfe8",
+  "trigger": "verify",
+  "startedAt": "2026-11-18T10:56:28.384Z",
+  "spec": {
+    "name": "Sprout",
+    "url": "http://localhost:4173",
+    "checks": 5
+  },
+  "rounds": [
+    {
+      "label": "Verify",
+      "startedAt": "2026-11-18T10:56:28.385Z",
+      "finishedAt": "2026-11-18T10:56:50.183Z",
+      "results": [
+        {
+          "id": "join-waitlist",
+          "route": "",
+          "status": "error",
+          "exitCode": 2,
+          "summary": "",
+          "reason": "Skill update available: not installed → 0.1.4 — run `kane-cli install skill` Running on: Desktop · Chrome Google Chrome is required but was not found in Program Files or AppData. Install via winget (Windows 10 1809+): winget install --id Google.Chrome -e --silent Or download: https://www.google.com/chrome/ Then re-run your command. Set KANE_CLI_CHROME_PATH=C:\\path\\to\\chrome.exe to point at a non-…",
+          "finalState": null,
+          "kaneDuration": null,
+          "runEnd": null,
+          "objective": "Enter \"ada@example.com\" in the email field, click \"Join the waitlist\", and verify the page shows the message \"You're on the list\"",
+          "url": "http://localhost:4173",
+          "steps": [],
+          "eventCount": 2,
+          "stderr": "Skill update available: not installed → 0.1.4 — run `kane-cli install skill` Running on: Desktop · Chrome Google Chrome is required but was not found in Program Files or AppData. Install via winget (Windows 10 1809+): winget install --id Google.Chrome -e --silent Or download: https://www.google.com/chrome/ Then re-run your command. Set KANE_CLI_CHROME_PATH=C:\\path\\to\\chrome.exe to point at a non-standard install.",
+          "duration": 5.077
+        },
+        {
+          "id": "reject-bad-email",
+          "route": "",
+          "status": "error",
+          "exitCode": 2,
+          "summary": "",
+          "reason": "Skill update available: not installed → 0.1.4 — run `kane-cli install skill` Running on: Desktop · Chrome Google Chrome is required but was not found in Program Files or AppData. Install via winget (Windows 10 1809+): winget install --id Google.Chrome -e --silent Or download: https://www.google.com/chrome/ Then re-run your command. Set KANE_CLI_CHROME_PATH=C:\\path\\to\\chrome.exe to point at a non-…",
+          "finalState": null,
+          "kaneDuration": null,
+          "runEnd": null,
+          "objective": "Enter \"ada@example\" in the email field, click \"Join the waitlist\", and verify an error saying \"Enter a valid email address\" is shown and the message \"You're on the list\" is not shown",
+          "url": "http://localhost:4173",
+          "steps": [],
+          "eventCount": 2,
+          "stderr": "Skill update available: not installed → 0.1.4 — run `kane-cli install skill` Running on: Desktop · Chrome Google Chrome is required but was not found in Program Files or AppData. Install via winget (Windows 10 1809+): winget install --id Google.Chrome -e --silent Or download: https://www.google.com/chrome/ Then re-run your command. Set KANE_CLI_CHROME_PATH=C:\\path\\to\\chrome.exe to point at a non-standard install.",
+          "duration": 4.263
+        },
+        {
+          "id": "yearly-pricing",
+          "route": "",
+          "status": "error",
+          "exitCode": 2,
+          "summary": "",
+          "reason": "Skill update available: not installed → 0.1.4 — run `kane-cli install skill` Running on: Desktop · Chrome Google Chrome is required but was not found in Program Files or AppData. Install via winget (Windows 10 1809+): winget install --id Google.Chrome -e --silent Or download: https://www.google.com/chrome/ Then re-run your command. Set KANE_CLI_CHROME_PATH=C:\\path\\to\\chrome.exe to point at a non-…",
+          "finalState": null,
+          "kaneDuration": null,
+          "runEnd": null,
+          "objective": "Click the \"Yearly\" billing option and verify the Grow plan price shows \"$48\" per year",
+          "url": "http://localhost:4173",
+          "steps": [],
+          "eventCount": 2,
+          "stderr": "Skill update available: not installed → 0.1.4 — run `kane-cli install skill` Running on: Desktop · Chrome Google Chrome is required but was not found in Program Files or AppData. Install via winget (Windows 10 1809+): winget install --id Google.Chrome -e --silent Or download: https://www.google.com/chrome/ Then re-run your command. Set KANE_CLI_CHROME_PATH=C:\\path\\to\\chrome.exe to point at a non-standard install.",
+          "duration": 4.797
+        },
+        {
+          "id": "faq-cancel",
+          "route": "",
+          "status": "error",
+          "exitCode": 2,
+          "summary": "",
+          "reason": "Skill update available: not installed → 0.1.4 — run `kane-cli install skill` Running on: Desktop · Chrome Google Chrome is required but was not found in Program Files or AppData. Install via winget (Windows 10 1809+): winget install --id Google.Chrome -e --silent Or download: https://www.google.com/chrome/ Then re-run your command. Set KANE_CLI_CHROME_PATH=C:\\path\\to\\chrome.exe to point at a non-…",
+          "finalState": null,
+          "kaneDuration": null,
+          "runEnd": null,
+          "objective": "Click the question \"Can I cancel anytime?\" and verify the answer \"Yes. Cancel in one click from Settings.\" becomes visible",
+          "url": "http://localhost:4173",
+          "steps": [],
+          "eventCount": 2,
+          "stderr": "Skill update available: not installed → 0.1.4 — run `kane-cli install skill` Running on: Desktop · Chrome Google Chrome is required but was not found in Program Files or AppData. Install via winget (Windows 10 1809+): winget install --id Google.Chrome -e --silent Or download: https://www.google.com/chrome/ Then re-run your command. Set KANE_CLI_CHROME_PATH=C:\\path\\to\\chrome.exe to point at a non-standard install.",
+          "duration": 3.535
+        },
+        {
+          "id": "nav-pricing",
+          "route": "",
+          "status": "error",
+          "exitCode": 2,
+          "summary": "",
+          "reason": "Skill update available: not installed → 0.1.4 — run `kane-cli install skill` Running on: Desktop · Chrome Google Chrome is required but was not found in Program Files or AppData. Install via winget (Windows 10 1809+): winget install --id Google.Chrome -e --silent Or download: https://www.google.com/chrome/ Then re-run your command. Set KANE_CLI_CHROME_PATH=C:\\path\\to\\chrome.exe to point at a non-…",
+          "finalState": null,
+          "kaneDuration": null,
+          "runEnd": null,
+          "objective": "Click \"Pricing\" in the top navigation and verify the pricing section with the \"Grow\" plan is visible",
+          "url": "http://localhost:4173",
+          "steps": [],
+          "eventCount": 2,
+          "stderr": "Skill update available: not installed → 0.1.4 — run `kane-cli install skill` Running on: Desktop · Chrome Google Chrome is required but was not found in Program Files or AppData. Install via winget (Windows 10 1809+): winget install --id Google.Chrome -e --silent Or download: https://www.google.com/chrome/ Then re-run your command. Set KANE_CLI_CHROME_PATH=C:\\path\\to\\chrome.exe to point at a non-standard install.",
+          "duration": 4.123
+        }
+      ]
+    }
+  ],
+  "finishedAt": "2026-11-18T10:56:50.183Z",
+  "verdict": "unverified"
+}

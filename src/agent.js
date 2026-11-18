@@ -14,8 +14,14 @@ export function feedback(spec, failing, { round = 1, maxRounds = 3 } = {}) {
     lines.push(`## ${r.id} — ${r.status.toUpperCase()}`);
     lines.push(`Spec: ${r.objective}`);
     lines.push(`Tested at: ${r.url}`);
+    if (r.oneLiner) lines.push(`Kane's verdict: ${r.oneLiner}`);
     if (r.summary) lines.push(`What Kane saw: ${r.summary}`);
     if (r.reason && r.reason !== r.summary) lines.push(`Kane's reason: ${r.reason}`);
+    for (const e of r.evidence || []) {
+      if (e.read != null || e.expected != null) lines.push(`Evidence: ${e.what}: Kane read ${JSON.stringify(e.read)}, the spec expects ${JSON.stringify(e.expected)}.`);
+    }
+    if (r.slip) lines.push('Note: Kane reported that it struggled to interact with this part of the page. Check BOTH that the value/behaviour is correct AND that the control is easy to target: a real <button> with a clear visible label, a selected state (aria-pressed), and the result visible near the control.');
+    if (r.reportUrl) lines.push(`Kane report: ${r.reportUrl}`);
     if (r.finalState) {
       const fs = r.finalState;
       const bits = [];

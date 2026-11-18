@@ -1,6 +1,6 @@
 // Runs the spec's checks through Kane CLI and records a round.
 import { checkUrl } from './spec.js';
-import { resolveKane, runCheck, makeLivePrinter } from './kane.js';
+import { resolveKane, runCheck, makeLivePrinter, isAutomationSlip } from './kane.js';
 import { startServer, waitForUrl, urlIsUp, killTree } from './proc.js';
 import { c, sym, statusWord, truncate, fmtDuration } from './ui.js';
 
@@ -35,7 +35,7 @@ export function requireKane() {
 /**
  * Run a set of checks sequentially. Returns a round object.
  */
-export async function runRound(spec, checks, { kane, headed = false, live = true, quiet = false, label = '' } = {}) {
+export async function runRound(spec, checks, { kane, headed = false, live = true, quiet = false, label = '', retries = Number(process.env.HANDOFF_SLIP_RETRIES ?? 1) } = {}) {
   const startedAt = new Date().toISOString();
   const results = [];
   const total = checks.length;
@@ -45,18 +45,34 @@ export async function runRound(spec, checks, { kane, headed = false, live = true
     if (!quiet) {
       console.log(`  ${c.gray(`[${i + 1}/${total}]`)} ${c.bold(check.id)} ${c.gray(truncate(check.objective, 80))}`);
     }
-    const r = await runCheck(kane, {
+    const go = () => runCheck(kane, {
       objective: check.objective,
       url,
       headed,
       timeoutSec: Number(process.env.HANDOFF_TIMEOUT || 300),
       onEvent: live && !quiet ? makeLivePrinter() : undefined,
     });
+    let r = await go();
+    // Triage: when Kane says the failure was its own automation slipping (not the
+    // app), re-run once before anyone touches the code.
+    if (r.status === 'failed' && isAutomationSlip(r) && retries > 0) {
+      if (!quiet) console.log(`      ${sym.warn} ${c.yellow('Kane flagged its own automation')} ${c.gray(truncate(r.oneLiner || r.verdict?.rootCause, 80))}\n      ${sym.arrow} ${c.gray('re-running before blaming the code')}`);
+      const first = { status: r.status, oneLiner: r.oneLiner, summary: r.summary, verdict: r.verdict, evidence: r.evidence, reportUrl: r.reportUrl, credits: r.credits };
+      r = await go();
+      r.retriedAfterSlip = first;
+      r.credits = (r.credits || 0) + (first.credits || 0);
+    }
+    if (r.status === 'failed') r.slip = isAutomationSlip(r);
     const entry = { id: check.id, route: check.route || '', ...r };
     results.push(entry);
     if (!quiet) {
       const icon = r.status === 'passed' ? sym.pass : r.status === 'failed' ? sym.fail : sym.warn;
-      console.log(`      ${icon} ${statusWord(r.status)} ${c.gray(fmtDuration(r.duration))}${r.summary ? '  ' + truncate(r.summary, 90) : r.reason ? '  ' + c.gray(truncate(r.reason, 90)) : ''}`);
+      const line = r.oneLiner || r.summary || r.reason;
+      console.log(`      ${icon} ${statusWord(r.status)} ${c.gray(fmtDuration(r.duration))}${line ? '  ' + (r.status === 'error' ? c.gray(truncate(line, 90)) : truncate(line, 90)) : ''}`);
+      for (const e of (r.status === 'failed' ? r.evidence || [] : [])) {
+        if (e.read != null && e.expected != null) console.log(`        ${c.gray('Kane read')} ${c.red(JSON.stringify(e.read))} ${c.gray('· expected')} ${c.green(JSON.stringify(e.expected))}`);
+      }
+      if (r.reportUrl && r.status !== 'passed') console.log(`        ${c.gray('report')} ${c.cyan(truncate(r.reportUrl, 70))}`);
     }
   }
   return { label, startedAt, finishedAt: new Date().toISOString(), results };

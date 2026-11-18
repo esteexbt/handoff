@@ -23,5 +23,6 @@ if (/Yearly/.test(objective) && app.includes('MONTHLY * 12}')) {
   state.checked_message = '$60 per year';
 }
 emit({ type: 'step', step: pass ? 'Assertion passed' : 'Assertion failed' });
-emit({ type: 'run_end', status: pass ? 'passed' : 'failed', summary, final_state: state, reason: pass ? 'Objective completed' : 'Assertion failed', duration: 12.3, bifurcated: false, total_runs: 1 });
+const evidence = /Yearly/.test(objective) && !pass ? { grow_price: { human_description: 'Reading the Grow plan price', extracted_value: '$60', expected_value: '$48', condition: 'price is $48' } } : {};
+emit({ type: 'run_end', status: pass ? 'passed' : 'failed', summary, one_liner: summary.split('.')[0] + '.', final_state: state, reason: pass ? 'Objective completed' : 'Assertion failed', duration: 12.3, bifurcated: false, total_runs: 1, credits_consumed: 21.5, test_url: 'https://test-manager.lambdatest.com/share/mock', result_code: pass ? 0 : 710, verdict: pass ? undefined : { status: 'broken', family: 'app_bug', category: 'functional' }, context: { memory: evidence } });
 process.exit(pass ? 0 : 1);

@@ -21,6 +21,6 @@ a waitlist, simple pricing, and a short FAQ. Built by a coding agent from this s
 
 - join-waitlist: Enter "ada@example.com" in the email field, click "Join the waitlist", and verify the page shows the message "You're on the list"
 - reject-bad-email: Enter "ada@example" in the email field, click "Join the waitlist", and verify an error saying "Enter a valid email address" is shown and the message "You're on the list" is not shown
-- yearly-pricing: Click the "Yearly" billing option and verify the Grow plan price shows "$48" per year
+- yearly-pricing: Scroll to the "Simple pricing" section, click the button labelled "Yearly", then verify the Grow plan card shows the price "$48" and the text "per year"
 - faq-cancel: Click the question "Can I cancel anytime?" and verify the answer "Yes. Cancel in one click from Settings." becomes visible
 - nav-pricing: Click "Pricing" in the top navigation and verify the pricing section with the "Grow" plan is visible

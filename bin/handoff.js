@@ -3,7 +3,8 @@ import * as cmd from '../src/commands.js';
 import { c } from '../src/ui.js';
 
 const argv = process.argv.slice(2);
-const command = argv[0] && !argv[0].startsWith('-') ? argv.shift() : 'help';
+const VERSION_FLAGS = ['--version', '-v', 'version'];
+const command = VERSION_FLAGS.includes(argv[0]) ? argv.shift() : argv[0] && !argv[0].startsWith('-') ? argv.shift() : 'help';
 
 function parseFlags(args) {
   const opts = {};

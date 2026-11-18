@@ -34,6 +34,7 @@ export function runCheck(kane, { objective, url, headed = false, timeoutSec = 30
     const started = Date.now();
     const events = [];
     const steps = [];
+    const rawSample = [];
     let stdoutBuf = '';
     let stderr = '';
     let timedOut = false;
@@ -56,6 +57,7 @@ export function runCheck(kane, { objective, url, headed = false, timeoutSec = 30
       let ev;
       try { ev = JSON.parse(line); } catch { return; }
       events.push(ev);
+      if (rawSample.length < 60) rawSample.push(JSON.stringify(ev).slice(0, 700));
       const text = eventText(ev);
       if (ev.type !== 'run_end' && text) steps.push({ type: ev.type || 'event', text });
       onEvent?.(ev, text);
@@ -92,9 +94,16 @@ export function runCheck(kane, { objective, url, headed = false, timeoutSec = 30
         status,
         exitCode: timedOut ? 3 : code,
         summary: end?.summary || '',
+        oneLiner: end?.one_liner || '',
         reason: end?.reason || (status === 'error' ? truncate(stderr, 400) : ''),
         finalState: end?.final_state || null,
         kaneDuration: typeof end?.duration === 'number' ? end.duration : null,
+        credits: typeof end?.credits_consumed === 'number' ? end.credits_consumed : null,
+        reportUrl: end?.test_url || '',
+        resultCode: end?.result_code ?? null,
+        reasonCode: end?.reason_code || '',
+        verdict: pickVerdict(end?.verdict),
+        evidence: extractEvidence(end),
         runEnd: end,
       }));
     });
@@ -105,6 +114,7 @@ export function runCheck(kane, { objective, url, headed = false, timeoutSec = 30
         objective,
         url,
         steps: steps.slice(-40),
+        rawSample,
         eventCount: events.length,
         stderr: r.status === 'error' ? truncate(stderr, 1200) : '',
         duration: (Date.now() - started) / 1000,
@@ -123,4 +133,43 @@ export function makeLivePrinter(indent = '      ') {
     last = t;
     console.log(`${indent}${sym.kane} ${c.gray(t)}`);
   };
+}
+
+// Kane's own judgement of a failure: was it the app, or Kane's automation?
+function pickVerdict(v) {
+  if (!v || typeof v !== 'object') return null;
+  return {
+    status: v.status || '',
+    family: v.family || '',
+    category: v.category || '',
+    severity: v.severity || '',
+    rootCause: v.root_cause || '',
+    confirmed: v.confirmed ?? null,
+  };
+}
+
+// Pull "Kane read X, expected Y" out of the run's memory, when present.
+function extractEvidence(end) {
+  const mem = end?.context?.memory;
+  if (!mem || typeof mem !== 'object') return [];
+  const out = [];
+  for (const [key, m] of Object.entries(mem)) {
+    if (!m || typeof m !== 'object') continue;
+    if (m.extracted_value === undefined && m.expected_value === undefined) continue;
+    out.push({
+      key,
+      what: m.human_description || m.query || key,
+      condition: m.condition || '',
+      read: m.extracted_value ?? null,
+      expected: m.expected_value ?? null,
+    });
+  }
+  return out.slice(0, 6);
+}
+
+// True when Kane itself says the failure came from its own automation, not the app.
+export function isAutomationSlip(r) {
+  const f = (r.verdict?.family || '').toLowerCase();
+  const cat = (r.verdict?.category || '').toLowerCase();
+  return /automation|tooling|flak|infra/.test(f) || /agent_misstep|misclick|flak/.test(cat);
 }
