@@ -1,0 +1,1103 @@
+{
+  "id": "20261118-122358-fcf7",
+  "trigger": "loop",
+  "startedAt": "2026-11-18T11:23:58.784Z",
+  "spec": {
+    "name": "Sprout",
+    "url": "http://localhost:4173",
+    "checks": 5
+  },
+  "rounds": [
+    {
+      "label": "Round 1",
+      "startedAt": "2026-11-18T11:23:58.785Z",
+      "finishedAt": "2026-11-18T11:30:40.639Z",
+      "results": [
+        {
+          "id": "join-waitlist",
+          "route": "",
+          "status": "passed",
+          "exitCode": 0,
+          "summary": "Entered ada@example.com in the email field.\nClicked “Join the waitlist” to submit the request.\nThe page confirmed the signup with the message “You're on the list.”",
+          "oneLiner": "joined the waitlist on localhost",
+          "reason": "Objective completed",
+          "finalState": {
+            "url": "http://localhost:4173/",
+            "waitlist_confirmation_message_visible": "true"
+          },
+          "kaneDuration": 37.7,
+          "credits": 11.063222499999998,
+          "reportUrl": "https://test-manager.lambdatest.com/projects/01M7Q4HPVF8YTVJ87AAB51ESGQ/test-cases/01M7Q6CMF8DNYQ6SH5QSG58Q69/dashboard/share/US_IJ3ZV1GJUTBNGGSJCH8Q632HN2QMG3EX8U5QKF8TV3TIO2YN6HVZLRWSNJNCEJFL?type=summary&agentView=true&fqdn=summary-page",
+          "resultCode": 100,
+          "reasonCode": "success.complete",
+          "verdict": null,
+          "evidence": [
+            {
+              "key": "waitlist_confirmation_message_visible",
+              "what": "Checking whether the waitlist confirmation message is present",
+              "condition": "the page shows the message \"You're on the list\"",
+              "read": "true",
+              "expected": "true"
+            }
+          ],
+          "runEnd": {
+            "type": "run_end",
+            "status": "passed",
+            "summary": "Entered ada@example.com in the email field.\nClicked “Join the waitlist” to submit the request.\nThe page confirmed the signup with the message “You're on the list.”",
+            "one_liner": "joined the waitlist on localhost",
+            "final_state": {
+              "url": "http://localhost:4173/",
+              "waitlist_confirmation_message_visible": "true"
+            },
+            "reason": "Objective completed",
+            "duration": 37.7,
+            "bifurcated": false,
+            "total_runs": 1,
+            "context": {
+              "memory": {
+                "waitlist_confirmation_message_visible": {
+                  "extracted_value": "true",
+                  "operator": "equals",
+                  "transforms": [],
+                  "json_path": null,
+                  "reasoning": "value: 'true' -> 'true'; equals 'true' -> PASS",
+                  "analyzer_type": "textual_visual",
+                  "step": 4,
+                  "query": "whether the message \"You're on the list\" is present in the waitlist confirmation status",
+                  "condition": "the page shows the message \"You're on the list\"",
+                  "human_description": "Checking whether the waitlist confirmation message is present",
+                  "expected_value": "true",
+                  "subject": "the message \"You're on the list\"",
+                  "must_be": "present",
+                  "code_js": "el(17).textContent.includes(\"You're on the list\")",
+                  "wrapped_js": "(els) => {\n  const __m = {17: 0};\n  const el = (i) => els[__m[i]];\n  const __v = (el(17).textContent.includes(\"You're on the list\"));\n  return (typeof __v === 'boolean' ? String(__v) : __v);\n}",
+                  "locators": [
+                    "internal:text=\"You're on the list. We'll\"i"
+                  ],
+                  "needs_unit_conversion": false
+                }
+              },
+              "variables": {
+                "waitlist_confirmation_message_visible": {
+                  "syntax": "{{waitlist_confirmation_message_visible}}",
+                  "value": "true",
+                  "type": "memory",
+                  "secret": false
+                }
+              },
+              "pointer": "(passed) joined the waitlist on localhost"
+            },
+            "credits_consumed": 11.063222499999998,
+            "session_dir": "C:\\Users\\Esteexbt/.testmuai/kaneai/sessions\\baa29dd4-3b19-4d82-8561-7e1d536413e3",
+            "run_dir": "C:\\Users\\Esteexbt/.testmuai/kaneai/sessions\\baa29dd4-3b19-4d82-8561-7e1d536413e3\\runs\\0",
+            "result_code": 100,
+            "reason_code": "success.complete",
+            "per_flow_metadata": [
+              {
+                "result_code": "100",
+                "reason_code": "success.complete",
+                "error_message": null,
+                "summary": "Entered ada@example.com in the email field.\nClicked “Join the waitlist” to submit the request.\nThe page confirmed the signup with the message “You're on the list.”",
+                "one_liner": "joined the waitlist on localhost",
+                "credits_consumed": 11.063222499999998
+              }
+            ],
+            "run_id": "run-0",
+            "test_url": "https://test-manager.lambdatest.com/projects/01M7Q4HPVF8YTVJ87AAB51ESGQ/test-cases/01M7Q6CMF8DNYQ6SH5QSG58Q69/dashboard/share/US_IJ3ZV1GJUTBNGGSJCH8Q632HN2QMG3EX8U5QKF8TV3TIO2YN6HVZLRWSNJNCEJFL?type=summary&agentView=true&fqdn=summary-page",
+            "coverage": {
+              "status": "skipped"
+            },
+            "v": 1,
+            "ts": "2026-11-18T11:25:23.050Z"
+          },
+          "objective": "Enter \"ada@example.com\" in the email field, click \"Join the waitlist\", and verify the page shows the message \"You're on the list\"",
+          "url": "http://localhost:4173",
+          "steps": [],
+          "rawSample": [
+            "{\"type\":\"stream_start\",\"cli_version\":\"0.10.6\",\"surface\":\"run\",\"pid\":5812,\"v\":1,\"ts\":\"2026-11-18T11:23:59.784Z\"}",
+            "{\"type\":\"recording_state\",\"enabled\":true,\"session_id\":\"baa29dd4-3b19-4d82-8561-7e1d536413e3\",\"persist\":false,\"v\":1,\"ts\":\"2026-11-18T11:23:59.822Z\"}",
+            "{\"type\":\"skill_update_available\",\"current\":null,\"latest\":\"0.1.4\",\"install_cmd\":\"kane-cli install skill\",\"v\":1,\"ts\":\"2026-11-18T11:24:05.333Z\"}",
+            "{\"type\":\"bifurcation\",\"flows\":[\"Navigate to http://localhost:4173 then Enter \\\"ada@example.com\\\" in the email field\\nclick \\\"Join the waitlist\\\"\\nverify the page shows the message \\\"You're on the list\\\"\"],\"count\":1,\"v\":1,\"ts\":\"2026-11-18T11:24:27.511Z\"}",
+            "{\"step\":2,\"status\":\"running\",\"remark\":\"Step 1\",\"v\":1,\"ts\":\"2026-11-18T11:24:29.628Z\"}",
+            "{\"step\":2,\"status\":\"done\",\"remark\":\"navigate: Navigate to http://localhost:4173\",\"v\":1,\"ts\":\"2026-11-18T11:24:29.649Z\"}",
+            "{\"step\":3,\"status\":\"running\",\"remark\":\"Step 2\",\"v\":1,\"ts\":\"2026-11-18T11:24:33.303Z\"}",
+            "{\"step\":3,\"status\":\"done\",\"remark\":\"type: Typing ada@example.com in the email field\",\"v\":1,\"ts\":\"2026-11-18T11:24:39.257Z\"}",
+            "{\"step\":4,\"status\":\"running\",\"remark\":\"Step 3\",\"v\":1,\"ts\":\"2026-11-18T11:24:40.134Z\"}",
+            "{\"step\":4,\"status\":\"done\",\"remark\":\"click: Clicking Join the waitlist\",\"v\":1,\"ts\":\"2026-11-18T11:24:47.001Z\"}",
+            "{\"step\":5,\"status\":\"running\",\"remark\":\"Step 4\",\"v\":1,\"ts\":\"2026-11-18T11:24:47.746Z\"}",
+            "{\"step\":5,\"status\":\"done\",\"remark\":\"analyze: the page shows the message \\\"You\\\\\",\"v\":1,\"ts\":\"2026-11-18T11:24:57.860Z\"}",
+            "{\"step\":6,\"status\":\"running\",\"remark\":\"Step 5\",\"v\":1,\"ts\":\"2026-11-18T11:24:58.743Z\"}",
+            "{\"step\":6,\"status\":\"done\",\"remark\":\"assert: the page shows the message \\\"You're on the list\\\"\",\"v\":1,\"ts\":\"2026-11-18T11:24:58.805Z\"}",
+            "{\"type\":\"coverage\",\"status\":\"skipped\",\"reason\":\"not_assurance_project\",\"pack\":\"C:\\\\Users\\\\Esteexbt\\\\.testmuai\\\\kaneai\\\\sessions\\\\baa29dd4-3b19-4d82-8561-7e1d536413e3\\\\evidence\\\\d0eb1564-01e4-4b07-b533-3dd0f547fb06.evidence\",\"v\":1,\"ts\":\"2026-11-18T11:25:23.049Z\"}",
+            "{\"type\":\"run_end\",\"status\":\"passed\",\"summary\":\"Entered ada@example.com in the email field.\\nClicked “Join the waitlist” to submit the request.\\nThe page confirmed the signup with the message “You're on the list.”\",\"one_liner\":\"joined the waitlist on localhost\",\"final_state\":{\"url\":\"http://localhost:4173/\",\"waitlist_confirmation_message_visible\":\"true\"},\"reason\":\"Objective completed\",\"duration\":37.7,\"bifurcated\":false,\"total_runs\":1,\"context\":{\"memory\":{\"waitlist_confirmation_message_visible\":{\"extracted_value\":\"true\",\"operator\":\"equals\",\"transforms\":[],\"json_path\":null,\"reasoning\":\"value: 'true' -> 'true'; equals 'true' -> PASS\",\"analyzer_type\":\"textual_visual\",\"step\":4,\"query\":\"whether the "
+          ],
+          "eventCount": 16,
+          "stderr": "",
+          "duration": 86.817
+        },
+        {
+          "id": "reject-bad-email",
+          "route": "",
+          "status": "failed",
+          "exitCode": 1,
+          "summary": "The email check treated an address without a valid domain ending as acceptable and displayed a successful signup message.\nUpdate the waitlist email validation so addresses such as ada@example show “Enter a valid email address” and do not show the signup confirmation.\nevidence: objective_contradiction: You're on the list. We'll write when Sprout is ready.",
+          "oneLiner": "The waitlist accepted the incomplete email address ada@example instead of showing the requested validation message.",
+          "reason": "Final verification failed: \"an error saying \"Enter a valid email address\" is shown and the message \"You're on the list\" is not shown\"",
+          "finalState": {},
+          "kaneDuration": 58.5,
+          "credits": 11.689449999999999,
+          "reportUrl": "https://test-manager.lambdatest.com/projects/01M7Q4HPVF8YTVJ87AAB51ESGQ/test-cases/01M7Q6F7PB940Q7658HFZHETTV/dashboard/share/US_SXMQQHY3DB15DZX2SYKCD9QD3GZXIA9E2PL1I2MA2KPSI6PHSAPJ7VZWFGWHFLPT?type=summary&agentView=true&fqdn=summary-page",
+          "resultCode": 740,
+          "reasonCode": "assertion_error.confirmed_product_bug",
+          "verdict": {
+            "status": "failed",
+            "family": "application_issue",
+            "category": "validation_defect",
+            "severity": "major",
+            "rootCause": "The email check treated an address without a valid domain ending as acceptable and displayed a successful signup message.",
+            "confirmed": true
+          },
+          "evidence": [
+            {
+              "key": "valid_email_error_visible",
+              "what": "Checking whether the email validation error is present",
+              "condition": "an error saying \"Enter a valid email address\" is shown",
+              "read": "false",
+              "expected": "true"
+            },
+            {
+              "key": "waitlist_success_message_visible",
+              "what": "Checking whether the waitlist success message is present",
+              "condition": "the message \"You're on the list\" is not shown",
+              "read": "true",
+              "expected": "false"
+            }
+          ],
+          "runEnd": {
+            "type": "run_end",
+            "status": "failed",
+            "summary": "The email check treated an address without a valid domain ending as acceptable and displayed a successful signup message.\nUpdate the waitlist email validation so addresses such as ada@example show “Enter a valid email address” and do not show the signup confirmation.\nevidence: objective_contradiction: You're on the list. We'll write when Sprout is ready.",
+            "one_liner": "The waitlist accepted the incomplete email address ada@example instead of showing the requested validation message.",
+            "final_state": {},
+            "reason": "Final verification failed: \"an error saying \"Enter a valid email address\" is shown and the message \"You're on the list\" is not shown\"",
+            "duration": 58.5,
+            "bifurcated": false,
+            "total_runs": 1,
+            "context": {
+              "memory": {
+                "valid_email_error_visible": {
+                  "extracted_value": "false",
+                  "operator": "equals",
+                  "transforms": [],
+                  "json_path": null,
+                  "reasoning": "value: 'false' -> 'false'; equals 'true' -> FAIL",
+                  "analyzer_type": "visual",
+                  "step": 4,
+                  "query": "whether an error saying \"Enter a valid email address\" is visible in the waitlist form",
+                  "condition": "an error saying \"Enter a valid email address\" is shown",
+                  "human_description": "Checking whether the email validation error is present",
+                  "expected_value": "true",
+                  "subject": "an error saying \"Enter a valid email address\"",
+                  "must_be": "present"
+                },
+                "waitlist_success_message_visible": {
+                  "extracted_value": "true",
+                  "operator": "equals",
+                  "transforms": [],
+                  "json_path": null,
+                  "reasoning": "value: 'true' -> 'true'; equals 'false' -> FAIL",
+                  "analyzer_type": "textual_visual",
+                  "step": 4,
+                  "query": "whether the waitlist status message \"You're on the list\" is present below the waitlist form",
+                  "condition": "the message \"You're on the list\" is not shown",
+                  "human_description": "Checking whether the waitlist success message is present",
+                  "expected_value": "false",
+                  "subject": "the message \"You're on the list\"",
+                  "must_be": "absent",
+                  "code_js": "el(17).textContent.includes(\"You're on the list\")",
+                  "wrapped_js": "(els) => {\n  const __m = {17: 0};\n  const el = (i) => els[__m[i]];\n  const __v = (el(17).textContent.includes(\"You're on the list\"));\n  return (typeof __v === 'boolean' ? String(__v) : __v);\n}",
+                  "locators": [
+                    "internal:text=\"You're on the list. We'll\"i"
+                  ],
+                  "needs_unit_conversion": false
+                }
+              },
+              "variables": {
+                "valid_email_error_visible": {
+                  "syntax": "{{valid_email_error_visible}}",
+                  "value": "false",
+                  "type": "memory",
+                  "secret": false
+                },
+                "waitlist_success_message_visible": {
+                  "syntax": "{{waitlist_success_message_visible}}",
+                  "value": "true",
+                  "type": "memory",
+                  "secret": false
+                }
+              },
+              "pointer": "(failed) The waitlist accepted the incomplete email address ada@example instead of showing the requested validation message."
+            },
+            "credits_consumed": 11.689449999999999,
+            "session_dir": "C:\\Users\\Esteexbt/.testmuai/kaneai/sessions\\b81e39e8-d31a-4f9f-abb8-7976c28feb8a",
+            "run_dir": "C:\\Users\\Esteexbt/.testmuai/kaneai/sessions\\b81e39e8-d31a-4f9f-abb8-7976c28feb8a\\runs\\0",
+            "result_code": 740,
+            "reason_code": "assertion_error.confirmed_product_bug",
+            "per_flow_metadata": [
+              {
+                "result_code": "740",
+                "reason_code": "assertion_error.confirmed_product_bug",
+                "error_message": "Final verification failed: \"an error saying \"Enter a valid email address\" is shown and the message \"You're on the list\" is not shown\"",
+                "summary": "The email check treated an address without a valid domain ending as acceptable and displayed a successful signup message.\nUpdate the waitlist email validation so addresses such as ada@example show “Enter a valid email address” and do not show the signup confirmation.\nevidence: objective_contradiction: You're on the list. We'll write when Sprout is ready.",
+                "one_liner": "The waitlist accepted the incomplete email address ada@example instead of showing the requested validation message.",
+                "credits_consumed": 11.689449999999999
+              }
+            ],
+            "run_id": "run-0",
+            "verdict": {
+              "confirmed": true,
+              "status": "failed",
+              "family": "application_issue",
+              "category": "validation_defect",
+              "category_proposal": "",
+              "severity": "major",
+              "root_cause": "The email check treated an address without a valid domain ending as acceptable and displayed a successful signup message.",
+              "agent_fault_assessment": "The agent followed the requested flow: it entered exactly ada@example in the email field, clicked the named Join the waitlist button, and then checked the requested result. The captured post-click screen shows the form accepted that invalid value, so the agent's actions did not cause the failure.",
+              "bug_title": "Waitlist accepts malformed email address",
+              "signals": [
+                {
+                  "step": "0-4",
+                  "kind": "objective_contradiction",
+                  "excerpt": "You're on the list. We'll write when Sprout is ready."
+                }
+              ],
+              "confidence": 0.98,
+              "suggestion": "Update the waitlist email validation so addresses such as ada@example show “Enter a valid email address” and do not show the signup confirmation.",
+              "one_liner": "The waitlist accepted the incomplete email address ada@example instead of showing the requested validation message.",
+              "relevant_steps": [
+                2,
+                3,
+                4,
+                5
+              ],
+              "culprit_step": "0-5",
+              "credits_consumed": 5.1267,
+              "mode": "terminal"
+            },
+            "test_url": "https://test-manager.lambdatest.com/projects/01M7Q4HPVF8YTVJ87AAB51ESGQ/test-cases/01M7Q6F7PB940Q7658HFZHETTV/dashboard/share/US_SXMQQHY3DB15DZX2SYKCD9QD3GZXIA9E2PL1I2MA2KPSI6PHSAPJ7VZWFGWHFLPT?type=summary&agentView=true&fqdn=summary-page",
+            "coverage": {
+              "status": "skipped"
+            },
+            "v": 1,
+            "ts": "2026-11-18T11:27:05.143Z"
+          },
+          "objective": "Enter \"ada@example\" in the email field, click \"Join the waitlist\", and verify an error saying \"Enter a valid email address\" is shown and the message \"You're on the list\" is not shown",
+          "url": "http://localhost:4173",
+          "steps": [],
+          "rawSample": [
+            "{\"type\":\"stream_start\",\"cli_version\":\"0.10.6\",\"surface\":\"run\",\"pid\":15968,\"v\":1,\"ts\":\"2026-11-18T11:25:26.605Z\"}",
+            "{\"type\":\"recording_state\",\"enabled\":true,\"session_id\":\"b81e39e8-d31a-4f9f-abb8-7976c28feb8a\",\"persist\":false,\"v\":1,\"ts\":\"2026-11-18T11:25:26.660Z\"}",
+            "{\"type\":\"skill_update_available\",\"current\":null,\"latest\":\"0.1.4\",\"install_cmd\":\"kane-cli install skill\",\"v\":1,\"ts\":\"2026-11-18T11:25:30.575Z\"}",
+            "{\"type\":\"bifurcation\",\"flows\":[\"Navigate to http://localhost:4173 then Enter \\\"ada@example\\\" in the email field\\nclick \\\"Join the waitlist\\\"\\nand verify an error saying \\\"Enter a valid email address\\\" is shown and the message \\\"You're on the list\\\" is not shown\"],\"count\":1,\"v\":1,\"ts\":\"2026-11-18T11:26:00.333Z\"}",
+            "{\"step\":2,\"status\":\"running\",\"remark\":\"Step 1\",\"v\":1,\"ts\":\"2026-11-18T11:26:04.965Z\"}",
+            "{\"step\":2,\"status\":\"done\",\"remark\":\"navigate: Navigate to http://localhost:4173\",\"v\":1,\"ts\":\"2026-11-18T11:26:04.990Z\"}",
+            "{\"step\":3,\"status\":\"running\",\"remark\":\"Step 2\",\"v\":1,\"ts\":\"2026-11-18T11:26:09.386Z\"}",
+            "{\"step\":3,\"status\":\"done\",\"remark\":\"type: Typing ada@example in the email field\",\"v\":1,\"ts\":\"2026-11-18T11:26:16.129Z\"}",
+            "{\"step\":4,\"status\":\"running\",\"remark\":\"Step 3\",\"v\":1,\"ts\":\"2026-11-18T11:26:16.979Z\"}",
+            "{\"step\":4,\"status\":\"done\",\"remark\":\"click: Clicking Join the waitlist button\",\"v\":1,\"ts\":\"2026-11-18T11:26:22.967Z\"}",
+            "{\"step\":5,\"status\":\"running\",\"remark\":\"Step 4\",\"v\":1,\"ts\":\"2026-11-18T11:26:23.733Z\"}",
+            "{\"step\":5,\"status\":\"done\",\"remark\":\"analyze: the message \\\"You\\\\\",\"v\":1,\"ts\":\"2026-11-18T11:26:40.117Z\"}",
+            "{\"step\":6,\"status\":\"running\",\"remark\":\"Step 5\",\"v\":1,\"ts\":\"2026-11-18T11:26:40.904Z\"}",
+            "{\"step\":6,\"status\":\"failed\",\"remark\":\"assert: an error saying \\\"Enter a valid email address\\\" is shown and the message \\\"You're o\",\"v\":1,\"ts\":\"2026-11-18T11:26:40.924Z\"}",
+            "{\"type\":\"coverage\",\"status\":\"skipped\",\"reason\":\"not_assurance_project\",\"pack\":\"C:\\\\Users\\\\Esteexbt\\\\.testmuai\\\\kaneai\\\\sessions\\\\b81e39e8-d31a-4f9f-abb8-7976c28feb8a\\\\evidence\\\\1fd80455-e4fd-4299-9cef-39c03a3e4bb8.evidence\",\"v\":1,\"ts\":\"2026-11-18T11:27:05.142Z\"}",
+            "{\"type\":\"run_end\",\"status\":\"failed\",\"summary\":\"The email check treated an address without a valid domain ending as acceptable and displayed a successful signup message.\\nUpdate the waitlist email validation so addresses such as ada@example show “Enter a valid email address” and do not show the signup confirmation.\\nevidence: objective_contradiction: You're on the list. We'll write when Sprout is ready.\",\"one_liner\":\"The waitlist accepted the incomplete email address ada@example instead of showing the requested validation message.\",\"final_state\":{},\"reason\":\"Final verification failed: \\\"an error saying \\\"Enter a valid email address\\\" is shown and the message \\\"You're on the list\\\" is not show"
+          ],
+          "eventCount": 16,
+          "stderr": "",
+          "duration": 101.93,
+          "slip": false
+        },
+        {
+          "id": "yearly-pricing",
+          "route": "",
+          "status": "failed",
+          "exitCode": 1,
+          "summary": "The yearly pricing displayed for the Grow plan is incorrect. The billing selector is visibly set to Yearly and the card says “per year,” but its shown amount is $60 instead of $48.\nCorrect the Grow plan's yearly price to $48, then retest the Yearly billing toggle and displayed period label.\nevidence: objective_contradiction: Final verification failed: \"the Grow plan card shows the price \"$48\" and the text \"per year\"\"",
+          "oneLiner": "After Yearly is selected, the Grow card shows $60 per year rather than the expected $48 per year.",
+          "reason": "Final verification failed: \"the Grow plan card shows the price \"$48\" and the text \"per year\"\"",
+          "finalState": {},
+          "kaneDuration": 57.6,
+          "credits": 23.051859999999998,
+          "reportUrl": "https://test-manager.lambdatest.com/projects/01M7Q4HPVF8YTVJ87AAB51ESGQ/test-cases/01M7Q6JAZFWQ8B4CKH4BR5EXPV/dashboard/share/US_S0U0PYF9K0BGA8951OOULFMCALHS2GALNXA76CZC3ASYA6YRJO7KLLEZWSYITEMC?type=summary&agentView=true&fqdn=summary-page",
+          "resultCode": 740,
+          "reasonCode": "assertion_error.confirmed_product_bug",
+          "verdict": {
+            "status": "failed",
+            "family": "application_issue",
+            "category": "ui_data_defect",
+            "severity": "major",
+            "rootCause": "The yearly pricing displayed for the Grow plan is incorrect. The billing selector is visibly set to Yearly and the card says “per year,” but its shown amount is $60 instead of $48.",
+            "confirmed": true
+          },
+          "evidence": [
+            {
+              "key": "grow_plan_per_year_text_visible",
+              "what": "Checking whether the Grow plan card shows per year",
+              "condition": "the Grow plan card shows the text \"per year\"",
+              "read": "true",
+              "expected": "true"
+            },
+            {
+              "key": "grow_plan_price_check",
+              "what": "Reading the Grow plan price",
+              "condition": "the Grow plan card shows the price \"$48\"",
+              "read": "$60",
+              "expected": "$48"
+            }
+          ],
+          "runEnd": {
+            "type": "run_end",
+            "status": "failed",
+            "summary": "The yearly pricing displayed for the Grow plan is incorrect. The billing selector is visibly set to Yearly and the card says “per year,” but its shown amount is $60 instead of $48.\nCorrect the Grow plan's yearly price to $48, then retest the Yearly billing toggle and displayed period label.\nevidence: objective_contradiction: Final verification failed: \"the Grow plan card shows the price \"$48\" and the text \"per year\"\"",
+            "one_liner": "After Yearly is selected, the Grow card shows $60 per year rather than the expected $48 per year.",
+            "final_state": {},
+            "reason": "Final verification failed: \"the Grow plan card shows the price \"$48\" and the text \"per year\"\"",
+            "duration": 57.6,
+            "bifurcated": false,
+            "total_runs": 1,
+            "context": {
+              "memory": {
+                "grow_plan_per_year_text_visible": {
+                  "extracted_value": "true",
+                  "operator": "equals",
+                  "transforms": [],
+                  "json_path": null,
+                  "reasoning": "value: 'true' -> 'true'; equals 'true' -> PASS",
+                  "analyzer_type": "textual_visual",
+                  "step": 4,
+                  "query": "whether the text \"per year\" in the Grow plan card is present",
+                  "condition": "the Grow plan card shows the text \"per year\"",
+                  "human_description": "Checking whether the Grow plan card shows per year",
+                  "expected_value": "true",
+                  "subject": "the text \"per year\" in the Grow plan card",
+                  "must_be": "present",
+                  "code_js": "(el(36).querySelector('#grow-period')?.textContent.trim() === 'per year')",
+                  "wrapped_js": "(els) => {\n  const __m = {36: 0};\n  const el = (i) => els[__m[i]];\n  const __v = ((el(36).querySelector('#grow-period')?.textContent.trim() === 'per year'));\n  return (typeof __v === 'boolean' ? String(__v) : __v);\n}",
+                  "locators": [
+                    "internal:text=\"Grow $60per year Unlimited\"i"
+                  ],
+                  "needs_unit_conversion": false
+                },
+                "grow_plan_price_check": {
+                  "extracted_value": "$60",
+                  "operator": "equals",
+                  "transforms": [
+                    "strip"
+                  ],
+                  "json_path": null,
+                  "reasoning": "value: '$60' -> '$60' after ['strip']; equals '$48' -> FAIL",
+                  "analyzer_type": "textual_visual",
+                  "step": 4,
+                  "query": "the price amount in the Grow plan card",
+                  "condition": "the Grow plan card shows the price \"$48\"",
+                  "human_description": "Reading the Grow plan price",
+                  "expected_value": "$48",
+                  "code_js": "el(36).querySelector('#grow-price')?.textContent ?? null",
+                  "wrapped_js": "(els) => {\n  const __m = {36: 0};\n  const el = (i) => els[__m[i]];\n  const __v = (el(36).querySelector('#grow-price')?.textContent ?? null);\n  return (typeof __v === 'boolean' ? String(__v) : __v);\n}",
+                  "locators": [
+                    "internal:text=\"Grow $60per year Unlimited\"i"
+                  ],
+                  "needs_unit_conversion": false
+                }
+              },
+              "variables": {
+                "grow_plan_per_year_text_visible": {
+                  "syntax": "{{grow_plan_per_year_text_visible}}",
+                  "value": "true",
+                  "type": "memory",
+                  "secret": false
+                },
+                "grow_plan_price_check": {
+                  "syntax": "{{grow_plan_price_check}}",
+                  "value": "$60",
+                  "type": "memory",
+                  "secret": false
+                }
+              },
+              "pointer": "(failed) After Yearly is selected, the Grow card shows $60 per year rather than the expected $48 per year."
+            },
+            "credits_consumed": 23.051859999999998,
+            "session_dir": "C:\\Users\\Esteexbt/.testmuai/kaneai/sessions\\16f3afe2-721e-4824-b58e-8b0143d72904",
+            "run_dir": "C:\\Users\\Esteexbt/.testmuai/kaneai/sessions\\16f3afe2-721e-4824-b58e-8b0143d72904\\runs\\0",
+            "result_code": 740,
+            "reason_code": "assertion_error.confirmed_product_bug",
+            "per_flow_metadata": [
+              {
+                "result_code": "740",
+                "reason_code": "assertion_error.confirmed_product_bug",
+                "error_message": "Final verification failed: \"the Grow plan card shows the price \"$48\" and the text \"per year\"\"",
+                "summary": "The yearly pricing displayed for the Grow plan is incorrect. The billing selector is visibly set to Yearly and the card says “per year,” but its shown amount is $60 instead of $48.\nCorrect the Grow plan's yearly price to $48, then retest the Yearly billing toggle and displayed period label.\nevidence: objective_contradiction: Final verification failed: \"the Grow plan card shows the price \"$48\" and the text \"per year\"\"",
+                "one_liner": "After Yearly is selected, the Grow card shows $60 per year rather than the expected $48 per year.",
+                "credits_consumed": 23.051859999999998
+              }
+            ],
+            "run_id": "run-0",
+            "verdict": {
+              "confirmed": true,
+              "status": "failed",
+              "family": "application_issue",
+              "category": "ui_data_defect",
+              "category_proposal": "",
+              "severity": "major",
+              "root_cause": "The yearly pricing displayed for the Grow plan is incorrect. The billing selector is visibly set to Yearly and the card says “per year,” but its shown amount is $60 instead of $48.",
+              "agent_fault_assessment": "The agent did not cause the failure. It scrolled to the pricing section and clicked the Yearly selector as requested; the resulting screen shows Yearly selected and the Grow card in yearly mode. The failed result comes from the price the page displayed, not from a wrong action or an early check.",
+              "bug_title": "Yearly Grow price renders $60 instead of $48",
+              "signals": [
+                {
+                  "step": "0-5",
+                  "kind": "objective_contradiction",
+                  "excerpt": "Final verification failed: \"the Grow plan card shows the price \"$48\" and the text \"per year\"\""
+                }
+              ],
+              "confidence": 0.98,
+              "suggestion": "Correct the Grow plan's yearly price to $48, then retest the Yearly billing toggle and displayed period label.",
+              "one_liner": "After Yearly is selected, the Grow card shows $60 per year rather than the expected $48 per year.",
+              "relevant_steps": [
+                2,
+                3,
+                4,
+                5
+              ],
+              "culprit_step": "0-5",
+              "credits_consumed": 5.05685,
+              "mode": "terminal"
+            },
+            "test_url": "https://test-manager.lambdatest.com/projects/01M7Q4HPVF8YTVJ87AAB51ESGQ/test-cases/01M7Q6JAZFWQ8B4CKH4BR5EXPV/dashboard/share/US_S0U0PYF9K0BGA8951OOULFMCALHS2GALNXA76CZC3ASYA6YRJO7KLLEZWSYITEMC?type=summary&agentView=true&fqdn=summary-page",
+            "coverage": {
+              "status": "skipped"
+            },
+            "v": 1,
+            "ts": "2026-11-18T11:28:31.046Z"
+          },
+          "objective": "Scroll to the \"Simple pricing\" section, click the button labelled \"Yearly\", then verify the Grow plan card shows the price \"$48\" and the text \"per year\"",
+          "url": "http://localhost:4173",
+          "steps": [],
+          "rawSample": [
+            "{\"type\":\"stream_start\",\"cli_version\":\"0.10.6\",\"surface\":\"run\",\"pid\":22404,\"v\":1,\"ts\":\"2026-11-18T11:27:08.513Z\"}",
+            "{\"type\":\"recording_state\",\"enabled\":true,\"session_id\":\"16f3afe2-721e-4824-b58e-8b0143d72904\",\"persist\":false,\"v\":1,\"ts\":\"2026-11-18T11:27:08.555Z\"}",
+            "{\"type\":\"skill_update_available\",\"current\":null,\"latest\":\"0.1.4\",\"install_cmd\":\"kane-cli install skill\",\"v\":1,\"ts\":\"2026-11-18T11:27:12.201Z\"}",
+            "{\"type\":\"bifurcation\",\"flows\":[\"Navigate to http://localhost:4173 then Scroll to the \\\"Simple pricing\\\" section\\nclick the button labelled \\\"Yearly\\\"\\nthen verify the Grow plan card shows the price \\\"$48\\\" and the text \\\"per year\\\"\"],\"count\":1,\"v\":1,\"ts\":\"2026-11-18T11:27:30.054Z\"}",
+            "{\"step\":2,\"status\":\"running\",\"remark\":\"Step 1\",\"v\":1,\"ts\":\"2026-11-18T11:27:32.283Z\"}",
+            "{\"step\":2,\"status\":\"done\",\"remark\":\"navigate: Navigate to http://localhost:4173\",\"v\":1,\"ts\":\"2026-11-18T11:27:32.297Z\"}",
+            "{\"step\":3,\"status\":\"running\",\"remark\":\"Step 2\",\"v\":1,\"ts\":\"2026-11-18T11:27:37.020Z\"}",
+            "{\"step\":3,\"status\":\"done\",\"remark\":\"scroll: Scrolling to the Simple pricing section\",\"v\":1,\"ts\":\"2026-11-18T11:27:42.243Z\"}",
+            "{\"step\":4,\"status\":\"running\",\"remark\":\"Step 3\",\"v\":1,\"ts\":\"2026-11-18T11:27:42.988Z\"}",
+            "{\"step\":4,\"status\":\"done\",\"remark\":\"click: Clicking the Yearly button in the billing period selector\",\"v\":1,\"ts\":\"2026-11-18T11:27:48.949Z\"}",
+            "{\"step\":5,\"status\":\"running\",\"remark\":\"Step 4\",\"v\":1,\"ts\":\"2026-11-18T11:27:49.673Z\"}",
+            "{\"step\":5,\"status\":\"done\",\"remark\":\"analyze: the Grow plan card shows the price \\\"$48\\\"\",\"v\":1,\"ts\":\"2026-11-18T11:28:11.184Z\"}",
+            "{\"step\":6,\"status\":\"running\",\"remark\":\"Step 5\",\"v\":1,\"ts\":\"2026-11-18T11:28:11.883Z\"}",
+            "{\"step\":6,\"status\":\"failed\",\"remark\":\"assert: the Grow plan card shows the price \\\"$48\\\" and the text \\\"per year\\\"\",\"v\":1,\"ts\":\"2026-11-18T11:28:11.899Z\"}",
+            "{\"type\":\"coverage\",\"status\":\"skipped\",\"reason\":\"not_assurance_project\",\"pack\":\"C:\\\\Users\\\\Esteexbt\\\\.testmuai\\\\kaneai\\\\sessions\\\\16f3afe2-721e-4824-b58e-8b0143d72904\\\\evidence\\\\d6b9fb70-00ce-446b-a461-d92ff1ccd1e1.evidence\",\"v\":1,\"ts\":\"2026-11-18T11:28:31.046Z\"}",
+            "{\"type\":\"run_end\",\"status\":\"failed\",\"summary\":\"The yearly pricing displayed for the Grow plan is incorrect. The billing selector is visibly set to Yearly and the card says “per year,” but its shown amount is $60 instead of $48.\\nCorrect the Grow plan's yearly price to $48, then retest the Yearly billing toggle and displayed period label.\\nevidence: objective_contradiction: Final verification failed: \\\"the Grow plan card shows the price \\\"$48\\\" and the text \\\"per year\\\"\\\"\",\"one_liner\":\"After Yearly is selected, the Grow card shows $60 per year rather than the expected $48 per year.\",\"final_state\":{},\"reason\":\"Final verification failed: \\\"the Grow plan card shows the price \\\"$48\\\" and the text"
+          ],
+          "eventCount": 16,
+          "stderr": "",
+          "duration": 85.365,
+          "slip": false
+        },
+        {
+          "id": "faq-cancel",
+          "route": "",
+          "status": "passed",
+          "exitCode": 0,
+          "summary": "You asked to open the “Can I cancel anytime?” question.\nOpened the cancellation FAQ item, and the answer “Yes. Cancel in one click from Settings.” was displayed.",
+          "oneLiner": "opened the cancellation FAQ on localhost",
+          "reason": "Objective completed",
+          "finalState": {
+            "url": "http://localhost:4173/",
+            "cancel_anytime_answer_visible": "true"
+          },
+          "kaneDuration": 29.5,
+          "credits": 5.17268,
+          "reportUrl": "https://test-manager.lambdatest.com/projects/01M7Q4HPVF8YTVJ87AAB51ESGQ/test-cases/01M7Q6MXVEWNZ8F06W52RSPH5J/dashboard/share/US_CZ8Z17HEGG55JF6T8HNDII093TA12FTMQZQJOM4FRXZU82XX7JCNCA965JV187D5?type=summary&agentView=true&fqdn=summary-page",
+          "resultCode": 100,
+          "reasonCode": "success.complete",
+          "verdict": null,
+          "evidence": [
+            {
+              "key": "cancel_anytime_answer_visible",
+              "what": "Checking whether the cancellation FAQ answer is present",
+              "condition": "the answer \"Yes. Cancel in one click from Settings.\" is visible",
+              "read": "true",
+              "expected": "true"
+            }
+          ],
+          "runEnd": {
+            "type": "run_end",
+            "status": "passed",
+            "summary": "You asked to open the “Can I cancel anytime?” question.\nOpened the cancellation FAQ item, and the answer “Yes. Cancel in one click from Settings.” was displayed.",
+            "one_liner": "opened the cancellation FAQ on localhost",
+            "final_state": {
+              "url": "http://localhost:4173/",
+              "cancel_anytime_answer_visible": "true"
+            },
+            "reason": "Objective completed",
+            "duration": 29.5,
+            "bifurcated": false,
+            "total_runs": 1,
+            "context": {
+              "memory": {
+                "cancel_anytime_answer_visible": {
+                  "extracted_value": "true",
+                  "operator": "equals",
+                  "transforms": [],
+                  "json_path": null,
+                  "reasoning": "value: 'true' -> 'true'; equals 'true' -> PASS",
+                  "analyzer_type": "textual_visual",
+                  "step": 4,
+                  "query": "whether the answer \"Yes. Cancel in one click from Settings.\" is present in the cancellation FAQ answer paragraph",
+                  "condition": "the answer \"Yes. Cancel in one click from Settings.\" is visible",
+                  "human_description": "Checking whether the cancellation FAQ answer is present",
+                  "expected_value": "true",
+                  "subject": "the answer \"Yes. Cancel in one click from Settings.\"",
+                  "must_be": "present",
+                  "code_js": "el(51).textContent.trim() === 'Yes. Cancel in one click from Settings.' && !!(el(51).offsetWidth || el(51).offsetHeight || el(51).getClientRects().length)",
+                  "wrapped_js": "(els) => {\n  const __m = {51: 0};\n  const el = (i) => els[__m[i]];\n  const __v = (el(51).textContent.trim() === 'Yes. Cancel in one click from Settings.' && !!(el(51).offsetWidth || el(51).offsetHeight || el(51).getClientRects().length));\n  return (typeof __v === 'boolean' ? String(__v) : __v);\n}",
+                  "locators": [
+                    "internal:text=\"Yes. Cancel in one click from\"i"
+                  ],
+                  "needs_unit_conversion": false
+                }
+              },
+              "variables": {
+                "cancel_anytime_answer_visible": {
+                  "syntax": "{{cancel_anytime_answer_visible}}",
+                  "value": "true",
+                  "type": "memory",
+                  "secret": false
+                }
+              },
+              "pointer": "(passed) opened the cancellation FAQ on localhost"
+            },
+            "credits_consumed": 5.17268,
+            "session_dir": "C:\\Users\\Esteexbt/.testmuai/kaneai/sessions\\c30b24ed-ea93-4705-a8bd-23d17e73e565",
+            "run_dir": "C:\\Users\\Esteexbt/.testmuai/kaneai/sessions\\c30b24ed-ea93-4705-a8bd-23d17e73e565\\runs\\0",
+            "result_code": 100,
+            "reason_code": "success.complete",
+            "per_flow_metadata": [
+              {
+                "result_code": "100",
+                "reason_code": "success.complete",
+                "error_message": null,
+                "summary": "You asked to open the “Can I cancel anytime?” question.\nOpened the cancellation FAQ item, and the answer “Yes. Cancel in one click from Settings.” was displayed.",
+                "one_liner": "opened the cancellation FAQ on localhost",
+                "credits_consumed": 5.17268
+              }
+            ],
+            "run_id": "run-0",
+            "test_url": "https://test-manager.lambdatest.com/projects/01M7Q4HPVF8YTVJ87AAB51ESGQ/test-cases/01M7Q6MXVEWNZ8F06W52RSPH5J/dashboard/share/US_CZ8Z17HEGG55JF6T8HNDII093TA12FTMQZQJOM4FRXZU82XX7JCNCA965JV187D5?type=summary&agentView=true&fqdn=summary-page",
+            "coverage": {
+              "status": "skipped"
+            },
+            "v": 1,
+            "ts": "2026-11-18T11:29:33.212Z"
+          },
+          "objective": "Click the question \"Can I cancel anytime?\" and verify the answer \"Yes. Cancel in one click from Settings.\" becomes visible",
+          "url": "http://localhost:4173",
+          "steps": [],
+          "rawSample": [
+            "{\"type\":\"stream_start\",\"cli_version\":\"0.10.6\",\"surface\":\"run\",\"pid\":1540,\"v\":1,\"ts\":\"2026-11-18T11:28:33.682Z\"}",
+            "{\"type\":\"recording_state\",\"enabled\":true,\"session_id\":\"c30b24ed-ea93-4705-a8bd-23d17e73e565\",\"persist\":false,\"v\":1,\"ts\":\"2026-11-18T11:28:33.732Z\"}",
+            "{\"type\":\"skill_update_available\",\"current\":null,\"latest\":\"0.1.4\",\"install_cmd\":\"kane-cli install skill\",\"v\":1,\"ts\":\"2026-11-18T11:28:37.044Z\"}",
+            "{\"type\":\"bifurcation\",\"flows\":[\"Navigate to http://localhost:4173 then Click the question \\\"Can I cancel anytime?\\\" and verify the answer \\\"Yes. Cancel in one click from Settings.\\\" becomes visible\"],\"count\":1,\"v\":1,\"ts\":\"2026-11-18T11:28:50.987Z\"}",
+            "{\"step\":2,\"status\":\"running\",\"remark\":\"Step 1\",\"v\":1,\"ts\":\"2026-11-18T11:28:53.342Z\"}",
+            "{\"step\":2,\"status\":\"done\",\"remark\":\"navigate: Navigate to http://localhost:4173\",\"v\":1,\"ts\":\"2026-11-18T11:28:53.360Z\"}",
+            "{\"step\":3,\"status\":\"running\",\"remark\":\"Step 2\",\"v\":1,\"ts\":\"2026-11-18T11:28:57.001Z\"}",
+            "{\"step\":3,\"status\":\"done\",\"remark\":\"scroll: Scrolling to the Can I cancel anytime question\",\"v\":1,\"ts\":\"2026-11-18T11:29:03.543Z\"}",
+            "{\"step\":4,\"status\":\"running\",\"remark\":\"Step 3\",\"v\":1,\"ts\":\"2026-11-18T11:29:04.340Z\"}",
+            "{\"step\":4,\"status\":\"done\",\"remark\":\"click: Clicking the question Can I cancel anytime in the FAQ section\",\"v\":1,\"ts\":\"2026-11-18T11:29:05.450Z\"}",
+            "{\"step\":5,\"status\":\"running\",\"remark\":\"Step 4\",\"v\":1,\"ts\":\"2026-11-18T11:29:06.134Z\"}",
+            "{\"step\":5,\"status\":\"done\",\"remark\":\"analyze: ANALYZE(textual_visual, 'the answer \\\"Yes. Cancel in one click from Settings.\\\" is\",\"v\":1,\"ts\":\"2026-11-18T11:29:14.592Z\"}",
+            "{\"step\":6,\"status\":\"running\",\"remark\":\"Step 5\",\"v\":1,\"ts\":\"2026-11-18T11:29:15.269Z\"}",
+            "{\"step\":6,\"status\":\"done\",\"remark\":\"assert: the answer \\\"Yes. Cancel in one click from Settings.\\\" becomes visible\",\"v\":1,\"ts\":\"2026-11-18T11:29:15.282Z\"}",
+            "{\"type\":\"coverage\",\"status\":\"skipped\",\"reason\":\"not_assurance_project\",\"pack\":\"C:\\\\Users\\\\Esteexbt\\\\.testmuai\\\\kaneai\\\\sessions\\\\c30b24ed-ea93-4705-a8bd-23d17e73e565\\\\evidence\\\\6c6a47af-148a-436a-9fc3-315124b4ca54.evidence\",\"v\":1,\"ts\":\"2026-11-18T11:29:33.211Z\"}",
+            "{\"type\":\"run_end\",\"status\":\"passed\",\"summary\":\"You asked to open the “Can I cancel anytime?” question.\\nOpened the cancellation FAQ item, and the answer “Yes. Cancel in one click from Settings.” was displayed.\",\"one_liner\":\"opened the cancellation FAQ on localhost\",\"final_state\":{\"url\":\"http://localhost:4173/\",\"cancel_anytime_answer_visible\":\"true\"},\"reason\":\"Objective completed\",\"duration\":29.5,\"bifurcated\":false,\"total_runs\":1,\"context\":{\"memory\":{\"cancel_anytime_answer_visible\":{\"extracted_value\":\"true\",\"operator\":\"equals\",\"transforms\":[],\"json_path\":null,\"reasoning\":\"value: 'true' -> 'true'; equals 'true' -> PASS\",\"analyzer_type\":\"textual_visual\",\"step\":4,\"query\":\"whether the answer \\\"Ye"
+          ],
+          "eventCount": 16,
+          "stderr": "",
+          "duration": 62.74
+        },
+        {
+          "id": "nav-pricing",
+          "route": "",
+          "status": "passed",
+          "exitCode": 0,
+          "summary": "You asked to open the Pricing section from the top navigation.\nClicked Pricing and navigated to the pricing section.\nThe Simple pricing area loaded with the Grow plan visible.",
+          "oneLiner": "opened the Pricing section on localhost",
+          "reason": "Objective completed",
+          "finalState": {
+            "url": "http://localhost:4173/#pricing",
+            "pricing_section_grow_plan_visible": "true"
+          },
+          "kaneDuration": 25,
+          "credits": 5.31555,
+          "reportUrl": "https://test-manager.lambdatest.com/projects/01M7Q4HPVF8YTVJ87AAB51ESGQ/test-cases/01M7Q6PWFKY88WNEVZA09FXJC4/dashboard/share/US_29I5SQP5C4IYT1Y967C2F91RYR5EXTNA1BIOH6JVAFH8NCMRRWKIVYPA8008902U?type=summary&agentView=true&fqdn=summary-page",
+          "resultCode": 100,
+          "reasonCode": "success.complete",
+          "verdict": null,
+          "evidence": [
+            {
+              "key": "pricing_section_grow_plan_visible",
+              "what": "Checking whether the Grow pricing plan is present",
+              "condition": "the pricing section with the \"Grow\" plan is visible",
+              "read": "true",
+              "expected": "true"
+            }
+          ],
+          "runEnd": {
+            "type": "run_end",
+            "status": "passed",
+            "summary": "You asked to open the Pricing section from the top navigation.\nClicked Pricing and navigated to the pricing section.\nThe Simple pricing area loaded with the Grow plan visible.",
+            "one_liner": "opened the Pricing section on localhost",
+            "final_state": {
+              "url": "http://localhost:4173/#pricing",
+              "pricing_section_grow_plan_visible": "true"
+            },
+            "reason": "Objective completed",
+            "duration": 25,
+            "bifurcated": false,
+            "total_runs": 1,
+            "context": {
+              "memory": {
+                "pricing_section_grow_plan_visible": {
+                  "extracted_value": "true",
+                  "operator": "equals",
+                  "transforms": [],
+                  "json_path": null,
+                  "reasoning": "value: 'true' -> 'true'; equals 'true' -> PASS",
+                  "analyzer_type": "textual_visual",
+                  "step": 3,
+                  "query": "whether the Grow plan heading is visible in the Simple pricing section",
+                  "condition": "the pricing section with the \"Grow\" plan is visible",
+                  "human_description": "Checking whether the Grow pricing plan is present",
+                  "expected_value": "true",
+                  "subject": "the pricing section with the \"Grow\" plan",
+                  "must_be": "present",
+                  "code_js": "el(37).textContent.trim() === 'Grow' && !!(el(37).offsetWidth || el(37).offsetHeight || el(37).getClientRects().length)",
+                  "wrapped_js": "(els) => {\n  const __m = {37: 0};\n  const el = (i) => els[__m[i]];\n  const __v = (el(37).textContent.trim() === 'Grow' && !!(el(37).offsetWidth || el(37).offsetHeight || el(37).getClientRects().length));\n  return (typeof __v === 'boolean' ? String(__v) : __v);\n}",
+                  "locators": [
+                    "internal:role=heading[name=\"Grow\"s]"
+                  ],
+                  "needs_unit_conversion": false
+                }
+              },
+              "variables": {
+                "pricing_section_grow_plan_visible": {
+                  "syntax": "{{pricing_section_grow_plan_visible}}",
+                  "value": "true",
+                  "type": "memory",
+                  "secret": false
+                }
+              },
+              "pointer": "(passed) opened the Pricing section on localhost"
+            },
+            "credits_consumed": 5.31555,
+            "session_dir": "C:\\Users\\Esteexbt/.testmuai/kaneai/sessions\\0b011d50-8a3f-4e3e-8674-3db5fa055b7e",
+            "run_dir": "C:\\Users\\Esteexbt/.testmuai/kaneai/sessions\\0b011d50-8a3f-4e3e-8674-3db5fa055b7e\\runs\\0",
+            "result_code": 100,
+            "reason_code": "success.complete",
+            "per_flow_metadata": [
+              {
+                "result_code": "100",
+                "reason_code": "success.complete",
+                "error_message": null,
+                "summary": "You asked to open the Pricing section from the top navigation.\nClicked Pricing and navigated to the pricing section.\nThe Simple pricing area loaded with the Grow plan visible.",
+                "one_liner": "opened the Pricing section on localhost",
+                "credits_consumed": 5.31555
+              }
+            ],
+            "run_id": "run-0",
+            "test_url": "https://test-manager.lambdatest.com/projects/01M7Q4HPVF8YTVJ87AAB51ESGQ/test-cases/01M7Q6PWFKY88WNEVZA09FXJC4/dashboard/share/US_29I5SQP5C4IYT1Y967C2F91RYR5EXTNA1BIOH6JVAFH8NCMRRWKIVYPA8008902U?type=summary&agentView=true&fqdn=summary-page",
+            "coverage": {
+              "status": "skipped"
+            },
+            "v": 1,
+            "ts": "2026-11-18T11:30:38.763Z"
+          },
+          "objective": "Click \"Pricing\" in the top navigation and verify the pricing section with the \"Grow\" plan is visible",
+          "url": "http://localhost:4173",
+          "steps": [],
+          "rawSample": [
+            "{\"type\":\"stream_start\",\"cli_version\":\"0.10.6\",\"surface\":\"run\",\"pid\":17812,\"v\":1,\"ts\":\"2026-11-18T11:29:37.496Z\"}",
+            "{\"type\":\"recording_state\",\"enabled\":true,\"session_id\":\"0b011d50-8a3f-4e3e-8674-3db5fa055b7e\",\"persist\":false,\"v\":1,\"ts\":\"2026-11-18T11:29:37.550Z\"}",
+            "{\"type\":\"skill_update_available\",\"current\":null,\"latest\":\"0.1.4\",\"install_cmd\":\"kane-cli install skill\",\"v\":1,\"ts\":\"2026-11-18T11:29:41.239Z\"}",
+            "{\"type\":\"bifurcation\",\"flows\":[\"Navigate to http://localhost:4173 then Click \\\"Pricing\\\" in the top navigation and verify the pricing section with the \\\"Grow\\\" plan is visible\"],\"count\":1,\"v\":1,\"ts\":\"2026-11-18T11:30:00.023Z\"}",
+            "{\"step\":2,\"status\":\"running\",\"remark\":\"Step 1\",\"v\":1,\"ts\":\"2026-11-18T11:30:02.027Z\"}",
+            "{\"step\":2,\"status\":\"done\",\"remark\":\"navigate: Navigate to http://localhost:4173\",\"v\":1,\"ts\":\"2026-11-18T11:30:02.044Z\"}",
+            "{\"step\":3,\"status\":\"running\",\"remark\":\"Step 2\",\"v\":1,\"ts\":\"2026-11-18T11:30:05.517Z\"}",
+            "{\"step\":3,\"status\":\"done\",\"remark\":\"click: Clicking Pricing in the top navigation\",\"v\":1,\"ts\":\"2026-11-18T11:30:10.014Z\"}",
+            "{\"step\":4,\"status\":\"running\",\"remark\":\"Step 3\",\"v\":1,\"ts\":\"2026-11-18T11:30:10.806Z\"}",
+            "{\"step\":4,\"status\":\"done\",\"remark\":\"analyze: the pricing section with the \\\"Grow\\\" plan is visible\",\"v\":1,\"ts\":\"2026-11-18T11:30:18.683Z\"}",
+            "{\"step\":5,\"status\":\"running\",\"remark\":\"Step 4\",\"v\":1,\"ts\":\"2026-11-18T11:30:19.375Z\"}",
+            "{\"step\":5,\"status\":\"done\",\"remark\":\"assert: the pricing section with the \\\"Grow\\\" plan is visible\",\"v\":1,\"ts\":\"2026-11-18T11:30:19.390Z\"}",
+            "{\"type\":\"coverage\",\"status\":\"skipped\",\"reason\":\"not_assurance_project\",\"pack\":\"C:\\\\Users\\\\Esteexbt\\\\.testmuai\\\\kaneai\\\\sessions\\\\0b011d50-8a3f-4e3e-8674-3db5fa055b7e\\\\evidence\\\\0b701d46-aadd-4d37-be54-a5fc00de4566.evidence\",\"v\":1,\"ts\":\"2026-11-18T11:30:38.762Z\"}",
+            "{\"type\":\"run_end\",\"status\":\"passed\",\"summary\":\"You asked to open the Pricing section from the top navigation.\\nClicked Pricing and navigated to the pricing section.\\nThe Simple pricing area loaded with the Grow plan visible.\",\"one_liner\":\"opened the Pricing section on localhost\",\"final_state\":{\"url\":\"http://localhost:4173/#pricing\",\"pricing_section_grow_plan_visible\":\"true\"},\"reason\":\"Objective completed\",\"duration\":25,\"bifurcated\":false,\"total_runs\":1,\"context\":{\"memory\":{\"pricing_section_grow_plan_visible\":{\"extracted_value\":\"true\",\"operator\":\"equals\",\"transforms\":[],\"json_path\":null,\"reasoning\":\"value: 'true' -> 'true'; equals 'true' -> PASS\",\"analyzer_type\":\"textual_visual\",\"step\":3,\"que"
+          ],
+          "eventCount": 14,
+          "stderr": "",
+          "duration": 64.994
+        }
+      ],
+      "agent": {
+        "brief": "HANDOFF: Kane CLI just tested this app in a real Chrome browser against the designer's spec (handoff.md), and 2 checks did not pass. Attempt 1 of 3.\n\n## reject-bad-email — FAILED\nSpec: Enter \"ada@example\" in the email field, click \"Join the waitlist\", and verify an error saying \"Enter a valid email address\" is shown and the message \"You're on the list\" is not shown\nTested at: http://localhost:4173\nKane's verdict: The waitlist accepted the incomplete email address ada@example instead of showing the requested validation message.\nWhat Kane saw: The email check treated an address without a valid domain ending as acceptable and displayed a successful signup message.\nUpdate the waitlist email validation so addresses such as ada@example show “Enter a valid email address” and do not show the signup confirmation.\nevidence: objective_contradiction: You're on the list. We'll write when Sprout is ready.\nKane's reason: Final verification failed: \"an error saying \"Enter a valid email address\" is shown and the message \"You're on the list\" is not shown\"\nEvidence: Checking whether the email validation error is present: Kane read \"false\", the spec expects \"true\".\nEvidence: Checking whether the waitlist success message is present: Kane read \"true\", the spec expects \"false\".\nKane report: https://test-manager.lambdatest.com/projects/01M7Q4HPVF8YTVJ87AAB51ESGQ/test-cases/01M7Q6F7PB940Q7658HFZHETTV/dashboard/share/US_SXMQQHY3DB15DZX2SYKCD9QD3GZXIA9E2PL1I2MA2KPSI6PHSAPJ7VZWFGWHFLPT?type=summary&agentView=true&fqdn=summary-page\n\n## yearly-pricing — FAILED\nSpec: Scroll to the \"Simple pricing\" section, click the button labelled \"Yearly\", then verify the Grow plan card shows the price \"$48\" and the text \"per year\"\nTested at: http://localhost:4173\nKane's verdict: After Yearly is selected, the Grow card shows $60 per year rather than the expected $48 per year.\nWhat Kane saw: The yearly pricing displayed for the Grow plan is incorrect. The billing selector is visibly set to Yearly and the card says “per year,” but its shown amount is $60 instead of $48.\nCorrect the Grow plan's yearly price to $48, then retest the Yearly billing toggle and displayed period label.\nevidence: objective_contradiction: Final verification failed: \"the Grow plan card shows the price \"$48\" and the text \"per year\"\"\nKane's reason: Final verification failed: \"the Grow plan card shows the price \"$48\" and the text \"per year\"\"\nEvidence: Checking whether the Grow plan card shows per year: Kane read \"true\", the spec expects \"true\".\nEvidence: Reading the Grow plan price: Kane read \"$60\", the spec expects \"$48\".\nKane report: https://test-manager.lambdatest.com/projects/01M7Q4HPVF8YTVJ87AAB51ESGQ/test-cases/01M7Q6JAZFWQ8B4CKH4BR5EXPV/dashboard/share/US_S0U0PYF9K0BGA8951OOULFMCALHS2GALNXA76CZC3ASYA6YRJO7KLLEZWSYITEMC?type=summary&agentView=true&fqdn=summary-page\n\nBrand rules from the spec (keep any change consistent with these):\n  - Sprout green: #1F6F4A\n  - Cream: #F6F3EA\n  - Ink: #14161A\n  - Type: Fraunces for headings, Inter for body\n  - Voice: calm and short. No exclamation marks.\n\nHow to respond:\n- Fix the APPLICATION so the behaviour matches the spec. Never edit handoff.md or weaken a check.\n- Make the smallest change that satisfies the spec; do not break the checks that already pass.\n- Do not start dev servers or long-running processes; Handoff re-runs Kane after you finish.\n- Finish with one sentence describing what you changed.",
+        "text": "I fixed both failing checks in `public/app.js`: the email check now needs a domain ending like `.com`, so \"ada@example\" shows \"Enter a valid email address\" instead of the confirmation. Yearly Grow now shows $48, which is $5 × 12 with the 20% saving the toggle promises, instead of $60. I haven't run anything myself; Handoff's next Kane run will be the test, and \"ada@example.com\" from the waitlist check that already passes is still accepted.",
+        "edits": [
+          "public/app.js"
+        ],
+        "cost": 0.2036502,
+        "ok": true,
+        "duration": 17.679
+      }
+    },
+    {
+      "label": "Round 2",
+      "startedAt": "2026-11-18T11:30:58.494Z",
+      "finishedAt": "2026-11-18T11:32:53.762Z",
+      "results": [
+        {
+          "id": "reject-bad-email",
+          "route": "",
+          "status": "passed",
+          "exitCode": 0,
+          "summary": "You asked to join the waitlist using the email address \"ada@example\".\nEntered the email address and selected \"Join the waitlist\".\nThe form showed \"Enter a valid email address,\" and no \"You're on the list\" confirmation appeared.",
+          "oneLiner": "submitted an invalid waitlist email on localhost",
+          "reason": "Objective completed",
+          "finalState": {
+            "url": "http://localhost:4173/",
+            "email": "ada@example",
+            "valid_email_error_shown": "true",
+            "on_the_list_message_shown": "false"
+          },
+          "kaneDuration": 41.3,
+          "credits": 14.177119999999999,
+          "reportUrl": "https://test-manager.lambdatest.com/projects/01M7Q4HPVF8YTVJ87AAB51ESGQ/test-cases/01M7Q6SBS7RF5RXHVFGVJB2VQM/dashboard/share/US_067GRXJ3M33MX8GDXTUFMZO447UFJ7V9G3WNS12WXXN6BI88QOBA8BCU9I0RR48U?type=summary&agentView=true&fqdn=summary-page",
+          "resultCode": 100,
+          "reasonCode": "success.complete",
+          "verdict": null,
+          "evidence": [
+            {
+              "key": "valid_email_error_shown",
+              "what": "Checking whether the valid email error is present",
+              "condition": "an error saying \"Enter a valid email address\" is shown",
+              "read": "true",
+              "expected": "true"
+            },
+            {
+              "key": "on_the_list_message_shown",
+              "what": "Checking whether the on-the-list message is present",
+              "condition": "the message \"You're on the list\" is not shown",
+              "read": "false",
+              "expected": "false"
+            }
+          ],
+          "runEnd": {
+            "type": "run_end",
+            "status": "passed",
+            "summary": "You asked to join the waitlist using the email address \"ada@example\".\nEntered the email address and selected \"Join the waitlist\".\nThe form showed \"Enter a valid email address,\" and no \"You're on the list\" confirmation appeared.",
+            "one_liner": "submitted an invalid waitlist email on localhost",
+            "final_state": {
+              "url": "http://localhost:4173/",
+              "email": "ada@example",
+              "valid_email_error_shown": "true",
+              "on_the_list_message_shown": "false"
+            },
+            "reason": "Objective completed",
+            "duration": 41.3,
+            "bifurcated": false,
+            "total_runs": 1,
+            "context": {
+              "memory": {
+                "valid_email_error_shown": {
+                  "extracted_value": "true",
+                  "operator": "equals",
+                  "transforms": [],
+                  "json_path": null,
+                  "reasoning": "value: 'true' -> 'true'; equals 'true' -> PASS",
+                  "analyzer_type": "textual_visual",
+                  "step": 5,
+                  "query": "whether an error saying \"Enter a valid email address\" is present in the waitlist form alert",
+                  "condition": "an error saying \"Enter a valid email address\" is shown",
+                  "human_description": "Checking whether the valid email error is present",
+                  "expected_value": "true",
+                  "subject": "an error saying \"Enter a valid email address\"",
+                  "must_be": "present",
+                  "code_js": "el(17).textContent.trim() === 'Enter a valid email address' && !!(el(17).offsetWidth || el(17).offsetHeight || el(17).getClientRects().length)",
+                  "wrapped_js": "(els) => {\n  const __m = {17: 0};\n  const el = (i) => els[__m[i]];\n  const __v = (el(17).textContent.trim() === 'Enter a valid email address' && !!(el(17).offsetWidth || el(17).offsetHeight || el(17).getClientRects().length));\n  return (typeof __v === 'boolean' ? String(__v) : __v);\n}",
+                  "locators": [
+                    "internal:text=\"Enter a valid email address\"i"
+                  ],
+                  "needs_unit_conversion": false
+                },
+                "on_the_list_message_shown": {
+                  "extracted_value": "false",
+                  "operator": "equals",
+                  "transforms": [],
+                  "json_path": null,
+                  "reasoning": "value: 'false' -> 'false'; equals 'false' -> PASS",
+                  "analyzer_type": "visual",
+                  "step": 5,
+                  "query": "whether the message \"You're on the list\" is visible on the page",
+                  "condition": "the message \"You're on the list\" is not shown",
+                  "human_description": "Checking whether the on-the-list message is present",
+                  "expected_value": "false",
+                  "subject": "the message \"You're on the list\"",
+                  "must_be": "absent"
+                }
+              },
+              "variables": {
+                "valid_email_error_shown": {
+                  "syntax": "{{valid_email_error_shown}}",
+                  "value": "true",
+                  "type": "memory",
+                  "secret": false
+                },
+                "on_the_list_message_shown": {
+                  "syntax": "{{on_the_list_message_shown}}",
+                  "value": "false",
+                  "type": "memory",
+                  "secret": false
+                }
+              },
+              "pointer": "(passed) submitted an invalid waitlist email on localhost"
+            },
+            "credits_consumed": 14.177119999999999,
+            "session_dir": "C:\\Users\\Esteexbt/.testmuai/kaneai/sessions\\23d1ea61-6fc3-4142-96a4-a20d78e74f7f",
+            "run_dir": "C:\\Users\\Esteexbt/.testmuai/kaneai/sessions\\23d1ea61-6fc3-4142-96a4-a20d78e74f7f\\runs\\0",
+            "result_code": 100,
+            "reason_code": "success.complete",
+            "per_flow_metadata": [
+              {
+                "result_code": "100",
+                "reason_code": "success.complete",
+                "error_message": null,
+                "summary": "You asked to join the waitlist using the email address \"ada@example\".\nEntered the email address and selected \"Join the waitlist\".\nThe form showed \"Enter a valid email address,\" and no \"You're on the list\" confirmation appeared.",
+                "one_liner": "submitted an invalid waitlist email on localhost",
+                "credits_consumed": 14.177119999999999
+              }
+            ],
+            "run_id": "run-0",
+            "test_url": "https://test-manager.lambdatest.com/projects/01M7Q4HPVF8YTVJ87AAB51ESGQ/test-cases/01M7Q6SBS7RF5RXHVFGVJB2VQM/dashboard/share/US_067GRXJ3M33MX8GDXTUFMZO447UFJ7V9G3WNS12WXXN6BI88QOBA8BCU9I0RR48U?type=summary&agentView=true&fqdn=summary-page",
+            "coverage": {
+              "status": "skipped"
+            },
+            "v": 1,
+            "ts": "2026-11-18T11:32:46.570Z"
+          },
+          "objective": "Enter \"ada@example\" in the email field, click \"Join the waitlist\", and verify an error saying \"Enter a valid email address\" is shown and the message \"You're on the list\" is not shown",
+          "url": "http://localhost:4173",
+          "steps": [],
+          "rawSample": [
+            "{\"type\":\"stream_start\",\"cli_version\":\"0.10.6\",\"surface\":\"run\",\"pid\":6672,\"v\":1,\"ts\":\"2026-11-18T11:30:59.241Z\"}",
+            "{\"type\":\"recording_state\",\"enabled\":true,\"session_id\":\"23d1ea61-6fc3-4142-96a4-a20d78e74f7f\",\"persist\":false,\"v\":1,\"ts\":\"2026-11-18T11:30:59.271Z\"}",
+            "{\"type\":\"skill_update_available\",\"current\":null,\"latest\":\"0.1.4\",\"install_cmd\":\"kane-cli install skill\",\"v\":1,\"ts\":\"2026-11-18T11:31:02.403Z\"}",
+            "{\"type\":\"bifurcation\",\"flows\":[\"Navigate to http://localhost:4173 then Enter \\\"ada@example\\\" in the email field, click \\\"Join the waitlist\\\", and verify an error saying \\\"Enter a valid email address\\\" is shown and the message \\\"You're on the list\\\" is not shown\"],\"count\":1,\"v\":1,\"ts\":\"2026-11-18T11:31:23.908Z\"}",
+            "{\"step\":2,\"status\":\"running\",\"remark\":\"Step 1\",\"v\":1,\"ts\":\"2026-11-18T11:31:26.014Z\"}",
+            "{\"step\":2,\"status\":\"done\",\"remark\":\"navigate: Navigate to http://localhost:4173\",\"v\":1,\"ts\":\"2026-11-18T11:31:26.031Z\"}",
+            "{\"step\":3,\"status\":\"running\",\"remark\":\"Step 2\",\"v\":1,\"ts\":\"2026-11-18T11:31:29.840Z\"}",
+            "{\"step\":3,\"status\":\"done\",\"remark\":\"wait: queued plan (2 steps): type \\\"Email address\\\"; click \\\"Join the waitlist\\\"\",\"v\":1,\"ts\":\"2026-11-18T11:31:36.072Z\"}",
+            "{\"step\":4,\"status\":\"running\",\"remark\":\"Step 3\",\"v\":1,\"ts\":\"2026-11-18T11:31:36.941Z\"}",
+            "{\"step\":4,\"status\":\"done\",\"remark\":\"type: Type \\\"ada@example\\\" into \\\"Email address\\\"\",\"v\":1,\"ts\":\"2026-11-18T11:31:37.422Z\"}",
+            "{\"step\":5,\"status\":\"running\",\"remark\":\"Step 4\",\"v\":1,\"ts\":\"2026-11-18T11:31:38.211Z\"}",
+            "{\"step\":5,\"status\":\"done\",\"remark\":\"click: Click \\\"Join the waitlist\\\"\",\"v\":1,\"ts\":\"2026-11-18T11:31:39.294Z\"}",
+            "{\"step\":6,\"status\":\"running\",\"remark\":\"Step 5\",\"v\":1,\"ts\":\"2026-11-18T11:31:40.117Z\"}",
+            "{\"step\":6,\"status\":\"done\",\"remark\":\"analyze: the message \\\"You\\\\\",\"v\":1,\"ts\":\"2026-11-18T11:31:58.780Z\"}",
+            "{\"step\":7,\"status\":\"running\",\"remark\":\"Step 6\",\"v\":1,\"ts\":\"2026-11-18T11:31:59.531Z\"}",
+            "{\"step\":7,\"status\":\"done\",\"remark\":\"assert: an error saying \\\"Enter a valid email address\\\" is shown and the message \\\"You're o\",\"v\":1,\"ts\":\"2026-11-18T11:31:59.554Z\"}",
+            "{\"type\":\"coverage\",\"status\":\"skipped\",\"reason\":\"not_assurance_project\",\"pack\":\"C:\\\\Users\\\\Esteexbt\\\\.testmuai\\\\kaneai\\\\sessions\\\\23d1ea61-6fc3-4142-96a4-a20d78e74f7f\\\\evidence\\\\34d92825-301e-4c08-966e-ff599863a9ef.evidence\",\"v\":1,\"ts\":\"2026-11-18T11:32:46.569Z\"}",
+            "{\"type\":\"run_end\",\"status\":\"passed\",\"summary\":\"You asked to join the waitlist using the email address \\\"ada@example\\\".\\nEntered the email address and selected \\\"Join the waitlist\\\".\\nThe form showed \\\"Enter a valid email address,\\\" and no \\\"You're on the list\\\" confirmation appeared.\",\"one_liner\":\"submitted an invalid waitlist email on localhost\",\"final_state\":{\"url\":\"http://localhost:4173/\",\"email\":\"ada@example\",\"valid_email_error_shown\":\"true\",\"on_the_list_message_shown\":\"false\"},\"reason\":\"Objective completed\",\"duration\":41.3,\"bifurcated\":false,\"total_runs\":1,\"context\":{\"memory\":{\"valid_email_error_shown\":{\"extracted_value\":\"true\",\"operator\":\"equals\",\"transforms\":[],\"json_path\":null,\"reaso"
+          ],
+          "eventCount": 18,
+          "stderr": "",
+          "duration": 111.63
+        },
+        {
+          "id": "yearly-pricing",
+          "route": "",
+          "status": "error",
+          "exitCode": 2,
+          "summary": "",
+          "oneLiner": "",
+          "reason": "Skill update available: not installed → 0.1.4 — run `kane-cli install skill` Project and folder must be configured. Run `kane-cli login` to set up auth, or pass --username/--access-key, then `kane-cli config project <id>` / `kane-cli config folder <id>`.",
+          "finalState": null,
+          "kaneDuration": null,
+          "credits": null,
+          "reportUrl": "",
+          "resultCode": null,
+          "reasonCode": "",
+          "verdict": null,
+          "evidence": [],
+          "runEnd": null,
+          "objective": "Scroll to the \"Simple pricing\" section, click the button labelled \"Yearly\", then verify the Grow plan card shows the price \"$48\" and the text \"per year\"",
+          "url": "http://localhost:4173",
+          "steps": [],
+          "rawSample": [
+            "{\"type\":\"stream_start\",\"cli_version\":\"0.10.6\",\"surface\":\"run\",\"pid\":19496,\"v\":1,\"ts\":\"2026-11-18T11:32:52.407Z\"}",
+            "{\"type\":\"recording_state\",\"enabled\":true,\"session_id\":\"1a0bf86c-272d-4242-9eac-ffc86d9a9d41\",\"persist\":false,\"v\":1,\"ts\":\"2026-11-18T11:32:52.577Z\"}"
+          ],
+          "eventCount": 2,
+          "stderr": "Skill update available: not installed → 0.1.4 — run `kane-cli install skill` Project and folder must be configured. Run `kane-cli login` to set up auth, or pass --username/--access-key, then `kane-cli config project <id>` / `kane-cli config folder <id>`.",
+          "duration": 3.637
+        }
+      ]
+    },
+    {
+      "label": "Sweep",
+      "startedAt": "2026-11-18T11:32:53.793Z",
+      "finishedAt": "2026-11-18T11:33:10.645Z",
+      "results": [
+        {
+          "id": "join-waitlist",
+          "route": "",
+          "status": "error",
+          "exitCode": 2,
+          "summary": "",
+          "oneLiner": "",
+          "reason": "Skill update available: not installed → 0.1.4 — run `kane-cli install skill` Project and folder must be configured. Run `kane-cli login` to set up auth, or pass --username/--access-key, then `kane-cli config project <id>` / `kane-cli config folder <id>`.",
+          "finalState": null,
+          "kaneDuration": null,
+          "credits": null,
+          "reportUrl": "",
+          "resultCode": null,
+          "reasonCode": "",
+          "verdict": null,
+          "evidence": [],
+          "runEnd": null,
+          "objective": "Enter \"ada@example.com\" in the email field, click \"Join the waitlist\", and verify the page shows the message \"You're on the list\"",
+          "url": "http://localhost:4173",
+          "steps": [],
+          "rawSample": [
+            "{\"type\":\"stream_start\",\"cli_version\":\"0.10.6\",\"surface\":\"run\",\"pid\":13256,\"v\":1,\"ts\":\"2026-11-18T11:32:56.255Z\"}",
+            "{\"type\":\"recording_state\",\"enabled\":true,\"session_id\":\"ba478b67-889e-4a57-9ef6-90c974b46504\",\"persist\":false,\"v\":1,\"ts\":\"2026-11-18T11:32:56.365Z\"}"
+          ],
+          "eventCount": 2,
+          "stderr": "Skill update available: not installed → 0.1.4 — run `kane-cli install skill` Project and folder must be configured. Run `kane-cli login` to set up auth, or pass --username/--access-key, then `kane-cli config project <id>` / `kane-cli config folder <id>`.",
+          "duration": 3.818
+        },
+        {
+          "id": "reject-bad-email",
+          "route": "",
+          "status": "error",
+          "exitCode": 2,
+          "summary": "",
+          "oneLiner": "",
+          "reason": "Skill update available: not installed → 0.1.4 — run `kane-cli install skill` Project and folder must be configured. Run `kane-cli login` to set up auth, or pass --username/--access-key, then `kane-cli config project <id>` / `kane-cli config folder <id>`.",
+          "finalState": null,
+          "kaneDuration": null,
+          "credits": null,
+          "reportUrl": "",
+          "resultCode": null,
+          "reasonCode": "",
+          "verdict": null,
+          "evidence": [],
+          "runEnd": null,
+          "objective": "Enter \"ada@example\" in the email field, click \"Join the waitlist\", and verify an error saying \"Enter a valid email address\" is shown and the message \"You're on the list\" is not shown",
+          "url": "http://localhost:4173",
+          "steps": [],
+          "rawSample": [
+            "{\"type\":\"stream_start\",\"cli_version\":\"0.10.6\",\"surface\":\"run\",\"pid\":5240,\"v\":1,\"ts\":\"2026-11-18T11:32:59.705Z\"}",
+            "{\"type\":\"recording_state\",\"enabled\":true,\"session_id\":\"29670fe8-5387-455d-bdcd-8faa08691fa5\",\"persist\":false,\"v\":1,\"ts\":\"2026-11-18T11:32:59.784Z\"}"
+          ],
+          "eventCount": 2,
+          "stderr": "Skill update available: not installed → 0.1.4 — run `kane-cli install skill` Project and folder must be configured. Run `kane-cli login` to set up auth, or pass --username/--access-key, then `kane-cli config project <id>` / `kane-cli config folder <id>`.",
+          "duration": 3.284
+        },
+        {
+          "id": "yearly-pricing",
+          "route": "",
+          "status": "error",
+          "exitCode": 2,
+          "summary": "",
+          "oneLiner": "",
+          "reason": "Skill update available: not installed → 0.1.4 — run `kane-cli install skill` Project and folder must be configured. Run `kane-cli login` to set up auth, or pass --username/--access-key, then `kane-cli config project <id>` / `kane-cli config folder <id>`.",
+          "finalState": null,
+          "kaneDuration": null,
+          "credits": null,
+          "reportUrl": "",
+          "resultCode": null,
+          "reasonCode": "",
+          "verdict": null,
+          "evidence": [],
+          "runEnd": null,
+          "objective": "Scroll to the \"Simple pricing\" section, click the button labelled \"Yearly\", then verify the Grow plan card shows the price \"$48\" and the text \"per year\"",
+          "url": "http://localhost:4173",
+          "steps": [],
+          "rawSample": [
+            "{\"type\":\"stream_start\",\"cli_version\":\"0.10.6\",\"surface\":\"run\",\"pid\":19572,\"v\":1,\"ts\":\"2026-11-18T11:33:02.886Z\"}",
+            "{\"type\":\"recording_state\",\"enabled\":true,\"session_id\":\"105a28e2-27f2-4f78-9d9c-ed0924215f43\",\"persist\":false,\"v\":1,\"ts\":\"2026-11-18T11:33:02.945Z\"}"
+          ],
+          "eventCount": 2,
+          "stderr": "Skill update available: not installed → 0.1.4 — run `kane-cli install skill` Project and folder must be configured. Run `kane-cli login` to set up auth, or pass --username/--access-key, then `kane-cli config project <id>` / `kane-cli config folder <id>`.",
+          "duration": 3.237
+        },
+        {
+          "id": "faq-cancel",
+          "route": "",
+          "status": "error",
+          "exitCode": 2,
+          "summary": "",
+          "oneLiner": "",
+          "reason": "Skill update available: not installed → 0.1.4 — run `kane-cli install skill` Project and folder must be configured. Run `kane-cli login` to set up auth, or pass --username/--access-key, then `kane-cli config project <id>` / `kane-cli config folder <id>`.",
+          "finalState": null,
+          "kaneDuration": null,
+          "credits": null,
+          "reportUrl": "",
+          "resultCode": null,
+          "reasonCode": "",
+          "verdict": null,
+          "evidence": [],
+          "runEnd": null,
+          "objective": "Click the question \"Can I cancel anytime?\" and verify the answer \"Yes. Cancel in one click from Settings.\" becomes visible",
+          "url": "http://localhost:4173",
+          "steps": [],
+          "rawSample": [
+            "{\"type\":\"stream_start\",\"cli_version\":\"0.10.6\",\"surface\":\"run\",\"pid\":12272,\"v\":1,\"ts\":\"2026-11-18T11:33:05.904Z\"}",
+            "{\"type\":\"recording_state\",\"enabled\":true,\"session_id\":\"2a15c818-15cf-4f68-88d2-bd8d314bc62e\",\"persist\":false,\"v\":1,\"ts\":\"2026-11-18T11:33:05.979Z\"}"
+          ],
+          "eventCount": 2,
+          "stderr": "Skill update available: not installed → 0.1.4 — run `kane-cli install skill` Project and folder must be configured. Run `kane-cli login` to set up auth, or pass --username/--access-key, then `kane-cli config project <id>` / `kane-cli config folder <id>`.",
+          "duration": 3.106
+        },
+        {
+          "id": "nav-pricing",
+          "route": "",
+          "status": "error",
+          "exitCode": 2,
+          "summary": "",
+          "oneLiner": "",
+          "reason": "Skill update available: not installed → 0.1.4 — run `kane-cli install skill` Project and folder must be configured. Run `kane-cli login` to set up auth, or pass --username/--access-key, then `kane-cli config project <id>` / `kane-cli config folder <id>`.",
+          "finalState": null,
+          "kaneDuration": null,
+          "credits": null,
+          "reportUrl": "",
+          "resultCode": null,
+          "reasonCode": "",
+          "verdict": null,
+          "evidence": [],
+          "runEnd": null,
+          "objective": "Click \"Pricing\" in the top navigation and verify the pricing section with the \"Grow\" plan is visible",
+          "url": "http://localhost:4173",
+          "steps": [],
+          "rawSample": [
+            "{\"type\":\"stream_start\",\"cli_version\":\"0.10.6\",\"surface\":\"run\",\"pid\":23248,\"v\":1,\"ts\":\"2026-11-18T11:33:09.298Z\"}",
+            "{\"type\":\"recording_state\",\"enabled\":true,\"session_id\":\"0e19eae4-55bf-405b-a1fa-4d100fa686e9\",\"persist\":false,\"v\":1,\"ts\":\"2026-11-18T11:33:09.423Z\"}"
+          ],
+          "eventCount": 2,
+          "stderr": "Skill update available: not installed → 0.1.4 — run `kane-cli install skill` Project and folder must be configured. Run `kane-cli login` to set up auth, or pass --username/--access-key, then `kane-cli config project <id>` / `kane-cli config folder <id>`.",
+          "duration": 3.4
+        }
+      ]
+    }
+  ],
+  "finishedAt": "2026-11-18T11:33:10.646Z",
+  "verdict": "unverified"
+}

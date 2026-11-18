@@ -3,6 +3,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import * as store from './store.js';
+import { meaningfulEvidence } from './kane.js';
 
 const esc = (s) => String(s ?? '').replace(/[&<>"']/g, (ch) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[ch]));
 
@@ -21,8 +22,10 @@ export function buildProof(spec, runs) {
   const byCheck = store.latestByCheck(runs);
   const checks = spec.checks.map((ch) => {
     const hist = byCheck.get(ch.id) || [];
-    const last = hist.at(-1) || null;
-    return { ...ch, last, hist: hist.slice(-14), status: last?.status || 'pending' };
+    // An environment error says nothing about the app: show the latest real verdict.
+    const real = hist.filter((h) => h.status !== 'error');
+    const last = real.at(-1) || hist.at(-1) || null;
+    return { ...ch, last, hist: real.slice(-14), status: last?.status || 'pending' };
   });
   const passed = checks.filter((x) => x.status === 'passed').length;
   const total = checks.length;
@@ -72,7 +75,7 @@ export function buildProof(spec, runs) {
     const strip = ch.hist.map((h) => `<i class="${h.status}" title="${esc(LABEL[h.status] || h.status)} · ${esc(when(h.at))}"></i>`).join('');
     const firstFail = ch.hist.find((h) => h.status === 'failed');
     const caught = firstFail && ch.status === 'passed'
-      ? `<div class="caught"><b>Caught, then fixed.</b> ${esc(firstFail.oneLiner || firstFail.summary || firstFail.reason || 'Kane CLI failed this check on an earlier build.')}${(firstFail.evidence || []).filter((e) => e.read != null && e.expected != null).map((e) => ` Kane read <b>${esc(e.read)}</b> where the spec expects <b>${esc(e.expected)}</b>.`).join('')}${firstFail.reportUrl ? ` <a href="${esc(firstFail.reportUrl)}" target="_blank" rel="noopener">Failing run ↗</a>` : ''}</div>` : '';
+      ? `<div class="caught"><b>Caught, then fixed.</b> ${esc(firstFail.oneLiner || firstFail.summary || firstFail.reason || 'Kane CLI failed this check on an earlier build.')}${meaningfulEvidence(firstFail.evidence).map((e) => ` Kane read <b>${esc(e.read)}</b> where the spec expects <b>${esc(e.expected)}</b>.`).join('')}${firstFail.reportUrl ? ` <a href="${esc(firstFail.reportUrl)}" target="_blank" rel="noopener">Failing run ↗</a>` : ''}</div>` : '';
     const steps = (l?.steps || []).filter((s) => s.text);
     return `
     <article class="check ${ch.status}">
@@ -87,7 +90,7 @@ export function buildProof(spec, runs) {
       <div class="evidence">
         <div class="ev-label">Kane CLI saw</div>
         <p>${esc(l.oneLiner || l.summary || l.reason || 'No summary returned.')}</p>
-        ${(l.status !== 'passed' ? (l.evidence || []) : []).filter((e) => e.read != null && e.expected != null).map((e) => `<div class="readout"><span>${esc(e.what)}</span><b class="got">${esc(e.read)}</b><i>expected</i><b class="want">${esc(e.expected)}</b></div>`).join('')}
+        ${(l.status !== 'passed' ? meaningfulEvidence(l.evidence) : []).map((e) => `<div class="readout"><span>${esc(e.what)}</span><b class="got">${esc(e.read)}</b><i>expected</i><b class="want">${esc(e.expected)}</b></div>`).join('')}
         ${l.retriedAfterSlip ? `<div class="slip">Kane flagged its own automation on the first attempt (${esc(l.retriedAfterSlip.verdict?.category || 'misstep')}), so Handoff re-ran it before involving the agent.</div>` : ''}
         <dl>
           ${l.finalState?.url ? `<div><dt>Ended on</dt><dd><code>${esc(l.finalState.url)}</code></dd></div>` : ''}

@@ -18,5 +18,15 @@
     "total": 5,
     "passed": 3,
     "verdict": "failing"
+  },
+  {
+    "id": "20261118-122358-fcf7",
+    "trigger": "loop",
+    "startedAt": "2026-11-18T11:23:58.784Z",
+    "finishedAt": "2026-11-18T11:33:10.646Z",
+    "rounds": 3,
+    "total": 5,
+    "passed": 0,
+    "verdict": "unverified"
   }
 ]

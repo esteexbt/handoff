@@ -78,6 +78,11 @@ blockquote::before{content:"“";color:var(--soft)}blockquote::after{content:"�
 .evidence>p{margin:6px 0 12px}
 dl{display:grid;grid-template-columns:repeat(2,1fr);gap:8px 16px;margin:0;font-size:12.5px}
 dt{color:var(--soft);font-size:11px}dd{margin:0;word-break:break-all}
+dd a,.caught a{color:var(--accent)}
+.readout{display:flex;align-items:baseline;flex-wrap:wrap;gap:8px;margin:0 0 12px;padding:10px 12px;border-radius:10px;background:var(--badbg);font-size:13px}
+.readout span{color:#6B3A32;flex-basis:100%;font-size:11px;text-transform:uppercase;letter-spacing:.06em;font-family:var(--mono)}
+.readout b{font-family:var(--serif);font-weight:400;font-size:26px;line-height:1}.readout .got{color:var(--bad);text-decoration:line-through}.readout .want{color:var(--ok)}.readout i{font-style:normal;color:var(--soft)}
+.slip{margin:0 0 12px;font-size:12.5px;background:var(--warnbg);color:#6B4A12;border-radius:10px;padding:8px 12px}
 .caught{margin-top:12px;font-size:13px;background:var(--okbg);border-radius:10px;padding:10px 12px;color:#1F4D35}
 details{margin-top:12px;font-size:13px}summary{cursor:pointer;color:var(--accent)}
 details ol{margin:8px 0 0;padding-left:20px;color:#3B3934}details li{margin:3px 0}
@@ -104,7 +109,7 @@ footer{padding:36px 0 60px;display:flex;align-items:center;justify-content:space
 <body>
 <header class="top"><div class="wrap">
   <div class="mark"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><rect x="1" y="1" width="22" height="22" rx="7" stroke="#141412" stroke-width="2"/><path d="M7 12.5l3.2 3.2L17 9" stroke="#0F8A4F" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>handoff</div>
-  <small>proof of handoff · 18 Nov, 12:12</small>
+  <small>proof of handoff · 18 Nov, 12:33</small>
 </div></header>
 <main class="wrap">
   <div class="hero">
@@ -113,14 +118,14 @@ footer{padding:36px 0 60px;display:flex;align-items:center;justify-content:space
       <h1>Sprout<br><em>as specified.</em></h1>
       <p class="lede">Every check below was written in plain English in <code>handoff.md</code> and run in a real Chrome browser by Kane CLI. When a check failed, Handoff briefed the coding agent with what Kane saw, the agent fixed the app, and Kane checked again.</p>
     </div>
-    <div class="stamp bad"><span>Not yet</span><b>3/5</b><i>checks passing</i></div>
+    <div class="stamp bad"><span>Not yet</span><b>0/5</b><i>checks passing</i></div>
   </div>
   <div class="stats">
-    <div class="stat"><b>3/5</b><span>checks passing</span></div>
-    <div class="stat"><b>2</b><span>failures Kane caught</span></div>
-    <div class="stat"><b>0</b><span>agent fix rounds</span></div>
-    <div class="stat"><b>10</b><span>browser runs</span></div>
-    <div class="stat"><b>5m 53s</b><span>in a real browser</span></div>
+    <div class="stat"><b>0/5</b><span>checks passing</span></div>
+    <div class="stat"><b>4</b><span>failures Kane caught</span></div>
+    <div class="stat"><b>1</b><span>agent fix rounds</span></div>
+    <div class="stat"><b>22</b><span>browser runs</span></div>
+    <div class="stat"><b>10m 23s</b><span>in a real browser</span></div>
   </div>
 
   <section>
@@ -128,9 +133,24 @@ footer{padding:36px 0 60px;display:flex;align-items:center;justify-content:space
     <p class="sub">The latest run, round by round. Red dots are failures Kane CLI caught; dark cards are the agent acting on them.</p>
     <div class="loop">
       <div class="round red">
-        <div class="round-head"><span class="n">01</span><span class="lbl">Verify</span><span class="score">3/5</span></div>
+        <div class="round-head"><span class="n">01</span><span class="lbl">Round 1</span><span class="score">3/5</span></div>
         <ul class="dots"><li class="dot passed" title="join-waitlist: Passed"><span>join-waitlist</span></li><li class="dot failed" title="reject-bad-email: Failed"><span>reject-bad-email</span></li><li class="dot failed" title="yearly-pricing: Failed"><span>yearly-pricing</span></li><li class="dot passed" title="faq-cancel: Passed"><span>faq-cancel</span></li><li class="dot passed" title="nav-pricing: Passed"><span>nav-pricing</span></li></ul>
-        <div class="round-time">18 Nov, 12:12</div>
+        <div class="round-time">18 Nov, 12:30</div>
+      </div>
+      <div class="fix">
+        <div class="fix-head"><span class="glyph">◆</span> Coding agent briefed with Kane's findings</div>
+        <div class="edits"><code>public/app.js</code></div>
+        <p>I fixed both failing checks in `public/app.js`: the email check now needs a domain ending like `.com`, so &quot;ada@example&quot; shows &quot;Enter a valid email address&quot; instead of the confirmation. Yearly Grow now shows $48, which is $5 × 12 with the 20% saving the toggle promises, instead of $60. I haven&#39;t run anything myself; Handoff&#39;s next Kane run will be the test, and &quot;ada@example.com&quot; from the waitlist check that already passes is still accepted.</p>
+      </div>
+      <div class="round red">
+        <div class="round-head"><span class="n">02</span><span class="lbl">Round 2</span><span class="score">1/2</span></div>
+        <ul class="dots"><li class="dot skip" title="join-waitlist: already passing"><span>join-waitlist</span></li><li class="dot passed" title="reject-bad-email: Passed"><span>reject-bad-email</span></li><li class="dot error" title="yearly-pricing: Env error"><span>yearly-pricing</span></li><li class="dot skip" title="faq-cancel: already passing"><span>faq-cancel</span></li><li class="dot skip" title="nav-pricing: already passing"><span>nav-pricing</span></li></ul>
+        <div class="round-time">18 Nov, 12:32</div>
+      </div>
+      <div class="round red">
+        <div class="round-head"><span class="n">03</span><span class="lbl">Sweep</span><span class="score">0/5</span></div>
+        <ul class="dots"><li class="dot error" title="join-waitlist: Env error"><span>join-waitlist</span></li><li class="dot error" title="reject-bad-email: Env error"><span>reject-bad-email</span></li><li class="dot error" title="yearly-pricing: Env error"><span>yearly-pricing</span></li><li class="dot error" title="faq-cancel: Env error"><span>faq-cancel</span></li><li class="dot error" title="nav-pricing: Env error"><span>nav-pricing</span></li></ul>
+        <div class="round-time">18 Nov, 12:33</div>
       </div></div>
   </section>
 
@@ -138,127 +158,140 @@ footer{padding:36px 0 60px;display:flex;align-items:center;justify-content:space
     <h2>Checks</h2>
     <p class="sub">The designer's words on top, Kane's evidence underneath. The strip shows each check's recent history.</p>
     <div class="checks">
-    <article class="check passed">
+    <article class="check error">
       <div class="check-top">
         <span class="idx">01</span>
         <code class="cid">join-waitlist</code>
         
-        <span class="pill passed">Passed</span>
+        <span class="pill error">Env error</span>
       </div>
       <blockquote>Enter &quot;ada@example.com&quot; in the email field, click &quot;Join the waitlist&quot;, and verify the page shows the message &quot;You&#39;re on the list&quot;</blockquote>
       
       <div class="evidence">
         <div class="ev-label">Kane CLI saw</div>
-        <p>Entered ada@example.com in the email field.
-Clicked “Join the waitlist” to submit the request.
-The page confirmed the signup with the message “You&#39;re on the list.”</p>
+        <p>Skill update available: not installed → 0.1.4 — run `kane-cli install skill` Project and folder must be configured. Run `kane-cli login` to set up auth, or pass --username/--access-key, then `kane-cli config project &lt;id&gt;` / `kane-cli config folder &lt;id&gt;`.</p>
+        
+        
         <dl>
-          <div><dt>Ended on</dt><dd><code>http://localhost:4173/</code></dd></div>
-          <div><dt>Browser time</dt><dd>35.4s</dd></div>
-          <div><dt>Exit</dt><dd><code>0</code></dd></div>
-          <div><dt>Checked</dt><dd>18 Nov, 12:12</dd></div>
+          
+          <div><dt>Browser time</dt><dd>3.8s</dd></div>
+          <div><dt>Exit</dt><dd><code>2</code></dd></div>
+          <div><dt>Checked</dt><dd>18 Nov, 12:33</dd></div>
+          
+          
         </dl>
         
         
       </div>
-      <div class="strip" aria-label="history"><i class="error" title="Env error · 18 Nov, 11:56"></i><i class="passed" title="Passed · 18 Nov, 12:12"></i></div>
+      <div class="strip" aria-label="history"><i class="error" title="Env error · 18 Nov, 11:56"></i><i class="passed" title="Passed · 18 Nov, 12:12"></i><i class="passed" title="Passed · 18 Nov, 12:30"></i><i class="error" title="Env error · 18 Nov, 12:33"></i></div>
     </article>
-    <article class="check failed">
+    <article class="check error">
       <div class="check-top">
         <span class="idx">02</span>
         <code class="cid">reject-bad-email</code>
         
-        <span class="pill failed">Failed</span>
+        <span class="pill error">Env error</span>
       </div>
       <blockquote>Enter &quot;ada@example&quot; in the email field, click &quot;Join the waitlist&quot;, and verify an error saying &quot;Enter a valid email address&quot; is shown and the message &quot;You&#39;re on the list&quot; is not shown</blockquote>
       
       <div class="evidence">
         <div class="ev-label">Kane CLI saw</div>
-        <p>The email form did not check that the address included a valid domain before showing a successful signup.
-Reject email addresses without a valid domain and show “Enter a valid email address” instead of confirming the signup.
-evidence: objective_contradiction: The page shows “You&#39;re on the list” instead of the required validation error.</p>
+        <p>Skill update available: not installed → 0.1.4 — run `kane-cli install skill` Project and folder must be configured. Run `kane-cli login` to set up auth, or pass --username/--access-key, then `kane-cli config project &lt;id&gt;` / `kane-cli config folder &lt;id&gt;`.</p>
+        
+        
         <dl>
           
-          <div><dt>Browser time</dt><dd>43.7s</dd></div>
-          <div><dt>Exit</dt><dd><code>1</code></dd></div>
-          <div><dt>Checked</dt><dd>18 Nov, 12:12</dd></div>
+          <div><dt>Browser time</dt><dd>3.3s</dd></div>
+          <div><dt>Exit</dt><dd><code>2</code></dd></div>
+          <div><dt>Checked</dt><dd>18 Nov, 12:33</dd></div>
+          
+          
         </dl>
         
         
       </div>
-      <div class="strip" aria-label="history"><i class="error" title="Env error · 18 Nov, 11:56"></i><i class="failed" title="Failed · 18 Nov, 12:12"></i></div>
+      <div class="strip" aria-label="history"><i class="error" title="Env error · 18 Nov, 11:56"></i><i class="failed" title="Failed · 18 Nov, 12:12"></i><i class="failed" title="Failed · 18 Nov, 12:30"></i><i class="passed" title="Passed · 18 Nov, 12:32"></i><i class="error" title="Env error · 18 Nov, 12:33"></i></div>
     </article>
-    <article class="check failed">
+    <article class="check error">
       <div class="check-top">
         <span class="idx">03</span>
         <code class="cid">yearly-pricing</code>
         
-        <span class="pill failed">Failed</span>
+        <span class="pill error">Env error</span>
       </div>
-      <blockquote>Click the &quot;Yearly&quot; billing option and verify the Grow plan price shows &quot;$48&quot; per year</blockquote>
+      <blockquote>Scroll to the &quot;Simple pricing&quot; section, click the button labelled &quot;Yearly&quot;, then verify the Grow plan card shows the price &quot;$48&quot; and the text &quot;per year&quot;</blockquote>
       
       <div class="evidence">
         <div class="ev-label">Kane CLI saw</div>
-        <p>The click recorded as the Yearly billing option was placed on unrelated page content rather than the billing control. The later view does not show the Grow plan price, so the final check had no visible price to confirm.
-Update the interaction to target the actual Yearly toggle, wait for its selected state, scroll the Grow card into view, and then check its visible price and billing period.</p>
+        <p>Skill update available: not installed → 0.1.4 — run `kane-cli install skill` Project and folder must be configured. Run `kane-cli login` to set up auth, or pass --username/--access-key, then `kane-cli config project &lt;id&gt;` / `kane-cli config folder &lt;id&gt;`.</p>
+        
+        
         <dl>
           
-          <div><dt>Browser time</dt><dd>1m 3s</dd></div>
-          <div><dt>Exit</dt><dd><code>1</code></dd></div>
-          <div><dt>Checked</dt><dd>18 Nov, 12:12</dd></div>
+          <div><dt>Browser time</dt><dd>3.2s</dd></div>
+          <div><dt>Exit</dt><dd><code>2</code></dd></div>
+          <div><dt>Checked</dt><dd>18 Nov, 12:33</dd></div>
+          
+          
         </dl>
         
         
       </div>
-      <div class="strip" aria-label="history"><i class="error" title="Env error · 18 Nov, 11:56"></i><i class="failed" title="Failed · 18 Nov, 12:12"></i></div>
+      <div class="strip" aria-label="history"><i class="error" title="Env error · 18 Nov, 11:56"></i><i class="failed" title="Failed · 18 Nov, 12:12"></i><i class="failed" title="Failed · 18 Nov, 12:30"></i><i class="error" title="Env error · 18 Nov, 12:32"></i><i class="error" title="Env error · 18 Nov, 12:33"></i></div>
     </article>
-    <article class="check passed">
+    <article class="check error">
       <div class="check-top">
         <span class="idx">04</span>
         <code class="cid">faq-cancel</code>
         
-        <span class="pill passed">Passed</span>
+        <span class="pill error">Env error</span>
       </div>
       <blockquote>Click the question &quot;Can I cancel anytime?&quot; and verify the answer &quot;Yes. Cancel in one click from Settings.&quot; becomes visible</blockquote>
       
       <div class="evidence">
         <div class="ev-label">Kane CLI saw</div>
-        <p>You asked to open the “Can I cancel anytime?” question.
-The question was opened on the page.
-The answer “Yes. Cancel in one click from Settings.” is now visible.</p>
+        <p>Skill update available: not installed → 0.1.4 — run `kane-cli install skill` Project and folder must be configured. Run `kane-cli login` to set up auth, or pass --username/--access-key, then `kane-cli config project &lt;id&gt;` / `kane-cli config folder &lt;id&gt;`.</p>
+        
+        
         <dl>
-          <div><dt>Ended on</dt><dd><code>http://localhost:4173/</code></dd></div>
-          <div><dt>Browser time</dt><dd>45.6s</dd></div>
-          <div><dt>Exit</dt><dd><code>0</code></dd></div>
-          <div><dt>Checked</dt><dd>18 Nov, 12:12</dd></div>
+          
+          <div><dt>Browser time</dt><dd>3.1s</dd></div>
+          <div><dt>Exit</dt><dd><code>2</code></dd></div>
+          <div><dt>Checked</dt><dd>18 Nov, 12:33</dd></div>
+          
+          
         </dl>
         
         
       </div>
-      <div class="strip" aria-label="history"><i class="error" title="Env error · 18 Nov, 11:56"></i><i class="passed" title="Passed · 18 Nov, 12:12"></i></div>
+      <div class="strip" aria-label="history"><i class="error" title="Env error · 18 Nov, 11:56"></i><i class="passed" title="Passed · 18 Nov, 12:12"></i><i class="passed" title="Passed · 18 Nov, 12:30"></i><i class="error" title="Env error · 18 Nov, 12:33"></i></div>
     </article>
-    <article class="check passed">
+    <article class="check error">
       <div class="check-top">
         <span class="idx">05</span>
         <code class="cid">nav-pricing</code>
         
-        <span class="pill passed">Passed</span>
+        <span class="pill error">Env error</span>
       </div>
       <blockquote>Click &quot;Pricing&quot; in the top navigation and verify the pricing section with the &quot;Grow&quot; plan is visible</blockquote>
       
       <div class="evidence">
         <div class="ev-label">Kane CLI saw</div>
-        <p>Objective completed</p>
+        <p>Skill update available: not installed → 0.1.4 — run `kane-cli install skill` Project and folder must be configured. Run `kane-cli login` to set up auth, or pass --username/--access-key, then `kane-cli config project &lt;id&gt;` / `kane-cli config folder &lt;id&gt;`.</p>
+        
+        
         <dl>
           
-          <div><dt>Browser time</dt><dd>2m 23s</dd></div>
-          <div><dt>Exit</dt><dd><code>0</code></dd></div>
-          <div><dt>Checked</dt><dd>18 Nov, 12:12</dd></div>
+          <div><dt>Browser time</dt><dd>3.4s</dd></div>
+          <div><dt>Exit</dt><dd><code>2</code></dd></div>
+          <div><dt>Checked</dt><dd>18 Nov, 12:33</dd></div>
+          
+          
         </dl>
         
         
       </div>
-      <div class="strip" aria-label="history"><i class="error" title="Env error · 18 Nov, 11:56"></i><i class="passed" title="Passed · 18 Nov, 12:12"></i></div>
+      <div class="strip" aria-label="history"><i class="error" title="Env error · 18 Nov, 11:56"></i><i class="passed" title="Passed · 18 Nov, 12:12"></i><i class="passed" title="Passed · 18 Nov, 12:30"></i><i class="error" title="Env error · 18 Nov, 12:33"></i></div>
     </article></div>
   </section>
 
@@ -270,9 +303,9 @@ The answer “Yes. Cancel in one click from Settings.” is now visible.</p>
 
   <section>
     <h2>Run log</h2>
-    <table><thead><tr><th>When</th><th>Trigger</th><th>Rounds</th><th>Agent fixes</th><th>Result</th></tr></thead><tbody><tr><td>18 Nov, 12:12</td><td><code>verify</code></td><td>1</td><td>0</td><td><span class="pill sm failed">3/5</span></td></tr><tr><td>18 Nov, 11:56</td><td><code>verify</code></td><td>1</td><td>0</td><td><span class="pill sm failed">0/5</span></td></tr></tbody></table>
+    <table><thead><tr><th>When</th><th>Trigger</th><th>Rounds</th><th>Agent fixes</th><th>Result</th></tr></thead><tbody><tr><td>18 Nov, 12:33</td><td><code>loop</code></td><td>3</td><td>1</td><td><span class="pill sm failed">0/5</span></td></tr><tr><td>18 Nov, 12:12</td><td><code>verify</code></td><td>1</td><td>0</td><td><span class="pill sm failed">3/5</span></td></tr><tr><td>18 Nov, 11:56</td><td><code>verify</code></td><td>1</td><td>0</td><td><span class="pill sm failed">0/5</span></td></tr></tbody></table>
   </section>
 </main>
-<footer class="wrap"><span class="badge">Verified with Kane CLI</span><span>Generated by Handoff · 2026-11-18 11:12 UTC</span></footer>
+<footer class="wrap"><span class="badge">Verified with Kane CLI</span><span>70 Kane credits · Generated by Handoff · 2026-11-18 11:33 UTC</span></footer>
 </body>
 </html>

@@ -1,6 +1,6 @@
 // Runs the spec's checks through Kane CLI and records a round.
 import { checkUrl } from './spec.js';
-import { resolveKane, runCheck, makeLivePrinter, isAutomationSlip } from './kane.js';
+import { resolveKane, runCheck, makeLivePrinter, isAutomationSlip, meaningfulEvidence } from './kane.js';
 import { startServer, waitForUrl, urlIsUp, killTree } from './proc.js';
 import { c, sym, statusWord, truncate, fmtDuration } from './ui.js';
 
@@ -69,8 +69,8 @@ export async function runRound(spec, checks, { kane, headed = false, live = true
       const icon = r.status === 'passed' ? sym.pass : r.status === 'failed' ? sym.fail : sym.warn;
       const line = r.oneLiner || r.summary || r.reason;
       console.log(`      ${icon} ${statusWord(r.status)} ${c.gray(fmtDuration(r.duration))}${line ? '  ' + (r.status === 'error' ? c.gray(truncate(line, 90)) : truncate(line, 90)) : ''}`);
-      for (const e of (r.status === 'failed' ? r.evidence || [] : [])) {
-        if (e.read != null && e.expected != null) console.log(`        ${c.gray('Kane read')} ${c.red(JSON.stringify(e.read))} ${c.gray('· expected')} ${c.green(JSON.stringify(e.expected))}`);
+      for (const e of (r.status === 'failed' ? meaningfulEvidence(r.evidence) : [])) {
+        console.log(`        ${c.gray('Kane read')} ${c.red(JSON.stringify(e.read))} ${c.gray('· expected')} ${c.green(JSON.stringify(e.expected))}`);
       }
       if (r.reportUrl && r.status !== 'passed') console.log(`        ${c.gray('report')} ${c.cyan(truncate(r.reportUrl, 70))}`);
     }

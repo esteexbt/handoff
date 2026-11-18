@@ -82,9 +82,10 @@ export async function loop(opts) {
     save();
 
     let failing = round.results.filter((r) => r.status === 'failed' || r.status === 'timeout');
+    let envErr = round.results.find((r) => r.status === 'error');
     let n = 1;
     let fixed = false;
-    while (failing.length && n <= max) {
+    while (failing.length && !envErr && n <= max) {
       rule(`Agent · fixing ${failing.length} failing check${failing.length > 1 ? 's' : ''}`);
       const brief = feedback(spec, failing, { round: n, maxRounds: max });
       for (const f of failing) console.log(`      ${sym.fail} ${c.bold(f.id)} ${c.gray(truncate(f.summary || f.reason, 90))}`);
@@ -103,7 +104,8 @@ export async function loop(opts) {
       printTally(round.results);
       save();
       failing = round.results.filter((r) => r.status === 'failed' || r.status === 'timeout');
-      fixed = !failing.length;
+      envErr = round.results.find((r) => r.status === 'error');
+      fixed = !failing.length && !envErr;
     }
 
     if (fixed && opts.sweep !== false && checks.length > 1) {
@@ -115,12 +117,16 @@ export async function loop(opts) {
 
     run.finishedAt = new Date().toISOString();
     const finalRound = run.rounds.at(-1);
-    run.verdict = finalRound.results.length === checks.length ? verdictOf(finalRound.results) : (failing.length ? 'failing' : 'verified');
+    envErr = finalRound.results.find((r) => r.status === 'error');
+    run.verdict = envErr ? 'interrupted' : finalRound.results.length === checks.length ? verdictOf(finalRound.results) : (failing.length ? 'failing' : 'verified');
     save();
     const out = proofPath(spec);
     const fixRounds = run.rounds.filter((r) => r.agent).length;
     console.log('');
-    if (run.verdict === 'verified') {
+    if (run.verdict === 'interrupted') {
+      console.log(`  ${sym.warn} ${c.bold(c.yellow('Paused: Kane CLI hit an environment problem.'))} Nothing was blamed on your code.`);
+      console.log(`    ${c.gray(truncate(envErr.reason || envErr.stderr, 220))}`);
+    } else if (run.verdict === 'verified') {
       console.log(`  ${sym.pass} ${c.bold(c.green('Verified.'))} ${checks.length}/${checks.length} checks pass in a real browser${fixRounds ? ` after ${fixRounds} agent fix round${fixRounds > 1 ? 's' : ''}` : ''}.`);
     } else {
       console.log(`  ${sym.fail} ${c.bold(c.red('Not verified.'))} ${failing.length} check${failing.length === 1 ? '' : 's'} still failing after ${fixRounds} fix round${fixRounds === 1 ? '' : 's'}.`);

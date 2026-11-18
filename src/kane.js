@@ -13,6 +13,12 @@ const TEXT_KEYS = ['step', 'action', 'description', 'message', 'text', 'thought'
 
 export function eventText(ev) {
   if (!ev || typeof ev !== 'object') return '';
+  // Kane 0.10 step events: { step, status: running|done|failed, remark }
+  if (typeof ev.remark === 'string') {
+    if (ev.status === 'running' || /^Step \d+$/.test(ev.remark)) return '';
+    return (ev.status === 'failed' ? '✖ ' : '') + ev.remark;
+  }
+  if (/^(stream_start|recording_state|skill_update_available|bifurcation)$/.test(ev.type || '')) return '';
   for (const k of TEXT_KEYS) {
     const v = ev[k];
     if (typeof v === 'string' && v.trim()) return v;
@@ -95,7 +101,7 @@ export function runCheck(kane, { objective, url, headed = false, timeoutSec = 30
         exitCode: timedOut ? 3 : code,
         summary: end?.summary || '',
         oneLiner: end?.one_liner || '',
-        reason: end?.reason || (status === 'error' ? truncate(stderr, 400) : ''),
+        reason: end?.reason || (status === 'error' ? cleanStderr(stderr) : ''),
         finalState: end?.final_state || null,
         kaneDuration: typeof end?.duration === 'number' ? end.duration : null,
         credits: typeof end?.credits_consumed === 'number' ? end.credits_consumed : null,
@@ -116,7 +122,7 @@ export function runCheck(kane, { objective, url, headed = false, timeoutSec = 30
         steps: steps.slice(-40),
         rawSample,
         eventCount: events.length,
-        stderr: r.status === 'error' ? truncate(stderr, 1200) : '',
+        stderr: r.status === 'error' ? truncate(cleanStderr(stderr), 1200) : '',
         duration: (Date.now() - started) / 1000,
       };
     }
@@ -172,4 +178,26 @@ export function isAutomationSlip(r) {
   const f = (r.verdict?.family || '').toLowerCase();
   const cat = (r.verdict?.category || '').toLowerCase();
   return /automation|tooling|flak|infra/.test(f) || /agent_misstep|misclick|flak/.test(cat);
+}
+
+// Drop Kane's informational banners so the real error is what people read.
+export function cleanStderr(text) {
+  return String(text || '')
+    .split(/\r?\n/)
+    .filter((l) => l.trim() && !/^Skill update available|^Running on:/i.test(l.trim()))
+    .join(' ')
+    .replace(/Skill update available:.*?kane-cli install skill`\s*/i, '')
+    .replace(/Running on: [^·]*· Chrome\s*/i, '')
+    .trim();
+}
+
+// Only readouts that actually disagree and carry a human-meaningful value.
+export function meaningfulEvidence(list) {
+  return (list || []).filter((e) => {
+    if (e.read == null || e.expected == null) return false;
+    const a = String(e.read).trim(), b = String(e.expected).trim();
+    if (a === b) return false;
+    if (/^(true|false)$/i.test(a) && /^(true|false)$/i.test(b)) return false;
+    return true;
+  });
 }
