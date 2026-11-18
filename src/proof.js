@@ -133,7 +133,7 @@ export function buildProof(spec, runs) {
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Proof · ${esc(spec.name || 'Handoff')}</title>
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath fill='%23141412' d='M8 3L8 6L1 6L1 3Z'/%3E%3Cpath fill='%230F8A4F' d='M6.379 12L9.785 15.406L15.679 5.783L13.121 4.217L9.215 10.594L7.621 9L1 9L1 12Z'/%3E%3C/svg%3E">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2016%2016'%3E%3Cstyle%3E.a%7Bfill:%23141412%7D.b%7Bfill:%230F8A4F%7D%40media%20%28prefers-color-scheme:dark%29%7B.a%7Bfill:%23F3EFE6%7D.b%7Bfill:%2316A862%7D%7D%3C/style%3E%3Cpath%20class='a'%20d='M8%203L8%206L1%206L1%203Z'/%3E%3Cpath%20class='b'%20d='M6.379%2012L9.785%2015.406L15.679%205.783L13.121%204.217L9.215%2010.594L7.621%209L1%209L1%2012Z'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>

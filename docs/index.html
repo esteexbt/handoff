@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Handoff · Your AI agent says done. Handoff makes it prove it.</title>
+<meta name="description" content="Write the spec in plain English. Kane CLI checks every line in a real browser. Claude Code fixes what fails, until it's proven.">
+<meta property="og:title" content="Handoff · make your AI agent prove it">
+<meta property="og:description" content="Plain-English checks, verified in a real browser by Kane CLI, fed back to Claude Code until they pass.">
+<meta property="og:image" content="handoff-brand/04-social/handoff-og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2016%2016'%3E%3Cstyle%3E.a%7Bfill:%23141412%7D.b%7Bfill:%230F8A4F%7D%40media%20%28prefers-color-scheme:dark%29%7B.a%7Bfill:%23F3EFE6%7D.b%7Bfill:%2316A862%7D%7D%3C/style%3E%3Cpath%20class='a'%20d='M8%203L8%206L1%206L1%203Z'/%3E%3Cpath%20class='b'%20d='M6.379%2012L9.785%2015.406L15.679%205.783L13.121%204.217L9.215%2010.594L7.621%209L1%209L1%2012Z'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#0B0B0A;--ink2:#1A1A18;--t:#0B0B0A;--g:#8B8A86;--g2:#B9B8B3;--panel:#F5F5F3;--panel2:#EFEFEC;--line:#E9E9E6;--green:#0F8A4F;--green2:#16A862;--red:#D9432F;
+--sans:Inter,system-ui,-apple-system,"Segoe UI",sans-serif;--mono:"JetBrains Mono",ui-monospace,Consolas,monospace}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-font-smoothing:antialiased}
+body{background:#fff;color:var(--t);font:15px/1.6 var(--sans);letter-spacing:-.005em}
+a{color:inherit;text-decoration:none}
+code,.mono{font-family:var(--mono)}
+.wrap{max-width:1180px;margin:0 auto;padding:0 28px}
+
+/* nav */
+nav{position:sticky;top:0;z-index:30;background:rgba(255,255,255,.86);backdrop-filter:saturate(1.4) blur(14px)}
+nav .in{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;height:64px;padding:0 28px}
+nav .l,nav .r{display:flex;gap:26px;font-size:13.5px;color:#55544F;align-items:center}
+nav .r{justify-content:flex-end}
+nav a:hover{color:var(--t)}
+.logo{height:21px;width:auto;display:block}
+.pill{display:inline-flex;align-items:center;gap:8px;height:34px;padding:0 15px;border-radius:99px;font:500 13.5px var(--sans);transition:background .2s,transform .2s}
+.pill.dark{background:var(--ink);color:#fff}.pill.dark:hover{background:#2A2A27}
+.pill.light{background:#fff;color:var(--t)}.pill.light:hover{transform:translateY(-1px)}
+.pill.line{border:1px solid var(--line);background:#fff}.pill.line:hover{border-color:var(--g2)}
+.pill.lg{height:44px;padding:0 20px;font-size:14.5px}
+.tagp{display:inline-flex;align-items:center;gap:7px;font:500 12.5px var(--sans);color:#3D3C38;background:var(--panel);border:1px solid var(--line);border-radius:99px;padding:5px 12px}
+.tagp i{width:6px;height:6px;border-radius:50%;background:var(--green2)}
+.tagp.dk{background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.1);color:#CFCDC6}
+
+/* hero */
+.hero{padding:6px 16px 0}
+.hcard{position:relative;border-radius:30px;background:var(--ink);color:#fff;overflow:hidden;padding:110px 28px 0;min-height:860px}
+.hcard:before{content:"";position:absolute;left:-180px;top:-260px;width:820px;height:760px;background:radial-gradient(closest-side,rgba(73,150,105,.55),rgba(36,80,55,.22) 55%,transparent 75%);transform:rotate(-18deg);filter:blur(10px);pointer-events:none}
+.hcard:after{content:"";position:absolute;inset:0;background:radial-gradient(ellipse at 50% 120%,rgba(255,255,255,.05),transparent 55%);pointer-events:none}
+.htext{position:relative;z-index:2;text-align:center;max-width:820px;margin:0 auto}
+h1{font-weight:500;font-size:clamp(40px,5.4vw,70px);line-height:1.04;letter-spacing:-.045em;margin:22px 0 20px}
+h1 span{color:#8E8D88}
+.hsub{color:#A9A8A2;font-size:16.5px;max-width:540px;margin:0 auto}
+.hcta{display:flex;gap:10px;justify-content:center;margin-top:30px}
+.hcta .pill.ghostd{border:1px solid rgba(255,255,255,.16);color:#E8E6E0}
+.hcta .pill.ghostd:hover{border-color:rgba(255,255,255,.4)}
+
+/* dashboard */
+.dash{position:relative;z-index:2;max-width:1060px;margin:72px auto 0;border-radius:22px 22px 0 0;background:linear-gradient(180deg,#151513,#111110);border:1px solid rgba(255,255,255,.08);border-bottom:0;display:grid;grid-template-columns:210px 1fr 300px;min-height:420px;overflow:hidden;box-shadow:0 -30px 90px rgba(0,0,0,.4)}
+.side{border-right:1px solid rgba(255,255,255,.07);padding:20px 16px}
+.proj{display:flex;align-items:center;gap:10px;padding:10px;border-radius:12px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.06)}
+.proj .av{width:30px;height:30px;border-radius:9px;background:#F3EFE6;display:flex;align-items:center;justify-content:center}
+.proj .av i{width:12px;height:12px;background:#1F6F4A;border-radius:0 60% 0 60%}
+.proj b{display:block;font:500 13.5px var(--sans)}.proj small{color:#7C7B76;font-size:11.5px}
+.menu{margin-top:18px;display:flex;flex-direction:column;gap:2px;font-size:13px;color:#8B8A85}
+.menu div{padding:8px 10px;border-radius:9px;display:flex;justify-content:space-between}
+.menu .on{background:rgba(255,255,255,.06);color:#fff}
+.menu em{font-style:normal;font:500 11px var(--mono);color:#6E6D68}
+.main{padding:20px 22px}
+.mh{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px}
+.mh b{font:500 16px var(--sans)}
+.seg{display:flex;gap:4px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);border-radius:10px;padding:3px}
+.seg span{font:500 11.5px var(--sans);color:#7C7B76;padding:5px 10px;border-radius:7px;transition:.3s}
+.seg span.on{background:#F3EFE6;color:#111}
+.rows{display:flex;flex-direction:column;gap:6px}
+.row{display:grid;grid-template-columns:150px 1fr 74px;gap:14px;align-items:center;padding:10px 12px;border-radius:11px;background:rgba(255,255,255,.025);border:1px solid rgba(255,255,255,.05);transition:background .3s,border-color .3s}
+.row .id{font:500 12.5px var(--mono);color:#E8E6E0}
+.row .ob{font-size:12px;color:#7C7B76;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.st{justify-self:end;font:500 11px var(--sans);padding:4px 9px;border-radius:99px;background:rgba(255,255,255,.06);color:#8B8A85;transition:.3s}
+.row.run{border-color:rgba(224,166,62,.35)}.row.run .st{background:rgba(224,166,62,.14);color:#E0A63E}
+.row.pass .st{background:rgba(22,168,98,.14);color:#3FCB86}
+.row.fail{border-color:rgba(239,91,76,.35);background:rgba(239,91,76,.05)}.row.fail .st{background:rgba(239,91,76,.15);color:#F08A7B}
+.aside{border-left:1px solid rgba(255,255,255,.07);padding:20px 18px;display:flex;flex-direction:column;gap:12px}
+.box{border-radius:14px;background:rgba(255,255,255,.035);border:1px solid rgba(255,255,255,.07);padding:14px 16px}
+.box .h{font:500 11.5px var(--sans);color:#7C7B76;margin-bottom:8px;display:flex;justify-content:space-between}
+.read{display:flex;align-items:baseline;gap:12px}
+.read s{font:500 34px var(--sans);letter-spacing:-.03em;color:#F08A7B;text-decoration-thickness:2px}
+.read b{font:500 34px var(--sans);letter-spacing:-.03em;color:#3FCB86}
+.read small{color:#7C7B76;font-size:11.5px}
+.ring{display:flex;align-items:center;gap:14px}
+.ring svg{width:66px;height:66px;transform:rotate(-90deg)}
+.ring circle{fill:none;stroke-width:6}
+.ring .bg{stroke:rgba(255,255,255,.08)}.ring .fg{stroke:#3FCB86;stroke-linecap:round;stroke-dasharray:176;stroke-dashoffset:176;transition:stroke-dashoffset .5s}
+.ring b{font:500 26px var(--sans);letter-spacing:-.03em;display:block}.ring small{color:#7C7B76;font-size:11.5px}
+.agent{font:400 11.5px/1.7 var(--mono);color:#8B8A85;min-height:76px}
+.agent div{animation:fi .3s ease}.agent .p{color:#B9A6FF}.agent .ok{color:#3FCB86}
+@keyframes fi{from{opacity:0;transform:translateY(4px)}}
+
+/* sections */
+section{padding:140px 0 0}
+.center{text-align:center}
+h2{font-weight:500;font-size:clamp(32px,3.8vw,50px);line-height:1.08;letter-spacing:-.04em;margin:18px auto 14px;max-width:760px}
+.lead{color:var(--g);font-size:16.5px;max-width:560px;margin:0 auto}
+.scrub .w{transition:color .5s}
+.scrub .w{color:#D2D1CC}.scrub .w.on{color:var(--t)}
+
+/* compare */
+.cmpwrap{margin-top:56px;display:grid;grid-template-columns:1fr 360px;gap:16px}
+.frame{background:var(--panel);border:1px solid var(--line);border-radius:26px;padding:14px}
+.cmp{position:relative;border-radius:16px;overflow:hidden;aspect-ratio:1340/880;user-select:none;background:#eee}
+.cmp img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.cmp .after{clip-path:inset(0 0 0 50%)}
+.cmp .hd{position:absolute;top:0;bottom:0;left:50%;width:2px;background:#fff;box-shadow:0 0 0 1px rgba(0,0,0,.06)}
+.cmp .hd:after{content:"";position:absolute;top:50%;left:50%;width:40px;height:40px;transform:translate(-50%,-50%);border-radius:50%;background:#fff;box-shadow:0 6px 20px rgba(0,0,0,.18);background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23111' stroke-width='2' stroke-linecap='round'%3E%3Cpath d='M9 6l-5 6 5 6M15 6l5 6-5 6'/%3E%3C/svg%3E");background-size:20px;background-repeat:no-repeat;background-position:center}
+.cmp input{position:absolute;inset:0;width:100%;height:100%;opacity:0;cursor:ew-resize}
+.lbl{position:absolute;bottom:14px;font:500 12px var(--sans);padding:6px 11px;border-radius:99px;background:rgba(255,255,255,.92);box-shadow:0 2px 10px rgba(0,0,0,.08)}
+.lbl.l{left:14px}.lbl.r{right:14px}
+.lbl i{display:inline-block;width:6px;height:6px;border-radius:50%;margin-right:6px;vertical-align:1px}
+.facts{display:flex;flex-direction:column;gap:12px}
+.fact{background:var(--panel);border:1px solid var(--line);border-radius:22px;padding:22px 22px 20px;flex:1}
+.fact .k{font:500 12px var(--sans);color:var(--g);display:flex;align-items:center;gap:8px}
+.fact .k i{width:7px;height:7px;border-radius:50%}
+.fact p{margin-top:10px;font-size:15px;color:#3D3C38}.fact p b{color:var(--t);font-weight:500}
+.fact .big{display:flex;align-items:baseline;gap:10px;margin-top:6px}
+.fact .big s{font:500 40px var(--sans);letter-spacing:-.04em;color:var(--red)}
+.fact .big b{font:500 40px var(--sans);letter-spacing:-.04em;color:var(--green)}
+.fact .big small{color:var(--g)}
+
+/* stacked cards */
+.stack{margin-top:70px;position:relative}
+.sc{position:sticky;border-radius:28px;color:#fff;padding:44px 48px;min-height:440px;display:grid;grid-template-columns:1fr 1fr;gap:40px;margin-bottom:28px;box-shadow:0 -20px 60px rgba(0,0,0,.08)}
+.sc:nth-child(1){top:96px;background:#0B0B0A}.sc:nth-child(2){top:116px;background:#1A1B1C}.sc:nth-child(3){top:136px;background:#26282A}.sc:nth-child(4){top:156px;background:#33363A}
+.sc h3{font-weight:500;font-size:46px;line-height:1.02;letter-spacing:-.04em}.sc h3 span{display:block;color:#8E8D88}
+.sc .n{font:500 12.5px var(--mono);color:#8E8D88;margin-bottom:22px}
+.chips{display:flex;gap:6px;flex-wrap:wrap;margin-top:auto}
+.chips span{font:500 12px var(--sans);color:#CFCDC6;border:1px solid rgba(255,255,255,.14);border-radius:99px;padding:5px 11px}
+.sc .lft{display:flex;flex-direction:column}
+.sc .lft p{color:#A9A8A2;font-size:15.5px;max-width:400px;margin:18px 0 26px;display:flex;gap:10px}
+.sc .lft p:before{content:"";flex:none;width:7px;height:7px;border-radius:50%;background:#3FCB86;margin-top:8px}
+.code{background:rgba(0,0,0,.28);border:1px solid rgba(255,255,255,.08);border-radius:18px;padding:22px 24px;font:400 13.5px/1.8 var(--mono);color:#CFCDC6;align-self:center;overflow:auto}
+.code .c{color:#7C7B76}.code .g{color:#3FCB86}.code .r{color:#F08A7B}.code .p{color:#B9A6FF}.code .y{color:#E8C27A}.code .b{color:#8EC3FF}
+
+/* triage grid */
+.tgrid{margin-top:56px;display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.tc{background:var(--panel);border:1px solid var(--line);border-radius:24px;padding:26px;display:flex;flex-direction:column;min-height:330px}
+.tc .k{font:500 12px var(--sans);color:var(--g);display:flex;align-items:center;gap:8px}
+.tc .k i{width:7px;height:7px;border-radius:50%}
+.tc h4{font-weight:500;font-size:23px;letter-spacing:-.025em;line-height:1.15;margin:12px 0 8px}
+.tc p{color:#55544F;font-size:14.5px}
+.tc .ui{margin-top:auto;background:#fff;border:1px solid var(--line);border-radius:16px;padding:14px 16px;box-shadow:0 10px 30px rgba(0,0,0,.04)}
+.tc .ui .a{font:500 11.5px var(--mono);color:var(--g)}
+.tc .ui .b{display:flex;justify-content:space-between;align-items:center;margin-top:8px;font-size:13.5px;font-weight:500}
+.badge{font:500 11px var(--sans);padding:4px 9px;border-radius:99px}
+.badge.gr{background:#E3F4EA;color:#0B6B3D}.badge.am{background:#FBF0D9;color:#8A5A0E}.badge.rd{background:#FBE3DE;color:#9E2A1C}
+
+/* tabs */
+.tabs{margin-top:56px;background:var(--panel);border:1px solid var(--line);border-radius:28px;padding:16px;display:grid;grid-template-columns:260px 1fr;gap:16px}
+.tlist{padding:16px 10px;display:flex;flex-direction:column;gap:2px;position:relative}
+.tlist:before{content:"";position:absolute;left:10px;top:20px;bottom:20px;width:1px;background:var(--line)}
+.tab{padding:10px 16px;font-size:14px;color:var(--g);cursor:pointer;border-left:2px solid transparent;margin-left:9px;transition:.2s;position:relative}
+.tab.on{color:var(--t);border-left-color:var(--t)}
+.tab small{display:block;font-size:12.5px;color:var(--g);max-height:0;overflow:hidden;transition:max-height .35s}
+.tab.on small{max-height:80px;margin-top:4px}
+.view{position:relative;background:#fff;border:1px solid var(--line);border-radius:20px;overflow:hidden;aspect-ratio:16/10}
+.view img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:top;opacity:0;transform:scale(1.015);transition:opacity .5s,transform .7s}
+.view img.on{opacity:1;transform:none}
+.view .go{position:absolute;right:16px;bottom:16px;z-index:2}
+
+/* ways */
+.ways{margin-top:56px;display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.way{background:var(--panel);border:1px solid var(--line);border-radius:26px;padding:30px;display:flex;flex-direction:column;min-height:380px}
+.way h4{font-weight:500;font-size:26px;letter-spacing:-.03em}
+.way p{color:#55544F;margin:8px 0 22px;max-width:440px}
+.term{margin-top:auto;background:var(--ink);border-radius:18px;padding:20px 22px;font:400 13px/1.8 var(--mono);color:#B9B8B3;overflow:auto}
+.term .p{color:#E0896A}.term .ok{color:#3FCB86}.term .bad{color:#F08A7B}.term .ag{color:#B9A6FF}.term .dim{color:#6E6D68}
+
+/* final */
+.final{margin:140px 16px 0;border-radius:30px;background:var(--ink);color:#fff;position:relative;overflow:hidden;padding:110px 28px 100px;text-align:center}
+.final:before{content:"";position:absolute;right:-200px;top:-280px;width:820px;height:760px;background:radial-gradient(closest-side,rgba(73,150,105,.45),rgba(36,80,55,.18) 55%,transparent 75%);transform:rotate(18deg);pointer-events:none}
+.final h2{color:#fff}.final h2 span{color:#8E8D88}
+.inst{display:inline-flex;align-items:center;gap:14px;margin-top:30px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:14px;padding:10px 10px 10px 18px;font:400 14px var(--mono);color:#E8E6E0;position:relative}
+.inst .d{color:#7C7B76}
+.cp{font:500 12px var(--sans);border-radius:9px;padding:7px 12px;background:#fff;color:#111;border:0;cursor:pointer}
+.steps3{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;max-width:900px;margin:44px auto 0;text-align:left;position:relative}
+.steps3 div{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:18px;padding:18px 20px}
+.steps3 b{display:block;font:500 12px var(--mono);color:#7C7B76;margin-bottom:6px}
+.steps3 code{font-size:13.5px;color:#E8E6E0}
+.steps3 small{display:block;color:#8E8D88;font-size:12.5px;margin-top:6px}
+
+footer{padding:40px 28px 46px;display:flex;align-items:center;gap:20px;flex-wrap:wrap;color:var(--g);font-size:13px;max-width:1180px;margin:0 auto}
+footer .r{margin-left:auto;display:flex;gap:22px}footer a:hover{color:var(--t)}
+
+.rv{opacity:0;transform:translateY(24px);filter:blur(6px);transition:opacity .9s cubic-bezier(.2,.7,.2,1),transform .9s cubic-bezier(.2,.7,.2,1),filter .9s}
+.rv.on{opacity:1;transform:none;filter:none}
+
+@media (max-width:1000px){
+ nav .l{display:none}nav .in{grid-template-columns:auto 1fr}nav .in>a{justify-self:start}
+ .dash{grid-template-columns:1fr}.side,.aside{display:none}
+ .cmpwrap,.tabs,.ways{grid-template-columns:1fr}.tgrid{grid-template-columns:1fr}.steps3{grid-template-columns:1fr}
+ .sc{grid-template-columns:1fr;padding:32px 26px}.sc h3{font-size:36px}
+ .tlist{flex-direction:row;overflow:auto}.tlist:before{display:none}.tab small{display:none}
+ .row{grid-template-columns:120px 1fr 64px}
+}
+@media (max-width:560px){.row .ob{display:none}.row{grid-template-columns:1fr 64px}.hcard{padding-top:80px;min-height:0}nav .r a:not(.pill){display:none}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.rv{opacity:1;transform:none;filter:none}}
+</style>
+</head>
+<body>
+
+<nav><div class="in">
+  <div class="l"><a href="#problem">Why</a><a href="#how">How it works</a><a href="#proof">Proof</a></div>
+  <a href="#" aria-label="Handoff home"><svg class="logo" style="overflow:visible" xmlns="http://www.w3.org/2000/svg" viewBox="0.00 -1490.00 9446.51 1514.00" role="img" aria-label="Handoff logo"><g transform="translate(-183.400 -1938.467) scale(91.69977)"><path d="M12 5L12 9L2 9L2 5Z" fill="#141412"/><path d="M10.172 17L14.311 21.139L23.664 7.109L20.336 4.891L13.689 14.861L11.828 13L2 13L2 17Z" fill="#141412"/></g><g transform="translate(2612.39 0)"><g fill="#141412"><path d="M364 -597C364 -777 463 -856 595 -856C730 -856 808 -775 808 -620V0H1061V-660C1061 -931 905 -1077 684 -1077C542 -1077 436 -1016 364 -901V-1490H112V0H364Z M1555.8 17C1727.8 17 1816.8 -55 1866.8 -149H1870.8V0H2118.8V-720C2118.8 -940 1955.8 -1077 1680.8 -1077C1404.8 -1077 1232.8 -938 1220.8 -728H1463.8C1470.8 -817 1552.8 -881 1675.8 -881C1796.8 -881 1868.8 -817 1868.8 -727V-719C1868.8 -647 1801.8 -644 1605.8 -622C1387.8 -599 1190.8 -540 1190.8 -300C1190.8 -89 1345.8 17 1555.8 17ZM1617.8 -170C1507.8 -170 1436.8 -219 1436.8 -302C1436.8 -398 1528.8 -437 1636.8 -453C1740.8 -469 1838.8 -485 1869.8 -505V-391C1869.8 -268 1782.8 -170 1617.8 -170Z M2542.6 -597C2542.6 -777 2641.6 -856 2773.6 -856C2908.6 -856 2986.6 -775 2986.6 -620V0H3239.6V-660C3239.6 -931 3083.6 -1077 2862.6 -1077C2717.6 -1077 2610.6 -1013 2538.6 -894V-1056H2290.6V0H2542.6Z M3820.3999999999996 21C3958.3999999999996 21 4074.3999999999996 -39 4140.4 -161H4142.4V0H4390.4V-1490H4138.4V-906H4136.4C4068.3999999999996 -1022 3955.3999999999996 -1077 3818.3999999999996 -1077C3547.3999999999996 -1077 3363.3999999999996 -854 3363.3999999999996 -529C3363.3999999999996 -200 3544.3999999999996 21 3820.3999999999996 21ZM3879.3999999999996 -190C3723.3999999999996 -190 3618.3999999999996 -310 3618.3999999999996 -529C3618.3999999999996 -747 3723.3999999999996 -868 3879.3999999999996 -868C4044.3999999999996 -868 4152.4 -734 4152.4 -529C4152.4 -323 4044.3999999999996 -190 3879.3999999999996 -190Z M5035.2 24C5346.2 24 5556.2 -199 5556.2 -527C5556.2 -855 5346.2 -1080 5035.2 -1080C4724.2 -1080 4514.2 -855 4514.2 -527C4514.2 -199 4724.2 24 5035.2 24ZM5035.2 -187C4872.2 -187 4769.2 -316 4769.2 -527C4769.2 -739 4873.2 -869 5035.2 -869C5196.2 -869 5300.2 -738 5300.2 -527C5300.2 -317 5197.2 -187 5035.2 -187Z M6242.0 -1056H6027.0V-1168C6027.0 -1254 6059.0 -1287 6145.0 -1287H6242.0V-1490H6095.0C5886.0 -1490 5774.0 -1392 5774.0 -1210V-1056H5584.0V-853H5774.0V0H6027.0V-853H6242.0Z M6834.12 -1056H6619.12V-1168C6619.12 -1254 6651.12 -1287 6737.12 -1287H6834.12V-1490H6687.12C6478.12 -1490 6366.12 -1392 6366.12 -1210V-1056H6176.12V-853H6366.12V0H6619.12V-853H6834.12Z"/><path d="M5584.0 -1056H6834.12V-853H5584.0Z"/></g></g></svg></a>
+  <div class="r"><a href="https://github.com/esteexbt/handoff" target="_blank" rel="noopener">GitHub</a><a class="pill dark" href="#start">Get started</a></div>
+</div></nav>
+
+<div class="hero"><div class="hcard">
+  <div class="htext">
+    <span class="tagp dk rv"><i></i>Verified with Kane CLI</span>
+    <h1 class="rv">Your AI agent says done.<br><span>Handoff makes it prove it.</span></h1>
+    <p class="hsub rv">Write what "done" means in plain English. Kane CLI checks every line in a real browser, and Claude Code fixes what fails, until it's proven.</p>
+    <div class="hcta rv"><a class="pill light lg" href="#start">Get started</a><a class="pill lg ghostd" href="proof/" target="_blank" rel="noopener">See a real proof ↗</a></div>
+  </div>
+
+  <div class="dash rv" aria-label="Animated Handoff dashboard">
+    <div class="side">
+      <div class="proj"><div class="av"><i></i></div><div><b>Sprout</b><small>localhost:4173</small></div></div>
+      <div class="menu"><div class="on">Checks <em id="m-score">0/6</em></div><div>Rounds <em id="m-round">1</em></div><div>Proof page</div><div>Kane reports</div><div>Brand</div></div>
+    </div>
+    <div class="main">
+      <div class="mh"><b>Checks</b><div class="seg" id="seg"><span class="on">Round 1</span><span>Fix</span><span>Round 2</span><span>Sweep</span></div></div>
+      <div class="rows" id="rows"></div>
+    </div>
+    <div class="aside">
+      <div class="box"><div class="h"><span>Kane readout · yearly-pricing</span></div><div class="read" id="readout"><b style="color:#7C7B76">—</b><small>waiting</small></div></div>
+      <div class="box ring"><svg viewBox="0 0 66 66"><circle class="bg" cx="33" cy="33" r="28"/><circle class="fg" id="ringfg" cx="33" cy="33" r="28"/></svg><div><b id="ringn">0/6</b><small id="ringl">verified in Chrome</small></div></div>
+      <div class="box"><div class="h"><span>Claude Code</span><span id="agst">idle</span></div><div class="agent" id="agent"></div></div>
+    </div>
+  </div>
+</div></div>
+
+<section id="problem"><div class="wrap center">
+  <span class="tagp rv"><i></i>The problem</span>
+  <h2 class="scrub">"Done" is a claim. Someone still has to click through it and find what's broken.</h2>
+  <p class="lead rv">Both bugs below are real, from the agent's first build of our demo app. Drag to compare.</p>
+  <div class="cmpwrap" style="text-align:left">
+    <div class="frame rv"><div class="cmp" id="cmp">
+      <img src="site/before.jpg" alt="Round 1: Kane typed ada@example and the page said You're on the list">
+      <img class="after" src="site/after.jpg" alt="Round 2: the page shows Enter a valid email address">
+      <span class="lbl l"><i style="background:var(--red)"></i>Round 1 · accepted ada@example</span><span class="lbl r"><i style="background:var(--green2)"></i>Round 2 · fixed</span>
+      <div class="hd" id="hd"></div><input type="range" min="0" max="100" value="50" aria-label="Compare round 1 and round 2">
+    </div></div>
+    <div class="facts">
+      <div class="fact rv"><div class="k"><i style="background:var(--red)"></i>reject-bad-email</div><p>Kane typed <b>ada@example</b>. The page said <b>"You're on the list."</b></p></div>
+      <div class="fact rv"><div class="k"><i style="background:var(--red)"></i>yearly-pricing</div><div class="big"><s>$60</s><b>$48</b></div><p style="margin-top:4px">What Kane read off the page, and what the spec says.</p></div>
+      <div class="fact rv"><div class="k"><i style="background:var(--green2)"></i>One agent round</div><p>Claude Code fixed both and <b>left the working code alone</b>. Kane re-checked: <b>6/6</b>.</p></div>
+    </div>
+  </div>
+</div></section>
+
+<section id="how"><div class="wrap">
+  <div class="center"><span class="tagp rv"><i></i>How it works</span>
+  <h2 class="scrub">Spec in. Proof out. No human in the middle.</h2></div>
+  <div class="stack">
+    <div class="sc"><div class="lft"><div class="n">01</div><h3>Write<span>the spec</span></h3><p>Checks in plain English, the way a designer writes acceptance criteria. Brand rules on top. No selectors, no test code.</p><div class="chips"><span>handoff.md</span><span>Plain English</span><span>Brand rules</span></div></div>
+      <div class="code"><span class="c">---</span><br><span class="b">url:</span> http://localhost:4173<br><span class="c">---</span><br><span class="y">## Checks</span><br>- <span class="g">yearly-pricing</span>: Click "Yearly",<br>&nbsp;&nbsp;verify the Grow plan shows "$48"<br>- <span class="g">reject-bad-email</span>: Enter "ada@example",<br>&nbsp;&nbsp;verify "Enter a valid email address"</div></div>
+    <div class="sc"><div class="lft"><div class="n">02</div><h3>Claude Code<span>builds it</span></h3><p>Your coding agent builds the app, or works in it as usual. Handoff never edits your code itself.</p><div class="chips"><span>Claude Code</span><span>Any app</span><span>Any stack</span></div></div>
+      <div class="code"><span class="c">❯</span> Build the Sprout launch page from handoff.md<br><span class="c">● Write(public/index.html)</span><br><span class="c">● Write(public/app.js)</span><br>Done. The waitlist, pricing toggle and FAQ are in.<br><br><span class="c"># "done"… but is it?</span></div></div>
+    <div class="sc"><div class="lft"><div class="n">03</div><h3>Kane CLI<span>proves it</span></h3><p>Every check runs in a real Chrome browser through Kane CLI's agent mode. Pass or fail, with exactly what it saw and a link to the run.</p><div class="chips"><span>kane-cli run --agent</span><span>Real Chrome</span><span>NDJSON</span></div></div>
+      <div class="code"><span class="b">◉</span> scroll: Scrolling to the Simple pricing section<br><span class="b">◉</span> click: Clicking the Yearly button<br><span class="r">✖ FAIL</span> The Grow plan shows $60 per year,<br>&nbsp;&nbsp;not the required $48.<br>&nbsp;&nbsp;<span class="c">Kane read</span> <span class="r">"$60"</span> <span class="c">· expected</span> <span class="g">"$48"</span></div></div>
+    <div class="sc"><div class="lft"><div class="n">04</div><h3>Handoff<span>closes the loop</span></h3><p>Failures become a precise brief for the agent. It fixes, Kane re-checks what failed, then sweeps every check again. Until it's green.</p><div class="chips"><span>handoff loop</span><span>Stop hook</span><span>Regression sweep</span></div></div>
+      <div class="code"><span class="c">── Agent · fixing 2 failing checks</span><br><span class="p">◆ read public/app.js</span><br><span class="p">◆ edit public/app.js</span><br><span class="c">── Round 2 · Kane re-checks what failed</span><br><span class="g">✔ PASS</span> selected yearly pricing<br><span class="g">✔ Verified.</span> 6/6 after 1 agent fix round.</div></div>
+  </div>
+</div></section>
+
+<section id="triage" style="padding-top:110px"><div class="wrap center">
+  <span class="tagp rv"><i></i>Kane says why</span>
+  <h2 class="scrub">Kane says why it failed. Handoff listens.</h2>
+  <p class="lead rv">Kane CLI classifies every failure. So the agent only ever gets sent after real bugs.</p>
+  <div class="tgrid" style="text-align:left">
+    <div class="tc rv"><div class="k"><i style="background:var(--red)"></i>The app is wrong</div><h4>Brief the agent with the evidence</h4><p>The values Kane read, its verdict, the brand rules, and a link to the run.</p><div class="ui"><div class="a">objective_contradiction</div><div class="b">read "$60" · expected "$48"<span class="badge rd">Fix</span></div></div></div>
+    <div class="tc rv"><div class="k"><i style="background:#E0A63E"></i>Kane's own click slipped</div><h4>Re-run before touching any code</h4><p>A flaky click isn't a bug in your app, so nobody "fixes" working code.</p><div class="ui"><div class="a">automation_bug · agent_misstep</div><div class="b">Re-running check<span class="badge am">Retry</span></div></div></div>
+    <div class="tc rv"><div class="k"><i style="background:#E0A63E"></i>The browser itself failed</div><h4>Report it. Never blame the code.</h4><p>Screenshot timeouts and crashes are environment problems, not app bugs.</p><div class="ui"><div class="a">infra_error.screenshot_failed</div><div class="b">Environment, not your code<span class="badge gr">Safe</span></div></div></div>
+  </div>
+</div></section>
+
+<section id="proof"><div class="wrap center">
+  <span class="tagp rv"><i></i>Proof, not logs</span>
+  <h2 class="scrub">Send a proof page, not "trust me."</h2>
+  <div class="tabs rv" style="text-align:left">
+    <div class="tlist" id="tlist">
+      <div class="tab on" data-i="0">The proof page<small>The designer's words on top, Kane's evidence underneath, the loop round by round.</small></div>
+      <div class="tab" data-i="1">Kane's verdicts<small>Round 1 on a real Windows machine: two failures, with the exact reason.</small></div>
+      <div class="tab" data-i="2">The agent's fix<small>Claude Code reads and edits app.js, then Kane re-checks only what failed.</small></div>
+      <div class="tab" data-i="3">Round 2 in Chrome<small>The same email, now rejected: "Enter a valid email address."</small></div>
+    </div>
+    <div class="view" id="view">
+      <img class="on" src="site/proof.png" alt="Handoff proof page, verified 6/6">
+      <img src="site/terminal-verdicts.jpg" alt="Kane CLI verdicts in the terminal">
+      <img src="site/terminal-agent.jpg" alt="Claude Code fixing the app">
+      <img src="site/after.jpg" alt="Sprout page showing Enter a valid email address">
+      <a class="pill dark go" href="proof/" target="_blank" rel="noopener">Open the real proof page ↗</a>
+    </div>
+  </div>
+</div></section>
+
+<section id="ways"><div class="wrap center">
+  <span class="tagp rv"><i></i>Two ways in</span>
+  <h2 class="scrub">Stay in Claude Code, or let it run on its own.</h2>
+  <div class="ways" style="text-align:left">
+    <div class="way rv"><h4>The Stop hook</h4><p><code>handoff init</code> adds a Claude Code Stop hook. Claude can't call it done until Kane agrees. A failure becomes its next instruction.</p>
+      <div class="term"><span class="p">❯</span> Add a FAQ question "Is there a student discount?"<br><span class="dim">● Update(public/index.html) · Added 1 line</span><br><span class="dim">✻ Handoff: verifying the spec in a real browser…</span><br><span class="ok">Stop says: Handoff ✔ 6/6 checks verified by Kane CLI</span></div></div>
+    <div class="way rv"><h4>The headless loop</h4><p><code>handoff loop</code> runs on its own: verify, brief Claude Code, re-check, sweep. Locally or in CI.</p>
+      <div class="term"><span class="dim">── Round 1 · Kane CLI verifies the build</span><br><span class="bad">✖ FAIL</span> The Grow plan shows $60 per year, not $48.<br><span class="ag">◆ edit public/app.js</span><br><span class="ok">✔ Verified.</span> 6/6 after 1 agent fix round.</div></div>
+  </div>
+</div></section>
+
+<div class="final" id="start">
+  <span class="tagp dk"><i></i>Get started</span>
+  <h2 class="rv">Two minutes to your first proof.<br><span>Open source. Zero dependencies.</span></h2>
+  <div class="inst rv"><span><span class="d">$</span> npm i -g github:esteexbt/handoff</span><button class="cp" data-copy="npm i -g github:esteexbt/handoff">Copy</button></div>
+  <div class="steps3">
+    <div class="rv"><b>01</b><code>handoff init</code><small>Creates handoff.md and the Claude Code Stop hook.</small></div>
+    <div class="rv"><b>02</b><code>handoff verify</code><small>Every check, in a real browser, with Kane CLI.</small></div>
+    <div class="rv"><b>03</b><code>handoff loop --open</code><small>Claude fixes what Kane catches. The proof page opens.</small></div>
+  </div>
+  <div class="hcta rv" style="margin-top:40px"><a class="pill light lg" href="https://github.com/esteexbt/handoff" target="_blank" rel="noopener">View on GitHub ↗</a></div>
+</div>
+
+<footer><svg class="logo" style="overflow:visible" xmlns="http://www.w3.org/2000/svg" viewBox="0.00 -1490.00 9446.51 1514.00" role="img" aria-label="Handoff logo"><g transform="translate(-183.400 -1938.467) scale(91.69977)"><path d="M12 5L12 9L2 9L2 5Z" fill="#141412"/><path d="M10.172 17L14.311 21.139L23.664 7.109L20.336 4.891L13.689 14.861L11.828 13L2 13L2 17Z" fill="#141412"/></g><g transform="translate(2612.39 0)"><g fill="#141412"><path d="M364 -597C364 -777 463 -856 595 -856C730 -856 808 -775 808 -620V0H1061V-660C1061 -931 905 -1077 684 -1077C542 -1077 436 -1016 364 -901V-1490H112V0H364Z M1555.8 17C1727.8 17 1816.8 -55 1866.8 -149H1870.8V0H2118.8V-720C2118.8 -940 1955.8 -1077 1680.8 -1077C1404.8 -1077 1232.8 -938 1220.8 -728H1463.8C1470.8 -817 1552.8 -881 1675.8 -881C1796.8 -881 1868.8 -817 1868.8 -727V-719C1868.8 -647 1801.8 -644 1605.8 -622C1387.8 -599 1190.8 -540 1190.8 -300C1190.8 -89 1345.8 17 1555.8 17ZM1617.8 -170C1507.8 -170 1436.8 -219 1436.8 -302C1436.8 -398 1528.8 -437 1636.8 -453C1740.8 -469 1838.8 -485 1869.8 -505V-391C1869.8 -268 1782.8 -170 1617.8 -170Z M2542.6 -597C2542.6 -777 2641.6 -856 2773.6 -856C2908.6 -856 2986.6 -775 2986.6 -620V0H3239.6V-660C3239.6 -931 3083.6 -1077 2862.6 -1077C2717.6 -1077 2610.6 -1013 2538.6 -894V-1056H2290.6V0H2542.6Z M3820.3999999999996 21C3958.3999999999996 21 4074.3999999999996 -39 4140.4 -161H4142.4V0H4390.4V-1490H4138.4V-906H4136.4C4068.3999999999996 -1022 3955.3999999999996 -1077 3818.3999999999996 -1077C3547.3999999999996 -1077 3363.3999999999996 -854 3363.3999999999996 -529C3363.3999999999996 -200 3544.3999999999996 21 3820.3999999999996 21ZM3879.3999999999996 -190C3723.3999999999996 -190 3618.3999999999996 -310 3618.3999999999996 -529C3618.3999999999996 -747 3723.3999999999996 -868 3879.3999999999996 -868C4044.3999999999996 -868 4152.4 -734 4152.4 -529C4152.4 -323 4044.3999999999996 -190 3879.3999999999996 -190Z M5035.2 24C5346.2 24 5556.2 -199 5556.2 -527C5556.2 -855 5346.2 -1080 5035.2 -1080C4724.2 -1080 4514.2 -855 4514.2 -527C4514.2 -199 4724.2 24 5035.2 24ZM5035.2 -187C4872.2 -187 4769.2 -316 4769.2 -527C4769.2 -739 4873.2 -869 5035.2 -869C5196.2 -869 5300.2 -738 5300.2 -527C5300.2 -317 5197.2 -187 5035.2 -187Z M6242.0 -1056H6027.0V-1168C6027.0 -1254 6059.0 -1287 6145.0 -1287H6242.0V-1490H6095.0C5886.0 -1490 5774.0 -1392 5774.0 -1210V-1056H5584.0V-853H5774.0V0H6027.0V-853H6242.0Z M6834.12 -1056H6619.12V-1168C6619.12 -1254 6651.12 -1287 6737.12 -1287H6834.12V-1490H6687.12C6478.12 -1490 6366.12 -1392 6366.12 -1210V-1056H6176.12V-853H6366.12V0H6619.12V-853H6834.12Z"/><path d="M5584.0 -1056H6834.12V-853H5584.0Z"/></g></g></svg><span>Built for the Kane CLI Hackathon · Design by Estee · MIT</span><div class="r"><a href="https://github.com/esteexbt/handoff" target="_blank" rel="noopener">GitHub</a><a href="proof/" target="_blank" rel="noopener">Proof page</a><a href="https://x.com/esteexbt" target="_blank" rel="noopener">@esteexbt</a></div></footer>
+
+<script>
+// copy
+document.querySelectorAll('[data-copy]').forEach(b=>b.addEventListener('click',()=>{navigator.clipboard?.writeText(b.dataset.copy).then(()=>{const t=b.textContent;b.textContent='Copied';setTimeout(()=>b.textContent=t,1400)})}));
+// reveal
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('on');io.unobserve(e.target)}}),{threshold:.15});
+document.querySelectorAll('.rv').forEach((el,i)=>{el.style.transitionDelay=(i%3)*90+'ms';io.observe(el)});
+// scroll-scrubbed headings: words darken as they move up the screen
+const scr=[...document.querySelectorAll('.scrub')];
+scr.forEach(h=>{h.innerHTML=h.textContent.split(' ').map(w=>`<span class="w">${w}</span>`).join(' ')});
+function scrub(){const vh=innerHeight;scr.forEach(h=>{const r=h.getBoundingClientRect();const p=Math.min(1,Math.max(0,(vh*.85-r.top)/(vh*.45)));const ws=h.querySelectorAll('.w');const n=Math.round(p*ws.length);ws.forEach((w,i)=>w.classList.toggle('on',i<n))})}
+addEventListener('scroll',scrub,{passive:true});scrub();
+// compare
+(()=>{const c=document.getElementById('cmp'),r=c.querySelector('input'),a=c.querySelector('.after'),h=document.getElementById('hd');const set=v=>{a.style.clipPath=`inset(0 0 0 ${v}%)`;h.style.left=v+'%'};r.addEventListener('input',e=>set(e.target.value));set(50)})();
+// tabs
+(()=>{const tabs=[...document.querySelectorAll('.tab')],imgs=[...document.querySelectorAll('#view img')];let cur=0,timer;
+const show=i=>{cur=i;tabs.forEach((t,k)=>t.classList.toggle('on',k===i));imgs.forEach((m,k)=>m.classList.toggle('on',k===i))};
+tabs.forEach((t,i)=>t.addEventListener('click',()=>{show(i);clearInterval(timer)}));
+timer=setInterval(()=>show((cur+1)%tabs.length),4500)})();
+// dashboard loop
+(()=>{
+const C=[['join-waitlist','Enter "ada@example.com", verify "You\'re on the list"'],['reject-bad-email','Enter "ada@example", verify "Enter a valid email address"'],['yearly-pricing','Click "Yearly", verify the Grow plan shows "$48"'],['faq-cancel','Click "Can I cancel anytime?", verify the answer'],['nav-pricing','Click "Pricing", verify the Grow plan is visible'],['student-faq','Click "Is there a student discount?", verify the answer']];
+const R=document.getElementById('rows');R.innerHTML=C.map(c=>`<div class="row"><span class="id">${c[0]}</span><span class="ob">${c[1]}</span><span class="st">Queued</span></div>`).join('');
+const rows=[...R.children],$=id=>document.getElementById(id),wait=ms=>new Promise(r=>setTimeout(r,ms));
+const set=(i,s)=>{rows[i].className='row '+s;rows[i].querySelector('.st').textContent={run:'Running',pass:'Passed',fail:'Failed','':'Queued'}[s]};
+const seg=k=>{[...$('seg').children].forEach((s,i)=>s.classList.toggle('on',i===k));$('m-round').textContent=['1','fix','2','sweep'][k]};
+const ring=()=>{const n=rows.filter(r=>r.classList.contains('pass')).length;$('ringn').textContent=n+'/6';$('m-score').textContent=n+'/6';$('ringfg').style.strokeDashoffset=176-176*n/6};
+const ag=(h)=>{const d=document.createElement('div');d.innerHTML=h;$('agent').appendChild(d);while($('agent').children.length>4)$('agent').firstChild.remove()};
+async function run(){for(;;){
+  rows.forEach((_,i)=>set(i,''));ring();$('agent').innerHTML='';$('agst').textContent='idle';$('readout').innerHTML='<b style="color:#7C7B76">—</b><small>waiting</small>';$('ringl').textContent='verified in Chrome';
+  seg(0);const bad=[1,2];
+  for(let i=0;i<6;i++){set(i,'run');await wait(900);
+    if(i===2){$('readout').innerHTML='<s>$60</s><small>expected $48</small>'}
+    set(i,bad.includes(i)?'fail':'pass');ring();await wait(220)}
+  await wait(600);seg(1);$('agst').textContent='fixing';
+  for(const h of ['<span class="p">◆</span> read public/app.js','<span class="p">◆</span> edit public/app.js','<span class="p">◆</span> edit public/app.js','<span class="ok">fixed:</span> email check, yearly → $48']){ag(h);await wait(650)}
+  $('agst').textContent='done';await wait(500);seg(2);
+  for(const i of bad){set(i,'run');await wait(900);set(i,'pass');ring();if(i===2)$('readout').innerHTML='<s>$60</s><b>$48</b>';await wait(220)}
+  await wait(500);seg(3);
+  for(let i=0;i<6;i++){set(i,'run');await wait(260);set(i,'pass');ring()}
+  $('ringl').textContent='Verified · 1 fix round';await wait(4200);
+}}
+if(!matchMedia('(prefers-reduced-motion: reduce)').matches)run();else{rows.forEach((_,i)=>set(i,'pass'));ring()}
+})();
+</script>
+</body>
+</html>
