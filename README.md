@@ -1,8 +1,14 @@
+<p align="center">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="docs/handoff-brand/01-logo/horizontal/svg/handoff-horizontal-color-dark.svg">
+    <img src="docs/handoff-brand/01-logo/horizontal/svg/handoff-horizontal-color.svg" alt="handoff" width="300">
+  </picture>
+</p>
+
+<p align="center"><b>Your AI agent says "done". Handoff makes it prove it.</b></p>
+
 <p align="center"><img src="docs/proof.png" alt="Handoff proof page: Sprout verified 5/5 by Kane CLI" width="860"></p>
 
-# Handoff
-
-**Design handoff your coding agent has to prove.**
 
 A designer writes what must be true in plain English. A coding agent builds it and says "done". Then someone has to click through it and find that the email field accepts `ada@example`, or that the yearly price forgot the discount.
 

@@ -31,7 +31,7 @@ export function buildProof(spec, runs) {
   const checks = spec.checks.map((ch) => {
     const hist = byCheck.get(ch.id) || [];
     // An environment error says nothing about the app: show the latest real verdict.
-    const real = hist.filter((h) => h.status !== 'error');
+    const real = hist.filter((h) => h.status !== 'error' && !isInfraFailure(h));
     const last = real.at(-1) || hist.at(-1) || null;
     return { ...ch, last, hist: real.slice(-14), status: last?.status || 'pending' };
   });
@@ -51,7 +51,7 @@ export function buildProof(spec, runs) {
   const credits = runs.flatMap((r) => r.rounds.flatMap((x) => x.results)).reduce((a, r) => a + (r.credits || 0), 0);
 
   const stamp = verdict === 'verified'
-    ? `<div class="stamp ok"><span>Verified</span><b>${passed}/${total}</b><i>Kane CLI · real browser</i></div>`
+    ? `<div class="stamp ok"><svg class="stamp-mark" width="30" height="23" viewBox="2 4.6 22 16.8" aria-hidden="true"><path d="M12 5L12 9L2 9L2 5Z" fill="currentColor"/><path d="M10.172 17L14.311 21.139L23.664 7.109L20.336 4.891L13.689 14.861L11.828 13L2 13L2 17Z" fill="currentColor"/></svg><span>Verified</span><b>${passed}/${total}</b><i>Kane CLI · real browser</i></div>`
     : verdict === 'failing'
       ? `<div class="stamp bad"><span>Not yet</span><b>${passed}/${total}</b><i>checks passing</i></div>`
       : `<div class="stamp idle"><span>Unverified</span><b>0/${total}</b><i>run handoff verify</i></div>`;
@@ -59,11 +59,12 @@ export function buildProof(spec, runs) {
   const timeline = story ? story.rounds.map((round, i) => {
     const dots = spec.checks.map((ch) => {
       const r = round.results.find((x) => x.id === ch.id);
-      const s = r ? r.status : 'skip';
+      const s = r ? (isInfraFailure(r) && r.status !== 'passed' ? 'error' : r.status) : 'skip';
       return `<li class="dot ${s}" title="${esc(ch.id)}: ${esc(r ? LABEL[s] : 'already passing')}"><span>${esc(ch.id)}</span></li>`;
     }).join('');
     const t = round.results;
     const p = t.filter((x) => x.status === 'passed').length;
+    const realT = t.filter((x) => !(isInfraFailure(x) && x.status !== 'passed'));
     const agent = round.agent ? `
       <div class="fix">
         <div class="fix-head"><span class="glyph">◆</span> Coding agent briefed with Kane's findings</div>
@@ -71,8 +72,8 @@ export function buildProof(spec, runs) {
         ${round.agent.text ? `<p>${esc(shorten(round.agent.text, 260))}</p>` : ''}
       </div>` : '';
     return `
-      <div class="round ${p === t.length ? 'green' : 'red'}">
-        <div class="round-head"><span class="n">${String(i + 1).padStart(2, '0')}</span><span class="lbl">${esc(round.label || `Round ${i + 1}`)}</span><span class="score">${p}/${t.length}</span></div>
+      <div class="round ${p === realT.length ? 'green' : 'red'}">
+        <div class="round-head"><span class="n">${String(i + 1).padStart(2, '0')}</span><span class="lbl">${esc(round.label || `Round ${i + 1}`)}</span><span class="score">${p}/${t.length}${realT.length < t.length ? ' <small title="Kane platform error">· ' + (t.length - realT.length) + ' env</small>' : ''}</span></div>
         <ul class="dots">${dots}</ul>
         <div class="round-time">${when(round.finishedAt)}</div>
       </div>${agent}`;
@@ -132,6 +133,7 @@ export function buildProof(spec, runs) {
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Proof · ${esc(spec.name || 'Handoff')}</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath fill='%23141412' d='M8 3L8 6L1 6L1 3Z'/%3E%3Cpath fill='%230F8A4F' d='M6.379 12L9.785 15.406L15.679 5.783L13.121 4.217L9.215 10.594L7.621 9L1 9L1 12Z'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
@@ -143,7 +145,7 @@ code{font-family:var(--mono);font-size:.86em}
 .wrap{max-width:1120px;margin:0 auto;padding:0 28px}
 header.top{border-bottom:1px solid var(--line)}
 header.top .wrap{display:flex;align-items:center;justify-content:space-between;height:60px}
-.mark{display:flex;align-items:center;gap:10px;font-weight:600;letter-spacing:-.01em}
+.mark{display:flex;align-items:center;gap:9px;font-weight:600;font-size:17px;letter-spacing:-.02em}
 .mark svg{display:block}
 .top small{color:var(--soft);font-family:var(--mono);font-size:12px}
 .hero{display:grid;grid-template-columns:1fr auto;gap:40px;align-items:end;padding:56px 0 36px;border-bottom:1px solid var(--line)}
@@ -154,6 +156,7 @@ h1 em{color:var(--soft)}
 .lede a{color:inherit}
 .stamp{width:188px;height:188px;border-radius:50%;display:flex;flex-direction:column;align-items:center;justify-content:center;border:2px solid currentColor;position:relative;transform:rotate(-8deg)}
 .stamp::before{content:"";position:absolute;inset:7px;border-radius:50%;border:1px dashed currentColor;opacity:.6}
+.stamp-mark{margin-bottom:4px}
 .stamp span{font-family:var(--mono);font-size:12px;letter-spacing:.18em;text-transform:uppercase}
 .stamp b{font-family:var(--serif);font-weight:400;font-size:64px;line-height:1}
 .stamp i{font-style:normal;font-size:11px;opacity:.8}
@@ -229,14 +232,14 @@ th{text-align:left;font-weight:500;color:var(--soft);font-size:11px;text-transfo
 td{padding:10px 0;border-bottom:1px solid var(--line)}
 footer{padding:36px 0 60px;display:flex;align-items:center;justify-content:space-between;color:var(--soft);font-size:12px}
 .badge{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--ink);color:var(--ink);border-radius:99px;padding:6px 12px;font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase}
-.badge::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--ok)}
+.badge svg{display:block}
 .empty{color:var(--soft)}
 @media (max-width:820px){.hero{grid-template-columns:1fr}.stats{grid-template-columns:repeat(2,1fr)}.stat+.stat{padding-left:0;border-left:0}.checks,.brand{grid-template-columns:1fr}.stamp{width:150px;height:150px}.stamp b{font-size:48px}}
 </style>
 </head>
 <body>
 <header class="top"><div class="wrap">
-  <div class="mark"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><rect x="1" y="1" width="22" height="22" rx="7" stroke="#141412" stroke-width="2"/><path d="M7 12.5l3.2 3.2L17 9" stroke="#0F8A4F" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>handoff</div>
+  <div class="mark"><svg width="26" height="20" viewBox="2 4.6 22 16.8" aria-hidden="true"><path d="M12 5L12 9L2 9L2 5Z" fill="#141412"/><path d="M10.172 17L14.311 21.139L23.664 7.109L20.336 4.891L13.689 14.861L11.828 13L2 13L2 17Z" fill="#0F8A4F"/></svg>handoff</div>
   <small>proof of handoff · ${esc(when(lastAt))}</small>
 </div></header>
 <main class="wrap">
@@ -279,7 +282,7 @@ footer{padding:36px 0 60px;display:flex;align-items:center;justify-content:space
     <table><thead><tr><th>When</th><th>Trigger</th><th>Rounds</th><th>Agent fixes</th><th>Result</th></tr></thead><tbody>${log}</tbody></table>
   </section>` : ''}
 </main>
-<footer class="wrap"><span class="badge">Verified with Kane CLI</span><span>${credits ? `${credits.toFixed(0)} Kane credits · ` : ''}Generated by Handoff · ${esc(new Date().toISOString().slice(0, 16).replace('T', ' '))} UTC</span></footer>
+<footer class="wrap"><span class="badge"><svg width="15" height="12" viewBox="2 4.6 22 16.8" aria-hidden="true"><path d="M12 5L12 9L2 9L2 5Z" fill="#141412"/><path d="M10.172 17L14.311 21.139L23.664 7.109L20.336 4.891L13.689 14.861L11.828 13L2 13L2 17Z" fill="#0F8A4F"/></svg>Verified with Kane CLI</span><span>${credits ? `${credits.toFixed(0)} Kane credits · ` : ''}Generated by Handoff · ${esc(new Date().toISOString().slice(0, 16).replace('T', ' '))} UTC</span></footer>
 </body>
 </html>`;
 }
