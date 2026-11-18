@@ -177,7 +177,7 @@ function extractEvidence(end) {
 export function isAutomationSlip(r) {
   const f = (r.verdict?.family || '').toLowerCase();
   const cat = (r.verdict?.category || '').toLowerCase();
-  return /automation|tooling|flak|infra/.test(f) || /agent_misstep|misclick|flak/.test(cat);
+  return /automation|tooling|flak|infra/.test(f) || /agent_misstep|misclick|flak/.test(cat) || /^agent_error/.test(r.reasonCode || '');
 }
 
 // Drop Kane's informational banners so the real error is what people read.

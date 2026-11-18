@@ -58,5 +58,15 @@
     "total": 6,
     "passed": 6,
     "verdict": "verified"
+  },
+  {
+    "id": "20261118-153208-82f2",
+    "trigger": "loop",
+    "startedAt": "2026-11-18T14:32:08.319Z",
+    "finishedAt": "2026-11-18T14:56:50.759Z",
+    "rounds": 3,
+    "total": 6,
+    "passed": 6,
+    "verdict": "verified"
   }
 ]
