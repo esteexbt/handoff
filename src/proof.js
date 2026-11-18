@@ -235,6 +235,7 @@ footer{padding:36px 0 60px;display:flex;align-items:center;justify-content:space
 .badge svg{display:block}
 .empty{color:var(--soft)}
 @media (max-width:820px){.hero{grid-template-columns:1fr}.stats{grid-template-columns:repeat(2,1fr)}.stat+.stat{padding-left:0;border-left:0}.checks,.brand{grid-template-columns:1fr}.stamp{width:150px;height:150px}.stamp b{font-size:48px}}
+@media (max-width:560px){.wrap{padding:0 18px}header.top small{display:none}.hero{padding:34px 0 26px;gap:22px}h1{font-size:50px;margin:10px 0 14px}.lede{font-size:15px}.stamp{width:130px;height:130px}.stamp b{font-size:40px}.stamp span{font-size:10px}.stats{grid-template-columns:repeat(2,1fr)}.stat{padding:16px 0}.stat b{font-size:30px}section{padding:36px 0}h2{font-size:30px}.sub{font-size:14px;margin-bottom:20px}.round{min-width:190px;padding:14px}.fix{min-width:220px;padding:14px}.checks{gap:12px}.check{padding:16px;border-radius:14px;gap:12px}blockquote{font-size:18.5px}dl{font-size:12px;gap:8px 12px}dd{font-size:12px}.readout b{font-size:22px}.caught{font-size:12.5px}figure{width:calc(50% - 7px)}.rules{font-size:14px}table{font-size:12px}th:nth-child(3),td:nth-child(3){display:none}footer{flex-direction:column;gap:12px;align-items:flex-start}}
 </style>
 </head>
 <body>
