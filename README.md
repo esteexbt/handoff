@@ -1,7 +1,7 @@
 <p align="center">
   <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="docs/handoff-brand/01-logo/horizontal/svg/handoff-horizontal-color-dark.svg">
-    <img src="docs/handoff-brand/01-logo/horizontal/svg/handoff-horizontal-color.svg" alt="handoff" width="300">
+    <source media="(prefers-color-scheme: dark)" srcset="docs/handoff-brand/01-logo/horizontal/png/handoff-horizontal-color-dark-1200w.png">
+    <img src="docs/handoff-brand/01-logo/horizontal/png/handoff-horizontal-color-1200w.png" alt="handoff" width="300">
   </picture>
 </p>
 
