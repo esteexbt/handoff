@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Sprout · water reminders for every plant</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <header class="nav">
+    <a class="logo" href="/"><span class="leaf"></span>Sprout</a>
+    <nav>
+      <a href="#how">How it works</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#faq">FAQ</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <p class="eyebrow">Launching this spring</p>
+      <h1>Every plant, watered <em>on time.</em></h1>
+      <p class="lede">Sprout learns what each of your plants needs and nudges you on the right day. No more guessing, no more drowning the fern.</p>
+      <form id="waitlist" class="waitlist" novalidate>
+        <label for="email" class="sr">Email address</label>
+        <input id="email" name="email" type="email" placeholder="you@example.com" autocomplete="email">
+        <button type="submit">Join the waitlist</button>
+      </form>
+      <p id="form-error" class="error" role="alert" hidden></p>
+      <p id="form-success" class="success" role="status" hidden></p>
+    </section>
+
+    <section id="how" class="how">
+      <div><span>01</span><h3>Add your plants</h3><p>Snap a photo. Sprout recognises the species and its habits.</p></div>
+      <div><span>02</span><h3>Get a gentle nudge</h3><p>A reminder on the day each plant actually needs water.</p></div>
+      <div><span>03</span><h3>Watch them grow</h3><p>A quiet log of every watering, repotting and new leaf.</p></div>
+    </section>
+
+    <section id="pricing" class="pricing">
+      <h2>Simple pricing</h2>
+      <div class="toggle" role="group" aria-label="Billing period">
+        <button type="button" data-period="monthly" class="active">Monthly</button>
+        <button type="button" data-period="yearly">Yearly <small>save 20%</small></button>
+      </div>
+      <div class="plans">
+        <article class="plan">
+          <h3>Seed</h3>
+          <p class="price"><b>$0</b><span>forever</span></p>
+          <ul><li>Up to 5 plants</li><li>Daily reminders</li></ul>
+        </article>
+        <article class="plan featured">
+          <h3>Grow</h3>
+          <p class="price"><b id="grow-price">$5</b><span id="grow-period">per month</span></p>
+          <ul><li>Unlimited plants</li><li>Species care guides</li><li>Shared households</li></ul>
+        </article>
+      </div>
+    </section>
+
+    <section id="faq" class="faq">
+      <h2>Questions</h2>
+      <details><summary>Which plants does Sprout know?</summary><p>Over 4,000 common houseplants and garden species.</p></details>
+      <details><summary>Can I cancel anytime?</summary><p>Yes. Cancel in one click from Settings.</p></details>
+      <details><summary>Does it work offline?</summary><p>Reminders arrive even when you are offline.</p></details>
+    </section>
+  </main>
+
+  <footer class="foot">© Sprout. Grown slowly.</footer>
+  <script src="/app.js"></script>
+</body>
+</html>

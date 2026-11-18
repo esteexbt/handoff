@@ -1,0 +1,30 @@
+{
+  "name": "handoff-verify",
+  "version": "0.1.0",
+  "description": "Design handoff your coding agent has to prove. Plain-English acceptance checks, verified in a real browser by Kane CLI, fed back to the agent until they pass.",
+  "type": "module",
+  "bin": {
+    "handoff": "bin/handoff.js"
+  },
+  "files": [
+    "bin",
+    "src",
+    "templates"
+  ],
+  "scripts": {
+    "test": "node test/run-tests.js"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "keywords": [
+    "kane-cli",
+    "claude-code",
+    "design-handoff",
+    "testing",
+    "ai-agents",
+    "verification"
+  ],
+  "author": "Chimbuzor Ogodo Alagba (@esteexbt)",
+  "license": "MIT"
+}
