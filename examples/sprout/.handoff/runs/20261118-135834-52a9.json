@@ -1,0 +1,947 @@
+{
+  "id": "20261118-135834-52a9",
+  "trigger": "hook",
+  "startedAt": "2026-11-18T12:51:40.672Z",
+  "spec": {
+    "name": "Sprout",
+    "url": "http://localhost:4173",
+    "checks": 6
+  },
+  "rounds": [
+    {
+      "label": "Turn 1",
+      "startedAt": "2026-11-18T12:51:40.672Z",
+      "finishedAt": "2026-11-18T12:58:34.880Z",
+      "results": [
+        {
+          "id": "student-faq",
+          "route": "",
+          "status": "passed",
+          "exitCode": 0,
+          "summary": "Opened the “Is there a student discount?” question on the FAQ page.\nThe answer was displayed: “Yes. Grow is half price with a school email.”",
+          "oneLiner": "revealed the student discount answer on the FAQ page",
+          "reason": "Objective completed",
+          "finalState": {
+            "url": "http://localhost:4173/",
+            "student_discount_answer_visible": "true"
+          },
+          "kaneDuration": 38.7,
+          "credits": 15.742849999999997,
+          "reportUrl": "https://test-manager.lambdatest.com/projects/01M7Q4HPVF8YTVJ87AAB51ESGQ/test-cases/01M7QBD72JG5WA53WV428J1D9V/dashboard/share/US_8JPKV9ZIO1IR3UUI4A7CZF7T0HAYC1D44UJ7IDJ35LYSMUXYLZ5UC1G7C5UNP30I?type=summary&agentView=true&fqdn=summary-page",
+          "resultCode": 100,
+          "reasonCode": "success.complete",
+          "verdict": null,
+          "evidence": [
+            {
+              "key": "student_discount_answer_visible",
+              "what": "Checking whether the student discount answer is visible",
+              "condition": "the answer \"Yes. Grow is half price with a school email.\" is visible",
+              "read": "true",
+              "expected": "true"
+            }
+          ],
+          "runEnd": {
+            "type": "run_end",
+            "status": "passed",
+            "summary": "Opened the “Is there a student discount?” question on the FAQ page.\nThe answer was displayed: “Yes. Grow is half price with a school email.”",
+            "one_liner": "revealed the student discount answer on the FAQ page",
+            "final_state": {
+              "url": "http://localhost:4173/",
+              "student_discount_answer_visible": "true"
+            },
+            "reason": "Objective completed",
+            "duration": 38.7,
+            "bifurcated": false,
+            "total_runs": 1,
+            "context": {
+              "memory": {
+                "student_discount_answer_visible": {
+                  "extracted_value": "true",
+                  "operator": "equals",
+                  "transforms": [],
+                  "json_path": null,
+                  "reasoning": "value: 'true' -> 'true'; equals 'true' -> PASS",
+                  "analyzer_type": "textual_visual",
+                  "step": 4,
+                  "query": "whether the answer \"Yes. Grow is half price with a school email.\" is visible in the student discount FAQ answer paragraph",
+                  "condition": "the answer \"Yes. Grow is half price with a school email.\" is visible",
+                  "human_description": "Checking whether the student discount answer is visible",
+                  "expected_value": "true",
+                  "subject": "the answer \"Yes. Grow is half price with a school email.\"",
+                  "must_be": "present",
+                  "code_js": "el(55).textContent.trim() === 'Yes. Grow is half price with a school email.' && !!(el(55).offsetWidth || el(55).offsetHeight || el(55).getClientRects().length)",
+                  "wrapped_js": "(els) => {\n  const __m = {55: 0};\n  const el = (i) => els[__m[i]];\n  const __v = (el(55).textContent.trim() === 'Yes. Grow is half price with a school email.' && !!(el(55).offsetWidth || el(55).offsetHeight || el(55).getClientRects().length));\n  return (typeof __v === 'boolean' ? String(__v) : __v);\n}",
+                  "locators": [
+                    "internal:text=\"Yes. Grow is half price with\"i"
+                  ],
+                  "needs_unit_conversion": false
+                }
+              },
+              "variables": {
+                "student_discount_answer_visible": {
+                  "syntax": "{{student_discount_answer_visible}}",
+                  "value": "true",
+                  "type": "memory",
+                  "secret": false
+                }
+              },
+              "pointer": "(passed) revealed the student discount answer on the FAQ page"
+            },
+            "credits_consumed": 15.742849999999997,
+            "session_dir": "C:\\Users\\Esteexbt/.testmuai/kaneai/sessions\\086850c7-7ef8-4d9c-9fe8-edd26898c959",
+            "run_dir": "C:\\Users\\Esteexbt/.testmuai/kaneai/sessions\\086850c7-7ef8-4d9c-9fe8-edd26898c959\\runs\\0",
+            "result_code": 100,
+            "reason_code": "success.complete",
+            "per_flow_metadata": [
+              {
+                "result_code": "100",
+                "reason_code": "success.complete",
+                "error_message": null,
+                "summary": "Opened the “Is there a student discount?” question on the FAQ page.\nThe answer was displayed: “Yes. Grow is half price with a school email.”",
+                "one_liner": "revealed the student discount answer on the FAQ page",
+                "credits_consumed": 15.742849999999997
+              }
+            ],
+            "run_id": "run-0",
+            "test_url": "https://test-manager.lambdatest.com/projects/01M7Q4HPVF8YTVJ87AAB51ESGQ/test-cases/01M7QBD72JG5WA53WV428J1D9V/dashboard/share/US_8JPKV9ZIO1IR3UUI4A7CZF7T0HAYC1D44UJ7IDJ35LYSMUXYLZ5UC1G7C5UNP30I?type=summary&agentView=true&fqdn=summary-page",
+            "coverage": {
+              "status": "skipped"
+            },
+            "v": 1,
+            "ts": "2026-11-18T12:52:55.680Z"
+          },
+          "objective": "Click the question \"Is there a student discount?\" and verify the answer \"Yes. Grow is half price with a school email.\" becomes visible",
+          "url": "http://localhost:4173",
+          "steps": [
+            {
+              "type": "event",
+              "text": "navigate: Navigate to http://localhost:4173"
+            },
+            {
+              "type": "event",
+              "text": "scroll: Scrolling into view the question Is there a student discount?"
+            },
+            {
+              "type": "event",
+              "text": "click: Clicking the question about a student discount"
+            },
+            {
+              "type": "event",
+              "text": "analyze: ANALYZE(textual_visual, 'the answer \"Yes. Grow is half price with a school email"
+            },
+            {
+              "type": "event",
+              "text": "assert: the answer \"Yes. Grow is half price with a school email.\" becomes visible"
+            }
+          ],
+          "rawSample": [
+            "{\"type\":\"stream_start\",\"cli_version\":\"0.10.6\",\"surface\":\"run\",\"pid\":17784,\"v\":1,\"ts\":\"2026-11-18T12:51:41.764Z\"}",
+            "{\"type\":\"recording_state\",\"enabled\":true,\"session_id\":\"086850c7-7ef8-4d9c-9fe8-edd26898c959\",\"persist\":false,\"v\":1,\"ts\":\"2026-11-18T12:51:41.779Z\"}",
+            "{\"type\":\"skill_update_available\",\"current\":null,\"latest\":\"0.1.4\",\"install_cmd\":\"kane-cli install skill\",\"v\":1,\"ts\":\"2026-11-18T12:51:47.214Z\"}",
+            "{\"type\":\"bifurcation\",\"flows\":[\"Navigate to http://localhost:4173 then Click the question \\\"Is there a student discount?\\\" and verify the answer \\\"Yes. Grow is half price with a school email.\\\" becomes visible\"],\"count\":1,\"v\":1,\"ts\":\"2026-11-18T12:52:04.809Z\"}",
+            "{\"step\":2,\"status\":\"running\",\"remark\":\"Step 1\",\"v\":1,\"ts\":\"2026-11-18T12:52:06.582Z\"}",
+            "{\"step\":2,\"status\":\"done\",\"remark\":\"navigate: Navigate to http://localhost:4173\",\"v\":1,\"ts\":\"2026-11-18T12:52:06.597Z\"}",
+            "{\"step\":3,\"status\":\"running\",\"remark\":\"Step 2\",\"v\":1,\"ts\":\"2026-11-18T12:52:16.678Z\"}",
+            "{\"step\":3,\"status\":\"done\",\"remark\":\"scroll: Scrolling into view the question Is there a student discount?\",\"v\":1,\"ts\":\"2026-11-18T12:52:23.093Z\"}",
+            "{\"step\":4,\"status\":\"running\",\"remark\":\"Step 3\",\"v\":1,\"ts\":\"2026-11-18T12:52:23.774Z\"}",
+            "{\"step\":4,\"status\":\"done\",\"remark\":\"click: Clicking the question about a student discount\",\"v\":1,\"ts\":\"2026-11-18T12:52:25.036Z\"}",
+            "{\"step\":5,\"status\":\"running\",\"remark\":\"Step 4\",\"v\":1,\"ts\":\"2026-11-18T12:52:25.727Z\"}",
+            "{\"step\":5,\"status\":\"done\",\"remark\":\"analyze: ANALYZE(textual_visual, 'the answer \\\"Yes. Grow is half price with a school email\",\"v\":1,\"ts\":\"2026-11-18T12:52:35.891Z\"}",
+            "{\"step\":6,\"status\":\"running\",\"remark\":\"Step 5\",\"v\":1,\"ts\":\"2026-11-18T12:52:36.558Z\"}",
+            "{\"step\":6,\"status\":\"done\",\"remark\":\"assert: the answer \\\"Yes. Grow is half price with a school email.\\\" becomes visible\",\"v\":1,\"ts\":\"2026-11-18T12:52:36.571Z\"}",
+            "{\"type\":\"coverage\",\"status\":\"skipped\",\"reason\":\"not_assurance_project\",\"pack\":\"C:\\\\Users\\\\Esteexbt\\\\.testmuai\\\\kaneai\\\\sessions\\\\086850c7-7ef8-4d9c-9fe8-edd26898c959\\\\evidence\\\\601313cd-2913-4d93-b4fd-4a9dd299ac1a.evidence\",\"v\":1,\"ts\":\"2026-11-18T12:52:55.680Z\"}",
+            "{\"type\":\"run_end\",\"status\":\"passed\",\"summary\":\"Opened the “Is there a student discount?” question on the FAQ page.\\nThe answer was displayed: “Yes. Grow is half price with a school email.”\",\"one_liner\":\"revealed the student discount answer on the FAQ page\",\"final_state\":{\"url\":\"http://localhost:4173/\",\"student_discount_answer_visible\":\"true\"},\"reason\":\"Objective completed\",\"duration\":38.7,\"bifurcated\":false,\"total_runs\":1,\"context\":{\"memory\":{\"student_discount_answer_visible\":{\"extracted_value\":\"true\",\"operator\":\"equals\",\"transforms\":[],\"json_path\":null,\"reasoning\":\"value: 'true' -> 'true'; equals 'true' -> PASS\",\"analyzer_type\":\"textual_visual\",\"step\":4,\"query\":\"whether the answer \\\"Yes. Gr"
+          ],
+          "eventCount": 16,
+          "stderr": "",
+          "duration": 77.076
+        },
+        {
+          "id": "join-waitlist",
+          "route": "",
+          "status": "passed",
+          "exitCode": 0,
+          "summary": "Entered ada@example.com in the email field.\nClicked “Join the waitlist.”\nThe page confirmed the signup with the message “You're on the list.”",
+          "oneLiner": "joined the waitlist on localhost",
+          "reason": "Objective completed",
+          "finalState": {
+            "url": "http://localhost:4173/",
+            "waitlist_confirmation_message_visible": "true"
+          },
+          "kaneDuration": 31.2,
+          "credits": 15.7171775,
+          "reportUrl": "https://test-manager.lambdatest.com/projects/01M7Q4HPVF8YTVJ87AAB51ESGQ/test-cases/01M7QBFFRSPGN6XMB6XZXXHF72/dashboard/share/US_SHDXSW5TDRDHWAPDTWFGWL9NF69VBD8JKTT57D6HPL86PK6S5FS950FUIHN69KP0?type=summary&agentView=true&fqdn=summary-page",
+          "resultCode": 100,
+          "reasonCode": "success.complete",
+          "verdict": null,
+          "evidence": [
+            {
+              "key": "waitlist_confirmation_message_visible",
+              "what": "Checking whether the waitlist confirmation message is present",
+              "condition": "The page shows the message \"You're on the list\".",
+              "read": "true",
+              "expected": "true"
+            }
+          ],
+          "runEnd": {
+            "type": "run_end",
+            "status": "passed",
+            "summary": "Entered ada@example.com in the email field.\nClicked “Join the waitlist.”\nThe page confirmed the signup with the message “You're on the list.”",
+            "one_liner": "joined the waitlist on localhost",
+            "final_state": {
+              "url": "http://localhost:4173/",
+              "waitlist_confirmation_message_visible": "true"
+            },
+            "reason": "Objective completed",
+            "duration": 31.2,
+            "bifurcated": false,
+            "total_runs": 1,
+            "context": {
+              "memory": {
+                "waitlist_confirmation_message_visible": {
+                  "extracted_value": "true",
+                  "operator": "equals",
+                  "transforms": [],
+                  "json_path": null,
+                  "reasoning": "value: 'true' -> 'true'; equals 'true' -> PASS",
+                  "analyzer_type": "textual_visual",
+                  "step": 5,
+                  "query": "whether the message \"You're on the list\" is present in the waitlist confirmation status",
+                  "condition": "The page shows the message \"You're on the list\".",
+                  "human_description": "Checking whether the waitlist confirmation message is present",
+                  "expected_value": "true",
+                  "subject": "the message \"You're on the list\"",
+                  "must_be": "present",
+                  "code_js": "el(17).textContent.includes(\"You're on the list\")",
+                  "wrapped_js": "(els) => {\n  const __m = {17: 0};\n  const el = (i) => els[__m[i]];\n  const __v = (el(17).textContent.includes(\"You're on the list\"));\n  return (typeof __v === 'boolean' ? String(__v) : __v);\n}",
+                  "locators": [
+                    "internal:text=\"You're on the list. We'll\"i"
+                  ],
+                  "needs_unit_conversion": false
+                }
+              },
+              "variables": {
+                "waitlist_confirmation_message_visible": {
+                  "syntax": "{{waitlist_confirmation_message_visible}}",
+                  "value": "true",
+                  "type": "memory",
+                  "secret": false
+                }
+              },
+              "pointer": "(passed) joined the waitlist on localhost"
+            },
+            "credits_consumed": 15.7171775,
+            "session_dir": "C:\\Users\\Esteexbt/.testmuai/kaneai/sessions\\df0c297b-4ac2-4717-b9e3-3e52e35408fb",
+            "run_dir": "C:\\Users\\Esteexbt/.testmuai/kaneai/sessions\\df0c297b-4ac2-4717-b9e3-3e52e35408fb\\runs\\0",
+            "result_code": 100,
+            "reason_code": "success.complete",
+            "per_flow_metadata": [
+              {
+                "result_code": "100",
+                "reason_code": "success.complete",
+                "error_message": null,
+                "summary": "Entered ada@example.com in the email field.\nClicked “Join the waitlist.”\nThe page confirmed the signup with the message “You're on the list.”",
+                "one_liner": "joined the waitlist on localhost",
+                "credits_consumed": 15.7171775
+              }
+            ],
+            "run_id": "run-0",
+            "test_url": "https://test-manager.lambdatest.com/projects/01M7Q4HPVF8YTVJ87AAB51ESGQ/test-cases/01M7QBFFRSPGN6XMB6XZXXHF72/dashboard/share/US_SHDXSW5TDRDHWAPDTWFGWL9NF69VBD8JKTT57D6HPL86PK6S5FS950FUIHN69KP0?type=summary&agentView=true&fqdn=summary-page",
+            "coverage": {
+              "status": "skipped"
+            },
+            "v": 1,
+            "ts": "2026-11-18T12:53:54.701Z"
+          },
+          "objective": "Enter \"ada@example.com\" in the email field, click \"Join the waitlist\", and verify the page shows the message \"You're on the list\"",
+          "url": "http://localhost:4173",
+          "steps": [
+            {
+              "type": "event",
+              "text": "navigate: Navigate to http://localhost:4173"
+            },
+            {
+              "type": "event",
+              "text": "wait: queued plan (2 steps): type \"Email address\"; click \"Join the waitlist\""
+            },
+            {
+              "type": "event",
+              "text": "type: Type \"ada@example.com\" into \"Email address\""
+            },
+            {
+              "type": "event",
+              "text": "click: Click \"Join the waitlist\""
+            },
+            {
+              "type": "event",
+              "text": "analyze: The page shows the message \"You\\"
+            },
+            {
+              "type": "event",
+              "text": "assert: the page shows the message \"You're on the list\""
+            }
+          ],
+          "rawSample": [
+            "{\"type\":\"stream_start\",\"cli_version\":\"0.10.6\",\"surface\":\"run\",\"pid\":360,\"v\":1,\"ts\":\"2026-11-18T12:52:58.509Z\"}",
+            "{\"type\":\"recording_state\",\"enabled\":true,\"session_id\":\"df0c297b-4ac2-4717-b9e3-3e52e35408fb\",\"persist\":false,\"v\":1,\"ts\":\"2026-11-18T12:52:58.536Z\"}",
+            "{\"type\":\"skill_update_available\",\"current\":null,\"latest\":\"0.1.4\",\"install_cmd\":\"kane-cli install skill\",\"v\":1,\"ts\":\"2026-11-18T12:53:01.660Z\"}",
+            "{\"type\":\"bifurcation\",\"flows\":[\"Navigate to http://localhost:4173 then Enter \\\"ada@example.com\\\" in the email field\\nclick \\\"Join the waitlist\\\"\\nand verify the page shows the message \\\"You're on the list\\\"\"],\"count\":1,\"v\":1,\"ts\":\"2026-11-18T12:53:11.367Z\"}",
+            "{\"step\":2,\"status\":\"running\",\"remark\":\"Step 1\",\"v\":1,\"ts\":\"2026-11-18T12:53:12.843Z\"}",
+            "{\"step\":2,\"status\":\"done\",\"remark\":\"navigate: Navigate to http://localhost:4173\",\"v\":1,\"ts\":\"2026-11-18T12:53:12.855Z\"}",
+            "{\"step\":3,\"status\":\"running\",\"remark\":\"Step 2\",\"v\":1,\"ts\":\"2026-11-18T12:53:16.964Z\"}",
+            "{\"step\":3,\"status\":\"done\",\"remark\":\"wait: queued plan (2 steps): type \\\"Email address\\\"; click \\\"Join the waitlist\\\"\",\"v\":1,\"ts\":\"2026-11-18T12:53:23.164Z\"}",
+            "{\"step\":4,\"status\":\"running\",\"remark\":\"Step 3\",\"v\":1,\"ts\":\"2026-11-18T12:53:23.971Z\"}",
+            "{\"step\":4,\"status\":\"done\",\"remark\":\"type: Type \\\"ada@example.com\\\" into \\\"Email address\\\"\",\"v\":1,\"ts\":\"2026-11-18T12:53:24.212Z\"}",
+            "{\"step\":5,\"status\":\"running\",\"remark\":\"Step 4\",\"v\":1,\"ts\":\"2026-11-18T12:53:24.923Z\"}",
+            "{\"step\":5,\"status\":\"done\",\"remark\":\"click: Click \\\"Join the waitlist\\\"\",\"v\":1,\"ts\":\"2026-11-18T12:53:25.639Z\"}",
+            "{\"step\":6,\"status\":\"running\",\"remark\":\"Step 5\",\"v\":1,\"ts\":\"2026-11-18T12:53:26.330Z\"}",
+            "{\"step\":6,\"status\":\"done\",\"remark\":\"analyze: The page shows the message \\\"You\\\\\",\"v\":1,\"ts\":\"2026-11-18T12:53:36.512Z\"}",
+            "{\"step\":7,\"status\":\"running\",\"remark\":\"Step 6\",\"v\":1,\"ts\":\"2026-11-18T12:53:37.207Z\"}",
+            "{\"step\":7,\"status\":\"done\",\"remark\":\"assert: the page shows the message \\\"You're on the list\\\"\",\"v\":1,\"ts\":\"2026-11-18T12:53:37.221Z\"}",
+            "{\"type\":\"coverage\",\"status\":\"skipped\",\"reason\":\"not_assurance_project\",\"pack\":\"C:\\\\Users\\\\Esteexbt\\\\.testmuai\\\\kaneai\\\\sessions\\\\df0c297b-4ac2-4717-b9e3-3e52e35408fb\\\\evidence\\\\5998ca53-93b7-41a1-84e4-27f4b0200a31.evidence\",\"v\":1,\"ts\":\"2026-11-18T12:53:54.700Z\"}",
+            "{\"type\":\"run_end\",\"status\":\"passed\",\"summary\":\"Entered ada@example.com in the email field.\\nClicked “Join the waitlist.”\\nThe page confirmed the signup with the message “You're on the list.”\",\"one_liner\":\"joined the waitlist on localhost\",\"final_state\":{\"url\":\"http://localhost:4173/\",\"waitlist_confirmation_message_visible\":\"true\"},\"reason\":\"Objective completed\",\"duration\":31.2,\"bifurcated\":false,\"total_runs\":1,\"context\":{\"memory\":{\"waitlist_confirmation_message_visible\":{\"extracted_value\":\"true\",\"operator\":\"equals\",\"transforms\":[],\"json_path\":null,\"reasoning\":\"value: 'true' -> 'true'; equals 'true' -> PASS\",\"analyzer_type\":\"textual_visual\",\"step\":5,\"query\":\"whether the message \\\"You're on th"
+          ],
+          "eventCount": 18,
+          "stderr": "",
+          "duration": 58.668
+        },
+        {
+          "id": "reject-bad-email",
+          "route": "",
+          "status": "passed",
+          "exitCode": 0,
+          "summary": "You asked to join the waitlist using the email address \"ada@example\".\nThe email address was entered and the \"Join the waitlist\" button was selected.\nThe page showed \"Enter a valid email address\" and did not show \"You're on the list,\" so the signup was not completed.",
+          "oneLiner": "submitted an invalid waitlist email on localhost",
+          "reason": "Objective completed",
+          "finalState": {
+            "url": "http://localhost:4173/",
+            "entered_email": "ada@example",
+            "valid_email_address_error_shown": "true",
+            "on_the_list_message_shown": "false"
+          },
+          "kaneDuration": 45.5,
+          "credits": 17.9428675,
+          "reportUrl": "https://test-manager.lambdatest.com/projects/01M7Q4HPVF8YTVJ87AAB51ESGQ/test-cases/01M7QBH8WVMAMA95WKXH4TPXEY/dashboard/share/US_Z6HP0803D9NWII0BESH6UJWDU79FJZRRQPYGNJPKFPIZ9GP479DIFSEXPQ0AEAXC?type=summary&agentView=true&fqdn=summary-page",
+          "resultCode": 100,
+          "reasonCode": "success.complete",
+          "verdict": null,
+          "evidence": [
+            {
+              "key": "valid_email_address_error_shown",
+              "what": "Checking whether the valid email address error is present",
+              "condition": "An error saying \"Enter a valid email address\" is shown.",
+              "read": "true",
+              "expected": "true"
+            },
+            {
+              "key": "on_the_list_message_shown",
+              "what": "Checking whether the on-the-list message is present",
+              "condition": "The message \"You're on the list\" is not shown.",
+              "read": "false",
+              "expected": "false"
+            }
+          ],
+          "runEnd": {
+            "type": "run_end",
+            "status": "passed",
+            "summary": "You asked to join the waitlist using the email address \"ada@example\".\nThe email address was entered and the \"Join the waitlist\" button was selected.\nThe page showed \"Enter a valid email address\" and did not show \"You're on the list,\" so the signup was not completed.",
+            "one_liner": "submitted an invalid waitlist email on localhost",
+            "final_state": {
+              "url": "http://localhost:4173/",
+              "entered_email": "ada@example",
+              "valid_email_address_error_shown": "true",
+              "on_the_list_message_shown": "false"
+            },
+            "reason": "Objective completed",
+            "duration": 45.5,
+            "bifurcated": false,
+            "total_runs": 1,
+            "context": {
+              "memory": {
+                "valid_email_address_error_shown": {
+                  "extracted_value": "true",
+                  "operator": "equals",
+                  "transforms": [],
+                  "json_path": null,
+                  "reasoning": "value: 'true' -> 'true'; equals 'true' -> PASS",
+                  "analyzer_type": "textual_visual",
+                  "step": 4,
+                  "query": "whether an error saying \"Enter a valid email address\" is present in the alert message",
+                  "condition": "An error saying \"Enter a valid email address\" is shown.",
+                  "human_description": "Checking whether the valid email address error is present",
+                  "expected_value": "true",
+                  "subject": "an error saying \"Enter a valid email address\"",
+                  "must_be": "present",
+                  "code_js": "el(17).textContent.includes('Enter a valid email address')",
+                  "wrapped_js": "(els) => {\n  const __m = {17: 0};\n  const el = (i) => els[__m[i]];\n  const __v = (el(17).textContent.includes('Enter a valid email address'));\n  return (typeof __v === 'boolean' ? String(__v) : __v);\n}",
+                  "locators": [
+                    "internal:text=\"Enter a valid email address\"i"
+                  ],
+                  "needs_unit_conversion": false
+                },
+                "on_the_list_message_shown": {
+                  "extracted_value": "false",
+                  "operator": "equals",
+                  "transforms": [],
+                  "json_path": null,
+                  "reasoning": "value: 'false' -> 'false'; equals 'false' -> PASS",
+                  "analyzer_type": "visual",
+                  "step": 4,
+                  "query": "whether the message \"You're on the list\" is visible on the page",
+                  "condition": "The message \"You're on the list\" is not shown.",
+                  "human_description": "Checking whether the on-the-list message is present",
+                  "expected_value": "false",
+                  "subject": "the message \"You're on the list\"",
+                  "must_be": "absent"
+                }
+              },
+              "variables": {
+                "valid_email_address_error_shown": {
+                  "syntax": "{{valid_email_address_error_shown}}",
+                  "value": "true",
+                  "type": "memory",
+                  "secret": false
+                },
+                "on_the_list_message_shown": {
+                  "syntax": "{{on_the_list_message_shown}}",
+                  "value": "false",
+                  "type": "memory",
+                  "secret": false
+                }
+              },
+              "pointer": "(passed) submitted an invalid waitlist email on localhost"
+            },
+            "credits_consumed": 17.9428675,
+            "session_dir": "C:\\Users\\Esteexbt/.testmuai/kaneai/sessions\\525d3a4a-bc16-48dd-bc67-7bed99c8b13d",
+            "run_dir": "C:\\Users\\Esteexbt/.testmuai/kaneai/sessions\\525d3a4a-bc16-48dd-bc67-7bed99c8b13d\\runs\\0",
+            "result_code": 100,
+            "reason_code": "success.complete",
+            "per_flow_metadata": [
+              {
+                "result_code": "100",
+                "reason_code": "success.complete",
+                "error_message": null,
+                "summary": "You asked to join the waitlist using the email address \"ada@example\".\nThe email address was entered and the \"Join the waitlist\" button was selected.\nThe page showed \"Enter a valid email address\" and did not show \"You're on the list,\" so the signup was not completed.",
+                "one_liner": "submitted an invalid waitlist email on localhost",
+                "credits_consumed": 17.9428675
+              }
+            ],
+            "run_id": "run-0",
+            "test_url": "https://test-manager.lambdatest.com/projects/01M7Q4HPVF8YTVJ87AAB51ESGQ/test-cases/01M7QBH8WVMAMA95WKXH4TPXEY/dashboard/share/US_Z6HP0803D9NWII0BESH6UJWDU79FJZRRQPYGNJPKFPIZ9GP479DIFSEXPQ0AEAXC?type=summary&agentView=true&fqdn=summary-page",
+            "coverage": {
+              "status": "skipped"
+            },
+            "v": 1,
+            "ts": "2026-11-18T12:55:09.668Z"
+          },
+          "objective": "Enter \"ada@example\" in the email field, click \"Join the waitlist\", and verify an error saying \"Enter a valid email address\" is shown and the message \"You're on the list\" is not shown",
+          "url": "http://localhost:4173",
+          "steps": [
+            {
+              "type": "event",
+              "text": "navigate: Navigate to http://localhost:4173"
+            },
+            {
+              "type": "event",
+              "text": "type: Typing ada@example into the email field"
+            },
+            {
+              "type": "event",
+              "text": "click: Clicking Join the waitlist button"
+            },
+            {
+              "type": "event",
+              "text": "analyze: The message \"You\\"
+            },
+            {
+              "type": "event",
+              "text": "assert: an error saying \"Enter a valid email address\" is shown and the message \"You're o"
+            }
+          ],
+          "rawSample": [
+            "{\"type\":\"stream_start\",\"cli_version\":\"0.10.6\",\"surface\":\"run\",\"pid\":17244,\"v\":1,\"ts\":\"2026-11-18T12:53:57.162Z\"}",
+            "{\"type\":\"recording_state\",\"enabled\":true,\"session_id\":\"525d3a4a-bc16-48dd-bc67-7bed99c8b13d\",\"persist\":false,\"v\":1,\"ts\":\"2026-11-18T12:53:57.189Z\"}",
+            "{\"type\":\"skill_update_available\",\"current\":null,\"latest\":\"0.1.4\",\"install_cmd\":\"kane-cli install skill\",\"v\":1,\"ts\":\"2026-11-18T12:54:00.137Z\"}",
+            "{\"type\":\"bifurcation\",\"flows\":[\"Navigate to http://localhost:4173 then Enter \\\"ada@example\\\" in the email field, click \\\"Join the waitlist\\\", and verify an error saying \\\"Enter a valid email address\\\" is shown and the message \\\"You're on the list\\\" is not shown\"],\"count\":1,\"v\":1,\"ts\":\"2026-11-18T12:54:10.258Z\"}",
+            "{\"step\":2,\"status\":\"running\",\"remark\":\"Step 1\",\"v\":1,\"ts\":\"2026-11-18T12:54:11.695Z\"}",
+            "{\"step\":2,\"status\":\"done\",\"remark\":\"navigate: Navigate to http://localhost:4173\",\"v\":1,\"ts\":\"2026-11-18T12:54:11.706Z\"}",
+            "{\"step\":3,\"status\":\"running\",\"remark\":\"Step 2\",\"v\":1,\"ts\":\"2026-11-18T12:54:16.634Z\"}",
+            "{\"step\":3,\"status\":\"done\",\"remark\":\"type: Typing ada@example into the email field\",\"v\":1,\"ts\":\"2026-11-18T12:54:25.097Z\"}",
+            "{\"step\":4,\"status\":\"running\",\"remark\":\"Step 3\",\"v\":1,\"ts\":\"2026-11-18T12:54:25.792Z\"}",
+            "{\"step\":4,\"status\":\"done\",\"remark\":\"click: Clicking Join the waitlist button\",\"v\":1,\"ts\":\"2026-11-18T12:54:32.134Z\"}",
+            "{\"step\":5,\"status\":\"running\",\"remark\":\"Step 4\",\"v\":1,\"ts\":\"2026-11-18T12:54:32.827Z\"}",
+            "{\"step\":5,\"status\":\"done\",\"remark\":\"analyze: The message \\\"You\\\\\",\"v\":1,\"ts\":\"2026-11-18T12:54:48.574Z\"}",
+            "{\"step\":6,\"status\":\"running\",\"remark\":\"Step 5\",\"v\":1,\"ts\":\"2026-11-18T12:54:49.370Z\"}",
+            "{\"step\":6,\"status\":\"done\",\"remark\":\"assert: an error saying \\\"Enter a valid email address\\\" is shown and the message \\\"You're o\",\"v\":1,\"ts\":\"2026-11-18T12:54:49.386Z\"}",
+            "{\"type\":\"coverage\",\"status\":\"skipped\",\"reason\":\"not_assurance_project\",\"pack\":\"C:\\\\Users\\\\Esteexbt\\\\.testmuai\\\\kaneai\\\\sessions\\\\525d3a4a-bc16-48dd-bc67-7bed99c8b13d\\\\evidence\\\\d24a89d2-3d18-4bb1-904c-479e0021acc3.evidence\",\"v\":1,\"ts\":\"2026-11-18T12:55:09.666Z\"}",
+            "{\"type\":\"run_end\",\"status\":\"passed\",\"summary\":\"You asked to join the waitlist using the email address \\\"ada@example\\\".\\nThe email address was entered and the \\\"Join the waitlist\\\" button was selected.\\nThe page showed \\\"Enter a valid email address\\\" and did not show \\\"You're on the list,\\\" so the signup was not completed.\",\"one_liner\":\"submitted an invalid waitlist email on localhost\",\"final_state\":{\"url\":\"http://localhost:4173/\",\"entered_email\":\"ada@example\",\"valid_email_address_error_shown\":\"true\",\"on_the_list_message_shown\":\"false\"},\"reason\":\"Objective completed\",\"duration\":45.5,\"bifurcated\":false,\"total_runs\":1,\"context\":{\"memory\":{\"valid_email_address_error_shown\":{\"extracted_value\":\"tr"
+          ],
+          "eventCount": 16,
+          "stderr": "",
+          "duration": 75.57
+        },
+        {
+          "id": "yearly-pricing",
+          "route": "",
+          "status": "passed",
+          "exitCode": 0,
+          "summary": "Scrolled to the Simple pricing section as requested.\nSelected the Yearly pricing option.\nThe Grow plan updated to show $48 per year.",
+          "oneLiner": "selected yearly pricing on the Simple pricing page",
+          "reason": "Objective completed",
+          "finalState": {
+            "url": "http://localhost:4173/",
+            "Grow plan price": "$48",
+            "Grow plan billing period": "per year"
+          },
+          "kaneDuration": 42.2,
+          "credits": 17.89427,
+          "reportUrl": "https://test-manager.lambdatest.com/projects/01M7Q4HPVF8YTVJ87AAB51ESGQ/test-cases/01M7QBKK09Z9T72SH2WFH6RMN0/dashboard/share/US_M8EF9ZC61XW26CZGNUSBBMP1DZF9P2WN43B4MPXJQXW8BB7B4VI0LRWJ9BTVLXPW?type=summary&agentView=true&fqdn=summary-page",
+          "resultCode": 100,
+          "reasonCode": "success.complete",
+          "verdict": null,
+          "evidence": [
+            {
+              "key": "grow_plan_price_check",
+              "what": "Reading the Grow plan price",
+              "condition": "The Grow plan card shows the price \"$48\".",
+              "read": "$48",
+              "expected": "$48"
+            },
+            {
+              "key": "grow_plan_per_year_text",
+              "what": "Checking whether the Grow plan card includes per year",
+              "condition": "The Grow plan card shows the text \"per year\".",
+              "read": "true",
+              "expected": "true"
+            }
+          ],
+          "runEnd": {
+            "type": "run_end",
+            "status": "passed",
+            "summary": "Scrolled to the Simple pricing section as requested.\nSelected the Yearly pricing option.\nThe Grow plan updated to show $48 per year.",
+            "one_liner": "selected yearly pricing on the Simple pricing page",
+            "final_state": {
+              "url": "http://localhost:4173/",
+              "Grow plan price": "$48",
+              "Grow plan billing period": "per year"
+            },
+            "reason": "Objective completed",
+            "duration": 42.2,
+            "bifurcated": false,
+            "total_runs": 1,
+            "context": {
+              "memory": {
+                "grow_plan_price_check": {
+                  "extracted_value": "$48",
+                  "operator": "equals",
+                  "transforms": [
+                    "strip"
+                  ],
+                  "json_path": null,
+                  "reasoning": "value: '$48' -> '$48' after ['strip']; equals '$48' -> PASS",
+                  "analyzer_type": "textual_visual",
+                  "step": 4,
+                  "query": "the displayed price in the Grow plan card",
+                  "condition": "The Grow plan card shows the price \"$48\".",
+                  "human_description": "Reading the Grow plan price",
+                  "expected_value": "$48",
+                  "code_js": "(el(36).innerText.match(/\\$48(?:\\b|\\s)/)||[null])[0]",
+                  "wrapped_js": "(els) => {\n  const __m = {36: 0};\n  const el = (i) => els[__m[i]];\n  const __v = ((el(36).innerText.match(/\\$48(?:\\b|\\s)/)||[null])[0]);\n  return (typeof __v === 'boolean' ? String(__v) : __v);\n}",
+                  "locators": [
+                    "internal:text=\"Grow $48per year Unlimited\"i"
+                  ],
+                  "needs_unit_conversion": false
+                },
+                "grow_plan_per_year_text": {
+                  "extracted_value": "true",
+                  "operator": "equals",
+                  "transforms": [],
+                  "json_path": null,
+                  "reasoning": "value: 'true' -> 'true'; equals 'true' -> PASS",
+                  "analyzer_type": "textual_visual",
+                  "step": 4,
+                  "query": "whether the text \"per year\" is present in the Grow plan card",
+                  "condition": "The Grow plan card shows the text \"per year\".",
+                  "human_description": "Checking whether the Grow plan card includes per year",
+                  "expected_value": "true",
+                  "subject": "the text \"per year\" in the Grow plan card",
+                  "must_be": "present",
+                  "code_js": "el(36).innerText.includes('per year')",
+                  "wrapped_js": "(els) => {\n  const __m = {36: 0};\n  const el = (i) => els[__m[i]];\n  const __v = (el(36).innerText.includes('per year'));\n  return (typeof __v === 'boolean' ? String(__v) : __v);\n}",
+                  "locators": [
+                    "internal:text=\"Grow $48per year Unlimited\"i"
+                  ],
+                  "needs_unit_conversion": false
+                }
+              },
+              "variables": {
+                "grow_plan_price_check": {
+                  "syntax": "{{grow_plan_price_check}}",
+                  "value": "$48",
+                  "type": "memory",
+                  "secret": false
+                },
+                "grow_plan_per_year_text": {
+                  "syntax": "{{grow_plan_per_year_text}}",
+                  "value": "true",
+                  "type": "memory",
+                  "secret": false
+                }
+              },
+              "pointer": "(passed) selected yearly pricing on the Simple pricing page"
+            },
+            "credits_consumed": 17.89427,
+            "session_dir": "C:\\Users\\Esteexbt/.testmuai/kaneai/sessions\\3f7c76c2-8748-4a0a-8484-fd6669487694",
+            "run_dir": "C:\\Users\\Esteexbt/.testmuai/kaneai/sessions\\3f7c76c2-8748-4a0a-8484-fd6669487694\\runs\\0",
+            "result_code": 100,
+            "reason_code": "success.complete",
+            "per_flow_metadata": [
+              {
+                "result_code": "100",
+                "reason_code": "success.complete",
+                "error_message": null,
+                "summary": "Scrolled to the Simple pricing section as requested.\nSelected the Yearly pricing option.\nThe Grow plan updated to show $48 per year.",
+                "one_liner": "selected yearly pricing on the Simple pricing page",
+                "credits_consumed": 17.89427
+              }
+            ],
+            "run_id": "run-0",
+            "test_url": "https://test-manager.lambdatest.com/projects/01M7Q4HPVF8YTVJ87AAB51ESGQ/test-cases/01M7QBKK09Z9T72SH2WFH6RMN0/dashboard/share/US_M8EF9ZC61XW26CZGNUSBBMP1DZF9P2WN43B4MPXJQXW8BB7B4VI0LRWJ9BTVLXPW?type=summary&agentView=true&fqdn=summary-page",
+            "coverage": {
+              "status": "skipped"
+            },
+            "v": 1,
+            "ts": "2026-11-18T12:56:24.333Z"
+          },
+          "objective": "Scroll to the \"Simple pricing\" section, click the button labelled \"Yearly\", then verify the Grow plan card shows the price \"$48\" and the text \"per year\"",
+          "url": "http://localhost:4173",
+          "steps": [
+            {
+              "type": "event",
+              "text": "navigate: Navigate to http://localhost:4173"
+            },
+            {
+              "type": "event",
+              "text": "scroll: Scrolling to the Simple pricing section"
+            },
+            {
+              "type": "event",
+              "text": "click: Clicking the Yearly button in the billing period section"
+            },
+            {
+              "type": "event",
+              "text": "analyze: The Grow plan card shows the text \"per year\"."
+            },
+            {
+              "type": "event",
+              "text": "assert: the Grow plan card shows the price \"$48\" and the text \"per year\""
+            }
+          ],
+          "rawSample": [
+            "{\"type\":\"stream_start\",\"cli_version\":\"0.10.6\",\"surface\":\"run\",\"pid\":12880,\"v\":1,\"ts\":\"2026-11-18T12:55:12.719Z\"}",
+            "{\"type\":\"recording_state\",\"enabled\":true,\"session_id\":\"3f7c76c2-8748-4a0a-8484-fd6669487694\",\"persist\":false,\"v\":1,\"ts\":\"2026-11-18T12:55:12.751Z\"}",
+            "{\"type\":\"skill_update_available\",\"current\":null,\"latest\":\"0.1.4\",\"install_cmd\":\"kane-cli install skill\",\"v\":1,\"ts\":\"2026-11-18T12:55:16.048Z\"}",
+            "{\"type\":\"bifurcation\",\"flows\":[\"Navigate to http://localhost:4173 then Scroll to the \\\"Simple pricing\\\" section, click the button labelled \\\"Yearly\\\", then verify the Grow plan card shows the price \\\"$48\\\" and the text \\\"per year\\\"\"],\"count\":1,\"v\":1,\"ts\":\"2026-11-18T12:55:26.127Z\"}",
+            "{\"step\":2,\"status\":\"running\",\"remark\":\"Step 1\",\"v\":1,\"ts\":\"2026-11-18T12:55:28.206Z\"}",
+            "{\"step\":2,\"status\":\"done\",\"remark\":\"navigate: Navigate to http://localhost:4173\",\"v\":1,\"ts\":\"2026-11-18T12:55:28.219Z\"}",
+            "{\"step\":3,\"status\":\"running\",\"remark\":\"Step 2\",\"v\":1,\"ts\":\"2026-11-18T12:55:33.096Z\"}",
+            "{\"step\":3,\"status\":\"done\",\"remark\":\"scroll: Scrolling to the Simple pricing section\",\"v\":1,\"ts\":\"2026-11-18T12:55:41.761Z\"}",
+            "{\"step\":4,\"status\":\"running\",\"remark\":\"Step 3\",\"v\":1,\"ts\":\"2026-11-18T12:55:42.634Z\"}",
+            "{\"step\":4,\"status\":\"done\",\"remark\":\"click: Clicking the Yearly button in the billing period section\",\"v\":1,\"ts\":\"2026-11-18T12:55:49.022Z\"}",
+            "{\"step\":5,\"status\":\"running\",\"remark\":\"Step 4\",\"v\":1,\"ts\":\"2026-11-18T12:55:49.763Z\"}",
+            "{\"step\":5,\"status\":\"done\",\"remark\":\"analyze: The Grow plan card shows the text \\\"per year\\\".\",\"v\":1,\"ts\":\"2026-11-18T12:56:01.117Z\"}",
+            "{\"step\":6,\"status\":\"running\",\"remark\":\"Step 5\",\"v\":1,\"ts\":\"2026-11-18T12:56:01.891Z\"}",
+            "{\"step\":6,\"status\":\"done\",\"remark\":\"assert: the Grow plan card shows the price \\\"$48\\\" and the text \\\"per year\\\"\",\"v\":1,\"ts\":\"2026-11-18T12:56:01.909Z\"}",
+            "{\"type\":\"coverage\",\"status\":\"skipped\",\"reason\":\"not_assurance_project\",\"pack\":\"C:\\\\Users\\\\Esteexbt\\\\.testmuai\\\\kaneai\\\\sessions\\\\3f7c76c2-8748-4a0a-8484-fd6669487694\\\\evidence\\\\44784313-9db0-44b5-910a-308d6de5c562.evidence\",\"v\":1,\"ts\":\"2026-11-18T12:56:24.332Z\"}",
+            "{\"type\":\"run_end\",\"status\":\"passed\",\"summary\":\"Scrolled to the Simple pricing section as requested.\\nSelected the Yearly pricing option.\\nThe Grow plan updated to show $48 per year.\",\"one_liner\":\"selected yearly pricing on the Simple pricing page\",\"final_state\":{\"url\":\"http://localhost:4173/\",\"Grow plan price\":\"$48\",\"Grow plan billing period\":\"per year\"},\"reason\":\"Objective completed\",\"duration\":42.2,\"bifurcated\":false,\"total_runs\":1,\"context\":{\"memory\":{\"grow_plan_price_check\":{\"extracted_value\":\"$48\",\"operator\":\"equals\",\"transforms\":[\"strip\"],\"json_path\":null,\"reasoning\":\"value: '$48' -> '$48' after ['strip']; equals '$48' -> PASS\",\"analyzer_type\":\"textual_visual\",\"step\":4,\"query\":\"the dis"
+          ],
+          "eventCount": 16,
+          "stderr": "",
+          "duration": 74.75
+        },
+        {
+          "id": "faq-cancel",
+          "route": "",
+          "status": "passed",
+          "exitCode": 0,
+          "summary": "Opened the FAQ item “Can I cancel anytime?” as requested.\nThe cancellation answer is now visible: “Yes. Cancel in one click from Settings.”",
+          "oneLiner": "opened the cancellation FAQ on localhost",
+          "reason": "Objective completed",
+          "finalState": {
+            "url": "http://localhost:4173/",
+            "cancel_anytime_answer_visible": "true"
+          },
+          "kaneDuration": 34.7,
+          "credits": 15.643824999999998,
+          "reportUrl": "https://test-manager.lambdatest.com/projects/01M7Q4HPVF8YTVJ87AAB51ESGQ/test-cases/01M7QBNW15GAV5CC8H9YHJKG5K/dashboard/share/US_8B47HOG0G2P13IT82RYJD884DH4YLGPZ6O4H7UURSC0BHVB1E27GVWXM1MQ1PQ6N?type=summary&agentView=true&fqdn=summary-page",
+          "resultCode": 100,
+          "reasonCode": "success.complete",
+          "verdict": null,
+          "evidence": [
+            {
+              "key": "cancel_anytime_answer_visible",
+              "what": "Checking whether the cancellation answer is present",
+              "condition": "the answer \"Yes. Cancel in one click from Settings.\" becomes visible",
+              "read": "true",
+              "expected": "true"
+            }
+          ],
+          "runEnd": {
+            "type": "run_end",
+            "status": "passed",
+            "summary": "Opened the FAQ item “Can I cancel anytime?” as requested.\nThe cancellation answer is now visible: “Yes. Cancel in one click from Settings.”",
+            "one_liner": "opened the cancellation FAQ on localhost",
+            "final_state": {
+              "url": "http://localhost:4173/",
+              "cancel_anytime_answer_visible": "true"
+            },
+            "reason": "Objective completed",
+            "duration": 34.7,
+            "bifurcated": false,
+            "total_runs": 1,
+            "context": {
+              "memory": {
+                "cancel_anytime_answer_visible": {
+                  "extracted_value": "true",
+                  "operator": "equals",
+                  "transforms": [],
+                  "json_path": null,
+                  "reasoning": "value: 'true' -> 'true'; equals 'true' -> PASS",
+                  "analyzer_type": "textual_visual",
+                  "step": 4,
+                  "query": "whether the answer \"Yes. Cancel in one click from Settings.\" is present in the expanded \"Can I cancel anytime?\" FAQ section",
+                  "condition": "the answer \"Yes. Cancel in one click from Settings.\" becomes visible",
+                  "human_description": "Checking whether the cancellation answer is present",
+                  "expected_value": "true",
+                  "subject": "the answer \"Yes. Cancel in one click from Settings.\"",
+                  "must_be": "present",
+                  "code_js": "el(51).innerText.trim() === 'Yes. Cancel in one click from Settings.' && !!(el(51).offsetWidth || el(51).offsetHeight || el(51).getClientRects().length)",
+                  "wrapped_js": "(els) => {\n  const __m = {51: 0};\n  const el = (i) => els[__m[i]];\n  const __v = (el(51).innerText.trim() === 'Yes. Cancel in one click from Settings.' && !!(el(51).offsetWidth || el(51).offsetHeight || el(51).getClientRects().length));\n  return (typeof __v === 'boolean' ? String(__v) : __v);\n}",
+                  "locators": [
+                    "internal:text=\"Yes. Cancel in one click from\"i"
+                  ],
+                  "needs_unit_conversion": false
+                }
+              },
+              "variables": {
+                "cancel_anytime_answer_visible": {
+                  "syntax": "{{cancel_anytime_answer_visible}}",
+                  "value": "true",
+                  "type": "memory",
+                  "secret": false
+                }
+              },
+              "pointer": "(passed) opened the cancellation FAQ on localhost"
+            },
+            "credits_consumed": 15.643824999999998,
+            "session_dir": "C:\\Users\\Esteexbt/.testmuai/kaneai/sessions\\3dc0b01d-d755-41fe-bcd0-7db630797c3d",
+            "run_dir": "C:\\Users\\Esteexbt/.testmuai/kaneai/sessions\\3dc0b01d-d755-41fe-bcd0-7db630797c3d\\runs\\0",
+            "result_code": 100,
+            "reason_code": "success.complete",
+            "per_flow_metadata": [
+              {
+                "result_code": "100",
+                "reason_code": "success.complete",
+                "error_message": null,
+                "summary": "Opened the FAQ item “Can I cancel anytime?” as requested.\nThe cancellation answer is now visible: “Yes. Cancel in one click from Settings.”",
+                "one_liner": "opened the cancellation FAQ on localhost",
+                "credits_consumed": 15.643824999999998
+              }
+            ],
+            "run_id": "run-0",
+            "test_url": "https://test-manager.lambdatest.com/projects/01M7Q4HPVF8YTVJ87AAB51ESGQ/test-cases/01M7QBNW15GAV5CC8H9YHJKG5K/dashboard/share/US_8B47HOG0G2P13IT82RYJD884DH4YLGPZ6O4H7UURSC0BHVB1E27GVWXM1MQ1PQ6N?type=summary&agentView=true&fqdn=summary-page",
+            "coverage": {
+              "status": "skipped"
+            },
+            "v": 1,
+            "ts": "2026-11-18T12:57:29.677Z"
+          },
+          "objective": "Click the question \"Can I cancel anytime?\" and verify the answer \"Yes. Cancel in one click from Settings.\" becomes visible",
+          "url": "http://localhost:4173",
+          "steps": [
+            {
+              "type": "event",
+              "text": "navigate: Navigate to http://localhost:4173"
+            },
+            {
+              "type": "event",
+              "text": "scroll: Scrolling to the question Can I cancel anytime"
+            },
+            {
+              "type": "event",
+              "text": "click: Clicking the question Can I cancel anytime"
+            },
+            {
+              "type": "event",
+              "text": "analyze: ANALYZE(textual_visual, 'the answer \"Yes. Cancel in one click from Settings.\" be"
+            },
+            {
+              "type": "event",
+              "text": "assert: the answer \"Yes. Cancel in one click from Settings.\" becomes visible"
+            }
+          ],
+          "rawSample": [
+            "{\"type\":\"stream_start\",\"cli_version\":\"0.10.6\",\"surface\":\"run\",\"pid\":11672,\"v\":1,\"ts\":\"2026-11-18T12:56:27.472Z\"}",
+            "{\"type\":\"recording_state\",\"enabled\":true,\"session_id\":\"3dc0b01d-d755-41fe-bcd0-7db630797c3d\",\"persist\":false,\"v\":1,\"ts\":\"2026-11-18T12:56:27.502Z\"}",
+            "{\"type\":\"skill_update_available\",\"current\":null,\"latest\":\"0.1.4\",\"install_cmd\":\"kane-cli install skill\",\"v\":1,\"ts\":\"2026-11-18T12:56:30.839Z\"}",
+            "{\"type\":\"bifurcation\",\"flows\":[\"Navigate to http://localhost:4173 then Click the question \\\"Can I cancel anytime?\\\" and verify the answer \\\"Yes. Cancel in one click from Settings.\\\" becomes visible\"],\"count\":1,\"v\":1,\"ts\":\"2026-11-18T12:56:41.968Z\"}",
+            "{\"step\":2,\"status\":\"running\",\"remark\":\"Step 1\",\"v\":1,\"ts\":\"2026-11-18T12:56:44.194Z\"}",
+            "{\"step\":2,\"status\":\"done\",\"remark\":\"navigate: Navigate to http://localhost:4173\",\"v\":1,\"ts\":\"2026-11-18T12:56:44.209Z\"}",
+            "{\"step\":3,\"status\":\"running\",\"remark\":\"Step 2\",\"v\":1,\"ts\":\"2026-11-18T12:56:48.659Z\"}",
+            "{\"step\":3,\"status\":\"done\",\"remark\":\"scroll: Scrolling to the question Can I cancel anytime\",\"v\":1,\"ts\":\"2026-11-18T12:56:55.150Z\"}",
+            "{\"step\":4,\"status\":\"running\",\"remark\":\"Step 3\",\"v\":1,\"ts\":\"2026-11-18T12:56:55.859Z\"}",
+            "{\"step\":4,\"status\":\"done\",\"remark\":\"click: Clicking the question Can I cancel anytime\",\"v\":1,\"ts\":\"2026-11-18T12:56:57.041Z\"}",
+            "{\"step\":5,\"status\":\"running\",\"remark\":\"Step 4\",\"v\":1,\"ts\":\"2026-11-18T12:56:57.791Z\"}",
+            "{\"step\":5,\"status\":\"done\",\"remark\":\"analyze: ANALYZE(textual_visual, 'the answer \\\"Yes. Cancel in one click from Settings.\\\" be\",\"v\":1,\"ts\":\"2026-11-18T12:57:09.454Z\"}",
+            "{\"step\":6,\"status\":\"running\",\"remark\":\"Step 5\",\"v\":1,\"ts\":\"2026-11-18T12:57:10.149Z\"}",
+            "{\"step\":6,\"status\":\"done\",\"remark\":\"assert: the answer \\\"Yes. Cancel in one click from Settings.\\\" becomes visible\",\"v\":1,\"ts\":\"2026-11-18T12:57:10.165Z\"}",
+            "{\"type\":\"coverage\",\"status\":\"skipped\",\"reason\":\"not_assurance_project\",\"pack\":\"C:\\\\Users\\\\Esteexbt\\\\.testmuai\\\\kaneai\\\\sessions\\\\3dc0b01d-d755-41fe-bcd0-7db630797c3d\\\\evidence\\\\91abbdb3-72a9-4173-b881-dbefd66ad03c.evidence\",\"v\":1,\"ts\":\"2026-11-18T12:57:29.676Z\"}",
+            "{\"type\":\"run_end\",\"status\":\"passed\",\"summary\":\"Opened the FAQ item “Can I cancel anytime?” as requested.\\nThe cancellation answer is now visible: “Yes. Cancel in one click from Settings.”\",\"one_liner\":\"opened the cancellation FAQ on localhost\",\"final_state\":{\"url\":\"http://localhost:4173/\",\"cancel_anytime_answer_visible\":\"true\"},\"reason\":\"Objective completed\",\"duration\":34.7,\"bifurcated\":false,\"total_runs\":1,\"context\":{\"memory\":{\"cancel_anytime_answer_visible\":{\"extracted_value\":\"true\",\"operator\":\"equals\",\"transforms\":[],\"json_path\":null,\"reasoning\":\"value: 'true' -> 'true'; equals 'true' -> PASS\",\"analyzer_type\":\"textual_visual\",\"step\":4,\"query\":\"whether the answer \\\"Yes. Cancel in one click"
+          ],
+          "eventCount": 16,
+          "stderr": "",
+          "duration": 65.173
+        },
+        {
+          "id": "nav-pricing",
+          "route": "",
+          "status": "passed",
+          "exitCode": 0,
+          "summary": "You asked to open the Pricing section.\nClicked “Pricing” in the top navigation.\nThe page moved to the pricing section, where the “Grow” plan is visible.",
+          "oneLiner": "opened the pricing section on localhost",
+          "reason": "Objective completed",
+          "finalState": {
+            "url": "http://localhost:4173/#pricing",
+            "pricing_section_grow_plan_visible": "true"
+          },
+          "kaneDuration": 30.3,
+          "credits": 15.318097499999999,
+          "reportUrl": "https://test-manager.lambdatest.com/projects/01M7Q4HPVF8YTVJ87AAB51ESGQ/test-cases/01M7QBQVH1X75BDTGBMQCHYHM5/dashboard/share/US_45I8X00F0VV1MNI3CXSPEFRN2KF4TJCOQ739RGAT9IWVMVSYT49S484IFSDBD3J6?type=summary&agentView=true&fqdn=summary-page",
+          "resultCode": 100,
+          "reasonCode": "success.complete",
+          "verdict": null,
+          "evidence": [
+            {
+              "key": "pricing_section_grow_plan_visible",
+              "what": "Checking whether the Grow plan is visible in pricing",
+              "condition": "the pricing section with the \"Grow\" plan is visible",
+              "read": "true",
+              "expected": "true"
+            }
+          ],
+          "runEnd": {
+            "type": "run_end",
+            "status": "passed",
+            "summary": "You asked to open the Pricing section.\nClicked “Pricing” in the top navigation.\nThe page moved to the pricing section, where the “Grow” plan is visible.",
+            "one_liner": "opened the pricing section on localhost",
+            "final_state": {
+              "url": "http://localhost:4173/#pricing",
+              "pricing_section_grow_plan_visible": "true"
+            },
+            "reason": "Objective completed",
+            "duration": 30.3,
+            "bifurcated": false,
+            "total_runs": 1,
+            "context": {
+              "memory": {
+                "pricing_section_grow_plan_visible": {
+                  "extracted_value": "true",
+                  "operator": "equals",
+                  "transforms": [],
+                  "json_path": null,
+                  "reasoning": "value: 'true' -> 'true'; equals 'true' -> PASS",
+                  "analyzer_type": "textual_visual",
+                  "step": 3,
+                  "query": "whether the Grow plan heading is visible in the Simple pricing section",
+                  "condition": "the pricing section with the \"Grow\" plan is visible",
+                  "human_description": "Checking whether the Grow plan is visible in pricing",
+                  "expected_value": "true",
+                  "subject": "the pricing section with the \"Grow\" plan",
+                  "must_be": "present",
+                  "code_js": "!!(el(37).offsetWidth || el(37).offsetHeight || el(37).getClientRects().length) && el(37).textContent.trim() === 'Grow'",
+                  "wrapped_js": "(els) => {\n  const __m = {37: 0};\n  const el = (i) => els[__m[i]];\n  const __v = (!!(el(37).offsetWidth || el(37).offsetHeight || el(37).getClientRects().length) && el(37).textContent.trim() === 'Grow');\n  return (typeof __v === 'boolean' ? String(__v) : __v);\n}",
+                  "locators": [
+                    "internal:role=heading[name=\"Grow\"s]"
+                  ],
+                  "needs_unit_conversion": false
+                }
+              },
+              "variables": {
+                "pricing_section_grow_plan_visible": {
+                  "syntax": "{{pricing_section_grow_plan_visible}}",
+                  "value": "true",
+                  "type": "memory",
+                  "secret": false
+                }
+              },
+              "pointer": "(passed) opened the pricing section on localhost"
+            },
+            "credits_consumed": 15.318097499999999,
+            "session_dir": "C:\\Users\\Esteexbt/.testmuai/kaneai/sessions\\5265b2c3-dcc0-45c1-a401-f9027457e084",
+            "run_dir": "C:\\Users\\Esteexbt/.testmuai/kaneai/sessions\\5265b2c3-dcc0-45c1-a401-f9027457e084\\runs\\0",
+            "result_code": 100,
+            "reason_code": "success.complete",
+            "per_flow_metadata": [
+              {
+                "result_code": "100",
+                "reason_code": "success.complete",
+                "error_message": null,
+                "summary": "You asked to open the Pricing section.\nClicked “Pricing” in the top navigation.\nThe page moved to the pricing section, where the “Grow” plan is visible.",
+                "one_liner": "opened the pricing section on localhost",
+                "credits_consumed": 15.318097499999999
+              }
+            ],
+            "run_id": "run-0",
+            "test_url": "https://test-manager.lambdatest.com/projects/01M7Q4HPVF8YTVJ87AAB51ESGQ/test-cases/01M7QBQVH1X75BDTGBMQCHYHM5/dashboard/share/US_45I8X00F0VV1MNI3CXSPEFRN2KF4TJCOQ739RGAT9IWVMVSYT49S484IFSDBD3J6?type=summary&agentView=true&fqdn=summary-page",
+            "coverage": {
+              "status": "skipped"
+            },
+            "v": 1,
+            "ts": "2026-11-18T12:58:31.709Z"
+          },
+          "objective": "Click \"Pricing\" in the top navigation and verify the pricing section with the \"Grow\" plan is visible",
+          "url": "http://localhost:4173",
+          "steps": [
+            {
+              "type": "event",
+              "text": "navigate: Navigate to http://localhost:4173"
+            },
+            {
+              "type": "event",
+              "text": "click: Clicking Pricing in the top navigation"
+            },
+            {
+              "type": "event",
+              "text": "analyze: the pricing section with the \"Grow\" plan is visible"
+            },
+            {
+              "type": "event",
+              "text": "assert: the pricing section with the \"Grow\" plan is visible"
+            }
+          ],
+          "rawSample": [
+            "{\"type\":\"stream_start\",\"cli_version\":\"0.10.6\",\"surface\":\"run\",\"pid\":4308,\"v\":1,\"ts\":\"2026-11-18T12:57:32.708Z\"}",
+            "{\"type\":\"recording_state\",\"enabled\":true,\"session_id\":\"5265b2c3-dcc0-45c1-a401-f9027457e084\",\"persist\":false,\"v\":1,\"ts\":\"2026-11-18T12:57:32.738Z\"}",
+            "{\"type\":\"skill_update_available\",\"current\":null,\"latest\":\"0.1.4\",\"install_cmd\":\"kane-cli install skill\",\"v\":1,\"ts\":\"2026-11-18T12:57:35.866Z\"}",
+            "{\"type\":\"bifurcation\",\"flows\":[\"Navigate to http://localhost:4173 then Click \\\"Pricing\\\" in the top navigation and verify the pricing section with the \\\"Grow\\\" plan is visible\"],\"count\":1,\"v\":1,\"ts\":\"2026-11-18T12:57:46.653Z\"}",
+            "{\"step\":2,\"status\":\"running\",\"remark\":\"Step 1\",\"v\":1,\"ts\":\"2026-11-18T12:57:48.979Z\"}",
+            "{\"step\":2,\"status\":\"done\",\"remark\":\"navigate: Navigate to http://localhost:4173\",\"v\":1,\"ts\":\"2026-11-18T12:57:48.995Z\"}",
+            "{\"step\":3,\"status\":\"running\",\"remark\":\"Step 2\",\"v\":1,\"ts\":\"2026-11-18T12:57:53.819Z\"}",
+            "{\"step\":3,\"status\":\"done\",\"remark\":\"click: Clicking Pricing in the top navigation\",\"v\":1,\"ts\":\"2026-11-18T12:57:59.372Z\"}",
+            "{\"step\":4,\"status\":\"running\",\"remark\":\"Step 3\",\"v\":1,\"ts\":\"2026-11-18T12:58:00.080Z\"}",
+            "{\"step\":4,\"status\":\"done\",\"remark\":\"analyze: the pricing section with the \\\"Grow\\\" plan is visible\",\"v\":1,\"ts\":\"2026-11-18T12:58:10.391Z\"}",
+            "{\"step\":5,\"status\":\"running\",\"remark\":\"Step 4\",\"v\":1,\"ts\":\"2026-11-18T12:58:11.132Z\"}",
+            "{\"step\":5,\"status\":\"done\",\"remark\":\"assert: the pricing section with the \\\"Grow\\\" plan is visible\",\"v\":1,\"ts\":\"2026-11-18T12:58:11.158Z\"}",
+            "{\"type\":\"coverage\",\"status\":\"skipped\",\"reason\":\"not_assurance_project\",\"pack\":\"C:\\\\Users\\\\Esteexbt\\\\.testmuai\\\\kaneai\\\\sessions\\\\5265b2c3-dcc0-45c1-a401-f9027457e084\\\\evidence\\\\0ec25b99-9bdb-442f-9416-5807ea03b44b.evidence\",\"v\":1,\"ts\":\"2026-11-18T12:58:31.709Z\"}",
+            "{\"type\":\"run_end\",\"status\":\"passed\",\"summary\":\"You asked to open the Pricing section.\\nClicked “Pricing” in the top navigation.\\nThe page moved to the pricing section, where the “Grow” plan is visible.\",\"one_liner\":\"opened the pricing section on localhost\",\"final_state\":{\"url\":\"http://localhost:4173/#pricing\",\"pricing_section_grow_plan_visible\":\"true\"},\"reason\":\"Objective completed\",\"duration\":30.3,\"bifurcated\":false,\"total_runs\":1,\"context\":{\"memory\":{\"pricing_section_grow_plan_visible\":{\"extracted_value\":\"true\",\"operator\":\"equals\",\"transforms\":[],\"json_path\":null,\"reasoning\":\"value: 'true' -> 'true'; equals 'true' -> PASS\",\"analyzer_type\":\"textual_visual\",\"step\":3,\"query\":\"whether the Grow"
+          ],
+          "eventCount": 14,
+          "stderr": "",
+          "duration": 62.968
+        }
+      ]
+    }
+  ],
+  "finishedAt": "2026-11-18T12:58:34.880Z",
+  "verdict": "verified"
+}

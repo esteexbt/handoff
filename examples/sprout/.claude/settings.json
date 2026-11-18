@@ -1,0 +1,16 @@
+{
+  "hooks": {
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "handoff hook",
+            "timeout": 900,
+            "statusMessage": "Handoff: verifying the spec in a real browser (Kane CLI)"
+          }
+        ]
+      }
+    ]
+  }
+}

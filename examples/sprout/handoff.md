@@ -24,3 +24,4 @@ a waitlist, simple pricing, and a short FAQ. Built by a coding agent from this s
 - yearly-pricing: Scroll to the "Simple pricing" section, click the button labelled "Yearly", then verify the Grow plan card shows the price "$48" and the text "per year"
 - faq-cancel: Click the question "Can I cancel anytime?" and verify the answer "Yes. Cancel in one click from Settings." becomes visible
 - nav-pricing: Click "Pricing" in the top navigation and verify the pricing section with the "Grow" plan is visible
+- student-faq: Click the question "Is there a student discount?" and verify the answer "Yes. Grow is half price with a school email." becomes visible

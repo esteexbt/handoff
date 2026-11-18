@@ -165,7 +165,19 @@ export async function hook() {
 
   const max = Number(process.env.HANDOFF_MAX_ATTEMPTS || 3);
   try {
-    const round = await runRound(spec, spec.checks, { kane, quiet: true, live: false });
+    // Fail fast: checks that are new or not yet passing run first. If any of
+    // them fail, Claude is briefed immediately; the rest (regression) run only
+    // once those pass.
+    const latest = store.latestByCheck(store.loadRuns(spec.root, 30));
+    const passing = (ch) => latest.get(ch.id)?.filter((h) => h.status !== 'error').at(-1)?.status === 'passed';
+    const first = spec.checks.filter((ch) => !passing(ch));
+    const rest = spec.checks.filter((ch) => passing(ch));
+    let round = await runRound(spec, first.length ? first : rest, { kane, quiet: true, live: false });
+    const firstFailed = round.results.some((r) => r.status === 'failed' || r.status === 'timeout');
+    if (first.length && rest.length && !firstFailed) {
+      const more = await runRound(spec, rest, { kane, quiet: true, live: false });
+      round = { ...round, finishedAt: more.finishedAt, results: [...round.results, ...more.results] };
+    }
     // Group rounds from the same Claude session into one run → timeline on the proof page.
     let run = null;
     if (state.session && state.session === payload.session_id && state.runId) run = store.loadRun(spec.root, state.runId);
@@ -180,9 +192,10 @@ export async function hook() {
     const t = tally(round.results);
     const failing = round.results.filter((r) => r.status === 'failed' || r.status === 'timeout');
     const next = { ...state, session: payload.session_id, runId: run.id };
+    const complete = round.results.length === spec.checks.length;
 
     if (!failing.length && !t.errors) {
-      store.saveState(spec.root, { ...next, attempts: 0, lastGreen: fp });
+      store.saveState(spec.root, { ...next, attempts: 0, lastGreen: complete ? fp : state.lastGreen });
       return say(`Handoff ✔ ${t.passed}/${t.total} checks verified in a real browser by Kane CLI — proof: .handoff/proof.html`);
     }
     if (!failing.length && t.errors) {
@@ -240,7 +253,8 @@ export async function init(opts) {
     try { settings = JSON.parse(fs.readFileSync(settingsFile, 'utf8')); } catch {}
     settings.hooks ||= {};
     settings.hooks.Stop ||= [];
-    const command = `node "${BIN.replace(/\\/g, '/')}" hook`;
+    // Prefer the global `handoff` (npm i -g / npm link) so the settings file is portable.
+    const command = opts.local ? `node "${BIN.replace(/\\/g, '/')}" hook` : 'handoff hook';
     const already = JSON.stringify(settings.hooks.Stop).includes('handoff');
     if (!already) {
       settings.hooks.Stop.push({ hooks: [{ type: 'command', command, timeout: 900, statusMessage: 'Handoff: verifying the spec in a real browser (Kane CLI)' }] });
