@@ -113,6 +113,7 @@ export async function loop(opts) {
       round = await runRound(spec, checks, { kane, headed: opts.headed, label: 'Sweep' });
       run.rounds.push(round);
       printTally(round.results);
+      failing = round.results.filter((r) => r.status === 'failed' || r.status === 'timeout');
     }
 
     run.finishedAt = new Date().toISOString();
@@ -129,7 +130,7 @@ export async function loop(opts) {
     } else if (run.verdict === 'verified') {
       console.log(`  ${sym.pass} ${c.bold(c.green('Verified.'))} ${checks.length}/${checks.length} checks pass in a real browser${fixRounds ? ` after ${fixRounds} agent fix round${fixRounds > 1 ? 's' : ''}` : ''}.`);
     } else {
-      console.log(`  ${sym.fail} ${c.bold(c.red('Not verified.'))} ${failing.length} check${failing.length === 1 ? '' : 's'} still failing after ${fixRounds} fix round${fixRounds === 1 ? '' : 's'}.`);
+      console.log(`  ${sym.fail} ${c.bold(c.red('Not verified.'))} ${failing.length} check${failing.length === 1 ? '' : 's'} failing after ${fixRounds} fix round${fixRounds === 1 ? '' : 's'}: ${failing.map((f) => f.id).join(', ')}.`);
     }
     console.log(`  ${sym.arrow} proof ${c.cyan(rel(spec, out))}\n`);
     if (opts.open) openFile(out);

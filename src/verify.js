@@ -1,6 +1,6 @@
 // Runs the spec's checks through Kane CLI and records a round.
 import { checkUrl } from './spec.js';
-import { resolveKane, runCheck, makeLivePrinter, isAutomationSlip, meaningfulEvidence } from './kane.js';
+import { resolveKane, runCheck, makeLivePrinter, isAutomationSlip, isInfraFailure, meaningfulEvidence } from './kane.js';
 import { startServer, waitForUrl, urlIsUp, killTree } from './proc.js';
 import { c, sym, statusWord, truncate, fmtDuration } from './ui.js';
 
@@ -55,14 +55,18 @@ export async function runRound(spec, checks, { kane, headed = false, live = true
     let r = await go();
     // Triage: when Kane says the failure was its own automation slipping (not the
     // app), re-run once before anyone touches the code.
-    if (r.status === 'failed' && isAutomationSlip(r) && retries > 0) {
-      if (!quiet) console.log(`      ${sym.warn} ${c.yellow('Kane flagged its own automation')} ${c.gray(truncate(r.oneLiner || r.verdict?.rootCause, 80))}\n      ${sym.arrow} ${c.gray('re-running before blaming the code')}`);
+    const notTheApp = (x) => (x.status === 'failed' || x.status === 'timeout') && (isAutomationSlip(x) || isInfraFailure(x));
+    if (notTheApp(r) && retries > 0) {
+      const why = isInfraFailure(r) ? 'Kane reports a platform problem, not an app bug' : 'Kane flagged its own automation';
+      if (!quiet) console.log(`      ${sym.warn} ${c.yellow(why)} ${c.gray(truncate(r.oneLiner || r.verdict?.rootCause, 80))}\n      ${sym.arrow} ${c.gray('re-running before blaming the code')}`);
       const first = { status: r.status, oneLiner: r.oneLiner, summary: r.summary, verdict: r.verdict, evidence: r.evidence, reportUrl: r.reportUrl, credits: r.credits };
       r = await go();
       r.retriedAfterSlip = first;
       r.credits = (r.credits || 0) + (first.credits || 0);
     }
     if (r.status === 'failed') r.slip = isAutomationSlip(r);
+    // Still a platform failure after the retry: report it as environment, never as an app bug.
+    if ((r.status === 'failed' || r.status === 'timeout') && isInfraFailure(r)) r.status = 'error';
     const entry = { id: check.id, route: check.route || '', ...r };
     results.push(entry);
     if (!quiet) {

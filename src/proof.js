@@ -3,10 +3,17 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import * as store from './store.js';
-import { meaningfulEvidence } from './kane.js';
+import { meaningfulEvidence, isAutomationSlip, isInfraFailure } from './kane.js';
 
 const esc = (s) => String(s ?? '').replace(/[&<>"']/g, (ch) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[ch]));
 
+function shorten(t, n) {
+  t = String(t || '').replace(/\*\*/g, '').replace(/`/g, '').replace(/\s+/g, ' ').trim();
+  if (t.length <= n) return t;
+  const cut = t.slice(0, n);
+  const end = Math.max(cut.lastIndexOf('. '), cut.lastIndexOf(': '));
+  return (end > n * 0.5 ? cut.slice(0, end + 1) : cut.trimEnd() + '…');
+}
 function when(iso) {
   if (!iso) return '—';
   const d = new Date(iso);
@@ -16,6 +23,7 @@ function dur(sec) {
   if (sec == null) return '—';
   return sec < 60 ? `${sec.toFixed(1)}s` : `${Math.floor(sec / 60)}m ${Math.round(sec % 60)}s`;
 }
+const genuine = (h) => h.status === 'failed' && !isInfraFailure(h) && !(isAutomationSlip(h) && !meaningfulEvidence(h.evidence).length);
 const LABEL = { passed: 'Passed', failed: 'Failed', timeout: 'Timed out', error: 'Env error', pending: 'Not run' };
 
 export function buildProof(spec, runs) {
@@ -38,7 +46,7 @@ export function buildProof(spec, runs) {
   const fixRounds = story ? story.rounds.filter((r) => r.agent).length : 0;
   const browserSecs = runs.flatMap((r) => r.rounds.flatMap((x) => x.results)).reduce((a, r) => a + (r.kaneDuration ?? r.duration ?? 0), 0);
   const kaneRuns = runs.flatMap((r) => r.rounds.flatMap((x) => x.results)).length;
-  const catches = runs.flatMap((r) => r.rounds.flatMap((x) => x.results)).filter((r) => r.status === 'failed').length;
+  const catches = checks.filter((ch) => (byCheck.get(ch.id) || []).some(genuine)).length;
   const lastAt = runs.at(-1)?.finishedAt;
   const credits = runs.flatMap((r) => r.rounds.flatMap((x) => x.results)).reduce((a, r) => a + (r.credits || 0), 0);
 
@@ -60,7 +68,7 @@ export function buildProof(spec, runs) {
       <div class="fix">
         <div class="fix-head"><span class="glyph">◆</span> Coding agent briefed with Kane's findings</div>
         ${round.agent.edits?.length ? `<div class="edits">${round.agent.edits.map((e) => `<code>${esc(e)}</code>`).join('')}</div>` : ''}
-        ${round.agent.text ? `<p>${esc(round.agent.text)}</p>` : ''}
+        ${round.agent.text ? `<p>${esc(shorten(round.agent.text, 260))}</p>` : ''}
       </div>` : '';
     return `
       <div class="round ${p === t.length ? 'green' : 'red'}">
@@ -73,9 +81,11 @@ export function buildProof(spec, runs) {
   const cards = checks.map((ch, i) => {
     const l = ch.last;
     const strip = ch.hist.map((h) => `<i class="${h.status}" title="${esc(LABEL[h.status] || h.status)} · ${esc(when(h.at))}"></i>`).join('');
-    const firstFail = ch.hist.find((h) => h.status === 'failed');
+    // The most telling catch: a genuine failure, preferring one with a hard readout.
+    const fails = ch.hist.filter(genuine);
+    const firstFail = [...fails].reverse().find((h) => meaningfulEvidence(h.evidence).length) || fails.at(-1);
     const caught = firstFail && ch.status === 'passed'
-      ? `<div class="caught"><b>Caught, then fixed.</b> ${esc(firstFail.oneLiner || firstFail.summary || firstFail.reason || 'Kane CLI failed this check on an earlier build.')}${meaningfulEvidence(firstFail.evidence).map((e) => ` Kane read <b>${esc(e.read)}</b> where the spec expects <b>${esc(e.expected)}</b>.`).join('')}${firstFail.reportUrl ? ` <a href="${esc(firstFail.reportUrl)}" target="_blank" rel="noopener">Failing run ↗</a>` : ''}</div>` : '';
+      ? `<div class="caught"><b>Caught, then fixed.</b> ${esc(shorten(firstFail.oneLiner || firstFail.summary || firstFail.reason || 'Kane CLI failed this check on an earlier build.', 200))}${meaningfulEvidence(firstFail.evidence).map((e) => ` Kane read <b>${esc(e.read)}</b> where the spec expects <b>${esc(e.expected)}</b>.`).join('')}${firstFail.reportUrl ? ` <a href="${esc(firstFail.reportUrl)}" target="_blank" rel="noopener">Failing run ↗</a>` : ''}</div>` : '';
     const steps = (l?.steps || []).filter((s) => s.text);
     return `
     <article class="check ${ch.status}">
@@ -240,7 +250,7 @@ footer{padding:36px 0 60px;display:flex;align-items:center;justify-content:space
   </div>
   <div class="stats">
     <div class="stat"><b>${passed}/${total}</b><span>checks passing</span></div>
-    <div class="stat"><b>${catches}</b><span>failures Kane caught</span></div>
+    <div class="stat"><b>${catches}</b><span>bugs Kane caught</span></div>
     <div class="stat"><b>${fixRounds}</b><span>agent fix rounds</span></div>
     <div class="stat"><b>${kaneRuns}</b><span>browser runs</span></div>
     <div class="stat"><b>${dur(browserSecs)}</b><span>in a real browser</span></div>

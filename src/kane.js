@@ -201,3 +201,11 @@ export function meaningfulEvidence(list) {
     return true;
   });
 }
+
+// True when Kane says the run broke for platform/infra reasons (screenshot
+// timeouts, browser crashes): says nothing about the app either way.
+export function isInfraFailure(r) {
+  const f = (r.verdict?.family || '').toLowerCase();
+  const cat = (r.verdict?.category || '').toLowerCase();
+  return /environment|infra|platform/.test(f) || /platform|infra|environment/.test(cat) || /^infra_error/.test(r.reasonCode || '');
+}

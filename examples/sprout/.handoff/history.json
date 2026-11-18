@@ -28,5 +28,25 @@
     "total": 5,
     "passed": 0,
     "verdict": "unverified"
+  },
+  {
+    "id": "20261118-124208-8423",
+    "trigger": "loop",
+    "startedAt": "2026-11-18T11:42:08.242Z",
+    "finishedAt": "2026-11-18T12:00:54.722Z",
+    "rounds": 3,
+    "total": 5,
+    "passed": 4,
+    "verdict": "failing"
+  },
+  {
+    "id": "20261118-130606-def9",
+    "trigger": "verify",
+    "startedAt": "2026-11-18T12:06:06.452Z",
+    "finishedAt": "2026-11-18T12:13:17.701Z",
+    "rounds": 1,
+    "total": 5,
+    "passed": 5,
+    "verdict": "verified"
   }
 ]
