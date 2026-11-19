@@ -47,6 +47,7 @@ nav a:hover{color:var(--t)}
 .hcard:before{content:"";position:absolute;left:-180px;top:-260px;width:820px;height:760px;background:radial-gradient(closest-side,rgba(73,150,105,.55),rgba(36,80,55,.22) 55%,transparent 75%);transform:rotate(-18deg);filter:blur(10px);pointer-events:none}
 .hcard:after{content:"";position:absolute;inset:0;background:radial-gradient(ellipse at 50% 120%,rgba(255,255,255,.05),transparent 55%);pointer-events:none}
 .htext{position:relative;z-index:2;text-align:center;max-width:820px;margin:0 auto}
+br.mb{display:none}
 h1{font-weight:500;font-size:clamp(40px,5.4vw,70px);line-height:1.04;letter-spacing:-.045em;margin:22px 0 20px}
 h1 span{color:#8E8D88}
 .hsub{color:#A9A8A2;font-size:16.5px;max-width:540px;margin:0 auto}
@@ -227,6 +228,7 @@ footer .r{margin-left:auto;display:flex;gap:22px}footer a:hover{color:var(--t)}
  .hcard{border-radius:22px;padding:56px 14px 0;min-height:0}
  .hcard:before{left:-260px;top:-300px}
  .htext{padding:0 14px}
+ br.mb{display:inline}.hsub{text-wrap:balance}
  h1{font-size:37px;letter-spacing:-.04em;margin:18px 0 16px}
  .hsub{font-size:14.5px;padding:0 6px}
  .hcta{flex-direction:column;align-items:stretch;gap:8px;padding:0 10px;margin-top:24px}
@@ -278,7 +280,7 @@ footer .r{margin-left:auto;display:flex;gap:22px}footer a:hover{color:var(--t)}
 <div class="hero"><div class="hcard">
   <div class="htext">
     <span class="tagp dk rv"><i></i>Verified with Kane CLI</span>
-    <h1 class="rv">Your AI agent says done.<br><span>Handoff makes it prove it.</span></h1>
+    <h1 class="rv">Your AI agent <br class="mb">says done.<br><span>Handoff makes <br class="mb">it prove it.</span></h1>
     <p class="hsub rv">Write what "done" means in plain English. Kane CLI checks every line in a real browser, and Claude Code fixes what fails, until it's proven.</p>
     <div class="hcta rv"><a class="pill light lg" href="#start">Get started</a><a class="pill lg ghostd" href="proof/index.html" target="_blank" rel="noopener">See a real proof ↗</a></div>
   </div>
