@@ -205,7 +205,12 @@ footer .r{margin-left:auto;display:flex;gap:22px}footer a:hover{color:var(--t)}
 .unote>div{display:flex;align-items:center;justify-content:space-between;gap:10px;background:#fff;border:1px solid var(--line);border-radius:18px;padding:10px 10px 10px 20px}
 .unote b{display:block;font:400 14.5px/1.3 var(--sans);letter-spacing:-.01em;color:#0B0B0A;white-space:nowrap}
 .unote .k{display:inline-flex;align-items:center;gap:8px;flex-shrink:0;background:var(--ink);color:#E8E6E0;font:400 12px var(--mono);border-radius:11px;padding:7px 7px 7px 12px;white-space:nowrap}
-.unote .k button{font:500 11px var(--sans);color:#B9B8B3;background:rgba(255,255,255,.08);border:0;border-radius:7px;padding:4px 8px;cursor:pointer}
+.cmd{position:relative}.uc .cmd{padding-right:48px}
+.cpi{display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;border:0;border-radius:8px;background:rgba(255,255,255,.08);color:#B9B8B3;cursor:pointer;transition:background .2s,color .2s;flex-shrink:0}
+.cpi:hover{background:rgba(255,255,255,.16);color:#fff}.cpi.ok{color:#3FCB86}
+.uc .cmd .cpi{position:absolute;top:10px;right:10px}
+.unote .k .cpi{width:26px;height:26px}
+.inst .cpi{width:32px;height:32px;border-radius:9px}
 @media (max-width:1100px){.unote{grid-template-columns:minmax(0,1fr)}}
 @media (max-width:640px){.unote>div{flex-direction:column;align-items:flex-start;padding:18px}.unote b{white-space:normal}}
 @media (max-width:1000px){.ugrid{grid-template-columns:minmax(0,1fr)}}
@@ -383,24 +388,24 @@ footer .r{margin-left:auto;display:flex;gap:22px}footer a:hover{color:var(--t)}
   <p class="lead rv">Think of it as a QA teammate for your coding agent. You stop being the one who clicks through and catches its mistakes.</p>
   <div class="ugrid">
     <div class="uc rv"><div class="n">01 · Once per computer</div><h4>Install the tools</h4><p>Node 18+, Google Chrome and Claude Code, plus Kane CLI with a free TestMu AI account. Then Handoff itself.</p>
-      <div class="cmd">npm i -g @testmuai/kane-cli<br>kane-cli login<br>npm i -g github:esteexbt/handoff</div></div>
+      <div class="cmd"><button class="cpi" data-copyi="npm i -g @testmuai/kane-cli&#10;kane-cli login&#10;npm i -g github:esteexbt/handoff" aria-label="Copy"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="11" height="11" rx="2.5"/><path d="M5 15V6.5A2.5 2.5 0 0 1 7.5 4H15"/></svg></button>npm i -g @testmuai/kane-cli<br>kane-cli login<br>npm i -g github:esteexbt/handoff</div></div>
     <div class="uc rv"><div class="n">02 · Once per project</div><h4>Set it up in your app</h4><p>Run this in your project folder. It creates <code>handoff.md</code> and connects Handoff to Claude Code.</p>
-      <div class="cmd"><span class="c">cd my-app</span><br>handoff init --url http://localhost:3000</div></div>
+      <div class="cmd"><button class="cpi" data-copyi="cd my-app&#10;handoff init --url http://localhost:3000" aria-label="Copy"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="11" height="11" rx="2.5"/><path d="M5 15V6.5A2.5 2.5 0 0 1 7.5 4H15"/></svg></button><span class="c">cd my-app</span><br>handoff init --url http://localhost:3000</div></div>
     <div class="uc rv"><div class="n">03 · Write what "done" means</div><h4>Plain English, one line per check</h4><p>How to start the site, then what someone should see when they use it. The way you'd brief a developer.</p>
-      <div class="cmd"><span class="c">## Checks</span><br>- <span class="g">signup</span>: Submit the form with "ada@example",<br>&nbsp;&nbsp;verify it shows "Enter a valid email"</div></div>
+      <div class="cmd"><button class="cpi" data-copyi="- signup: Submit the form with &quot;ada@example&quot;, verify it shows &quot;Enter a valid email&quot;" aria-label="Copy"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="11" height="11" rx="2.5"/><path d="M5 15V6.5A2.5 2.5 0 0 1 7.5 4H15"/></svg></button><span class="c">## Checks</span><br>- <span class="g">signup</span>: Submit the form with "ada@example",<br>&nbsp;&nbsp;verify it shows "Enter a valid email"</div></div>
     <div class="uc rv"><div class="n">04 · Then just build</div><h4>Claude can't say done until Kane agrees</h4><p>Work with Claude Code as usual. Each time it finishes, Kane tests your checks in Chrome. Anything broken goes straight back to Claude to fix.</p>
       <div class="cmd"><span class="c">✻ Handoff: verifying in a real browser…</span><br><span class="g">Stop says: Handoff ✔ 6/6 checks verified</span></div></div>
   </div>
   <div class="unote">
-    <div class="rv"><div><b>Run a quick check, any time</b></div><span class="k">handoff verify<button data-copy="handoff verify">Copy</button></span></div>
-    <div class="rv"><div><b>Let Handoff fix and re-check on its own</b></div><span class="k">handoff loop --open<button data-copy="handoff loop --open">Copy</button></span></div>
+    <div class="rv"><div><b>Run a quick check, any time</b></div><span class="k">handoff verify<button class="cpi" data-copyi="handoff verify" aria-label="Copy"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="11" height="11" rx="2.5"/><path d="M5 15V6.5A2.5 2.5 0 0 1 7.5 4H15"/></svg></button></span></div>
+    <div class="rv"><div><b>Let Handoff fix and re-check on its own</b></div><span class="k">handoff loop --open<button class="cpi" data-copyi="handoff loop --open" aria-label="Copy"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="11" height="11" rx="2.5"/><path d="M5 15V6.5A2.5 2.5 0 0 1 7.5 4H15"/></svg></button></span></div>
   </div>
 </div></section>
 
 <div class="final" id="start">
   <span class="tagp dk"><i></i>Get started</span>
   <h2 class="rv">Two minutes to your first proof.<br><span>Open source. Zero dependencies.</span></h2>
-  <div class="inst rv"><span><span class="d">$</span> npm i -g github:esteexbt/handoff</span><button class="cp" data-copy="npm i -g github:esteexbt/handoff">Copy</button></div>
+  <div class="inst rv"><span><span class="d">$</span> npm i -g github:esteexbt/handoff</span><button class="cpi" data-copyi="npm i -g github:esteexbt/handoff" aria-label="Copy"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="11" height="11" rx="2.5"/><path d="M5 15V6.5A2.5 2.5 0 0 1 7.5 4H15"/></svg></button></div>
   <div class="steps3">
     <div class="rv"><b>01</b><code>handoff init</code><small>Creates handoff.md and the Claude Code Stop hook.</small></div>
     <div class="rv"><b>02</b><code>handoff verify</code><small>Every check, in a real browser, with Kane CLI.</small></div>
@@ -414,6 +419,9 @@ footer .r{margin-left:auto;display:flex;gap:22px}footer a:hover{color:var(--t)}
 <script>
 // copy
 document.querySelectorAll('[data-copy]').forEach(b=>b.addEventListener('click',()=>{navigator.clipboard?.writeText(b.dataset.copy).then(()=>{const t=b.textContent;b.textContent='Copied';setTimeout(()=>b.textContent=t,1400)})}));
+// icon copy
+const CHECK='<svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>';
+document.querySelectorAll('[data-copyi]').forEach(b=>b.addEventListener('click',()=>{navigator.clipboard?.writeText(b.dataset.copyi).then(()=>{const h=b.innerHTML;b.innerHTML=CHECK;b.classList.add('ok');setTimeout(()=>{b.innerHTML=h;b.classList.remove('ok')},1400)})}));
 // reveal
 const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('on');io.unobserve(e.target)}}),{threshold:.15});
 document.querySelectorAll('.rv').forEach((el,i)=>{el.style.transitionDelay=(i%3)*90+'ms';io.observe(el)});
