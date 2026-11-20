@@ -3,7 +3,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import crypto from 'node:crypto';
 
-export function dirs(root) {
+function dirs(root) {
   const base = path.join(root, '.handoff');
   return { base, runs: path.join(base, 'runs') };
 }
@@ -38,7 +38,7 @@ export function saveRun(root, run) {
   writeJson(path.join(d.base, 'history.json'), history.slice(-200));
 }
 
-export function summarize(run) {
+function summarize(run) {
   const rounds = run.rounds || [];
   const final = rounds.at(-1);
   return {
@@ -53,7 +53,7 @@ export function summarize(run) {
   };
 }
 
-export function loadHistory(root) {
+function loadHistory(root) {
   return readJson(path.join(dirs(root).base, 'history.json'), []);
 }
 

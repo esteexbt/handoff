@@ -27,7 +27,7 @@ export function findSpec(cwd = process.cwd()) {
   }
 }
 
-export function slugify(s) {
+function slugify(s) {
   return String(s)
     .toLowerCase()
     .replace(/[^a-z0-9]+/g, '-')

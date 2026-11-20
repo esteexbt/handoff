@@ -26,7 +26,7 @@ function dur(sec) {
 const genuine = (h) => h.status === 'failed' && !isInfraFailure(h) && !(isAutomationSlip(h) && !meaningfulEvidence(h.evidence).length);
 const LABEL = { passed: 'Passed', failed: 'Failed', timeout: 'Timed out', error: 'Env error', pending: 'Not run' };
 
-export function buildProof(spec, runs) {
+function buildProof(spec, runs) {
   const byCheck = store.latestByCheck(runs);
   const checks = spec.checks.map((ch) => {
     const hist = byCheck.get(ch.id) || [];
@@ -288,7 +288,7 @@ footer{padding:36px 0 60px;display:flex;align-items:center;justify-content:space
 </html>`;
 }
 
-export function badgeSvg(passed, total) {
+function badgeSvg(passed, total) {
   const ok = total > 0 && passed === total;
   const right = ok ? `verified ${passed}/${total}` : `${passed}/${total} passing`;
   const color = ok ? '#0F8A4F' : '#D1432F';

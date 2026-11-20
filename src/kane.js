@@ -2,7 +2,7 @@
 // NDJSON stream into a verdict.
 //
 // Kane CLI exit codes: 0 passed · 1 assertion failed · 2 environment error · 3 timeout
-import { resolveCli, launch, killTree } from './proc.js';
+import { resolveCli, launch, killTree, eachLine } from './proc.js';
 import { c, sym, truncate } from './ui.js';
 
 export function resolveKane() {
@@ -11,7 +11,7 @@ export function resolveKane() {
 
 const TEXT_KEYS = ['step', 'action', 'description', 'message', 'text', 'thought', 'instruction', 'title', 'summary', 'detail'];
 
-export function eventText(ev) {
+function eventText(ev) {
   if (!ev || typeof ev !== 'object') return '';
   // Kane 0.10 step events: { step, status: running|done|failed, remark }
   if (typeof ev.remark === 'string') {
@@ -40,8 +40,7 @@ export function runCheck(kane, { objective, url, headed = false, timeoutSec = 30
     const started = Date.now();
     const events = [];
     const steps = [];
-    const rawSample = [];
-    let stdoutBuf = '';
+    let flush = () => {};
     let stderr = '';
     let timedOut = false;
 
@@ -63,20 +62,12 @@ export function runCheck(kane, { objective, url, headed = false, timeoutSec = 30
       let ev;
       try { ev = JSON.parse(line); } catch { return; }
       events.push(ev);
-      if (rawSample.length < 60) rawSample.push(JSON.stringify(ev).slice(0, 700));
       const text = eventText(ev);
       if (ev.type !== 'run_end' && text) steps.push({ type: ev.type || 'event', text });
       onEvent?.(ev, text);
     };
 
-    child.stdout.on('data', (d) => {
-      stdoutBuf += d.toString();
-      let i;
-      while ((i = stdoutBuf.indexOf('\n')) >= 0) {
-        handleLine(stdoutBuf.slice(0, i));
-        stdoutBuf = stdoutBuf.slice(i + 1);
-      }
-    });
+    flush = eachLine(child.stdout, handleLine);
     child.stderr.on('data', (d) => { stderr += d.toString(); });
 
     child.on('error', (e) => {
@@ -86,7 +77,7 @@ export function runCheck(kane, { objective, url, headed = false, timeoutSec = 30
 
     child.on('close', (code) => {
       clearTimeout(timer);
-      if (stdoutBuf.trim()) handleLine(stdoutBuf);
+      flush();
       const end = [...events].reverse().find((e) => e.type === 'run_end') || null;
       let status = STATUS_BY_EXIT[code] ?? (code === 0 ? 'passed' : 'failed');
       if (timedOut) status = 'timeout';
@@ -110,7 +101,6 @@ export function runCheck(kane, { objective, url, headed = false, timeoutSec = 30
         reasonCode: end?.reason_code || '',
         verdict: pickVerdict(end?.verdict),
         evidence: extractEvidence(end),
-        runEnd: end,
       }));
     });
 
@@ -120,7 +110,6 @@ export function runCheck(kane, { objective, url, headed = false, timeoutSec = 30
         objective,
         url,
         steps: steps.slice(-40),
-        rawSample,
         eventCount: events.length,
         stderr: r.status === 'error' ? truncate(cleanStderr(stderr), 1200) : '',
         duration: (Date.now() - started) / 1000,
@@ -177,11 +166,11 @@ function extractEvidence(end) {
 export function isAutomationSlip(r) {
   const f = (r.verdict?.family || '').toLowerCase();
   const cat = (r.verdict?.category || '').toLowerCase();
-  return /automation|tooling|flak|infra/.test(f) || /agent_misstep|misclick|flak/.test(cat) || /^agent_error/.test(r.reasonCode || '');
+  return /automation|tooling|flak/.test(f) || /agent_misstep|misclick|flak/.test(cat) || /^agent_error/.test(r.reasonCode || '');
 }
 
 // Drop Kane's informational banners so the real error is what people read.
-export function cleanStderr(text) {
+function cleanStderr(text) {
   return String(text || '')
     .split(/\r?\n/)
     .filter((l) => l.trim() && !/^Skill update available|^Running on:/i.test(l.trim()))

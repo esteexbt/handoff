@@ -1,15 +1,14 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { execFileSync } from 'node:child_process';
 import { loadSpec, findSpec, parseSpec, SPEC_FILE } from './spec.js';
-import { ensureApp, requireKane, runRound, tally, printTally, HandoffError } from './verify.js';
+import { ensureApp, requireKane, runRound, tally, printTally, isFailing, HandoffError } from './verify.js';
 import { feedback, runClaude, resolveClaude } from './agent.js';
 import * as store from './store.js';
 import { writeProof } from './proof.js';
 import { resolveKane } from './kane.js';
 import { killTree, openFile, urlIsUp, launch } from './proc.js';
-import { c, sym, banner, rule, truncate, fmtDuration } from './ui.js';
+import { c, sym, banner, rule, truncate } from './ui.js';
 
 const here = path.dirname(fileURLToPath(import.meta.url));
 const BIN = path.resolve(here, '..', 'bin', 'handoff.js');
@@ -33,7 +32,7 @@ function proofPath(spec) {
   return path.join(spec.root, '.handoff', 'proof.html');
 }
 
-function rel(spec, p) {
+function rel(p) {
   return path.relative(process.cwd(), p) || p;
 }
 
@@ -54,7 +53,7 @@ export async function verify(opts) {
     store.saveRun(spec.root, run);
     const t = printTally(round.results);
     const out = writeProof(spec);
-    console.log(`  ${sym.arrow} proof ${c.cyan(rel(spec, out))}\n`);
+    console.log(`  ${sym.arrow} proof ${c.cyan(rel(out))}\n`);
     if (opts.open) openFile(out);
     return t.passed === t.total ? 0 : 1;
   } finally {
@@ -81,7 +80,7 @@ export async function loop(opts) {
     printTally(round.results);
     save();
 
-    let failing = round.results.filter((r) => r.status === 'failed' || r.status === 'timeout');
+    let failing = round.results.filter(isFailing);
     let envErr = round.results.find((r) => r.status === 'error');
     let n = 1;
     let fixed = false;
@@ -103,7 +102,7 @@ export async function loop(opts) {
       run.rounds.push(round);
       printTally(round.results);
       save();
-      failing = round.results.filter((r) => r.status === 'failed' || r.status === 'timeout');
+      failing = round.results.filter(isFailing);
       envErr = round.results.find((r) => r.status === 'error');
       fixed = !failing.length && !envErr;
     }
@@ -113,7 +112,7 @@ export async function loop(opts) {
       round = await runRound(spec, checks, { kane, headed: opts.headed, label: 'Sweep' });
       run.rounds.push(round);
       printTally(round.results);
-      failing = round.results.filter((r) => r.status === 'failed' || r.status === 'timeout');
+      failing = round.results.filter(isFailing);
     }
 
     run.finishedAt = new Date().toISOString();
@@ -132,7 +131,7 @@ export async function loop(opts) {
     } else {
       console.log(`  ${sym.fail} ${c.bold(c.red('Not verified.'))} ${failing.length} check${failing.length === 1 ? '' : 's'} failing after ${fixRounds} fix round${fixRounds === 1 ? '' : 's'}: ${failing.map((f) => f.id).join(', ')}.`);
     }
-    console.log(`  ${sym.arrow} proof ${c.cyan(rel(spec, out))}\n`);
+    console.log(`  ${sym.arrow} proof ${c.cyan(rel(out))}\n`);
     if (opts.open) openFile(out);
     return run.verdict === 'verified' ? 0 : 1;
   } finally {
@@ -173,7 +172,7 @@ export async function hook() {
     const first = spec.checks.filter((ch) => !passing(ch));
     const rest = spec.checks.filter((ch) => passing(ch));
     let round = await runRound(spec, first.length ? first : rest, { kane, quiet: true, live: false });
-    const firstFailed = round.results.some((r) => r.status === 'failed' || r.status === 'timeout');
+    const firstFailed = round.results.some(isFailing);
     if (first.length && rest.length && !firstFailed) {
       const more = await runRound(spec, rest, { kane, quiet: true, live: false });
       round = { ...round, finishedAt: more.finishedAt, results: [...round.results, ...more.results] };
@@ -190,7 +189,7 @@ export async function hook() {
     writeProof(spec);
 
     const t = tally(round.results);
-    const failing = round.results.filter((r) => r.status === 'failed' || r.status === 'timeout');
+    const failing = round.results.filter(isFailing);
     const next = { ...state, session: payload.session_id, runId: run.id };
     const complete = round.results.length === spec.checks.length;
 
@@ -288,7 +287,7 @@ export async function init(opts) {
 export async function proof(opts) {
   const spec = loadSpec();
   const out = writeProof(spec);
-  console.log(`\n  ${sym.arrow} proof ${c.cyan(rel(spec, out))}\n`);
+  console.log(`\n  ${sym.arrow} proof ${c.cyan(rel(out))}\n`);
   if (opts.open !== false) openFile(out);
   return 0;
 }
@@ -298,7 +297,7 @@ export async function brief() {
   const spec = loadSpec();
   const runs = store.loadRuns(spec.root, 1);
   const last = runs.at(-1)?.rounds.at(-1);
-  const failing = (last?.results || []).filter((r) => r.status === 'failed' || r.status === 'timeout');
+  const failing = (last?.results || []).filter(isFailing);
   if (!failing.length) { console.log('\n  No failing checks in the last run — nothing to brief.\n'); return 0; }
   console.log('\n' + feedback(spec, failing) + '\n');
   return 0;

@@ -1,6 +1,9 @@
 #!/usr/bin/env node
 import * as cmd from '../src/commands.js';
 import { c } from '../src/ui.js';
+import { createRequire } from 'node:module';
+
+const { version } = createRequire(import.meta.url)('../package.json');
 
 const argv = process.argv.slice(2);
 const VERSION_FLAGS = ['--version', '-v', 'version'];
@@ -27,6 +30,7 @@ const HELP = `
     handoff init   [--url http://localhost:3000] [--no-hook]   create handoff.md + install the Claude Code Stop hook
     handoff verify [--only id,id] [--headed] [--open]          run every check in a real browser with Kane CLI
     handoff loop   [--max 3] [--headed] [--open] [--no-sweep]  verify → brief Claude Code → fix → re-verify, until green
+                   [--only id,id] [--model name]
     handoff proof  [--no-open]                                 rebuild and open .handoff/proof.html
     handoff brief                                              print the fix brief the agent receives
     handoff doctor                                             check kane-cli, Claude Code, spec and app
@@ -46,8 +50,8 @@ const table = {
 };
 
 async function main() {
-  if (command === 'help' || command === '--help' || command === '-h') { console.log(HELP); return 0; }
-  if (command === '--version' || command === '-v' || command === 'version') { console.log('handoff 0.1.0'); return 0; }
+  if (command === 'help') { console.log(HELP); return 0; }
+  if (VERSION_FLAGS.includes(command)) { console.log(`handoff ${version}`); return 0; }
   const fn = table[command];
   if (!fn) { console.log(HELP); return 1; }
   return fn(parseFlags(argv));

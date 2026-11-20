@@ -3,7 +3,7 @@
 import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
-import { execFileSync, spawnSync } from 'node:child_process';
+import { spawnSync } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
 import assert from 'node:assert/strict';
 import { parseSpec } from '../src/spec.js';
@@ -15,7 +15,7 @@ const bin = path.join(root, 'bin', 'handoff.js');
 const spec = parseSpec(fs.readFileSync(path.join(root, 'examples/sprout/handoff.md'), 'utf8'));
 assert.equal(spec.name, 'Sprout');
 assert.equal(spec.url, 'http://localhost:4173');
-assert.equal(spec.checks.length, 5);
+assert.equal(spec.checks.length, 6);
 assert.equal(spec.checks[1].id, 'reject-bad-email');
 assert.equal(spec.swatches.length, 3);
 const s2 = parseSpec('---\nurl: http://x\n---\n## Checks\n- **pricing** [/pricing] — Click Yearly\n- Just a sentence with no id\n');
@@ -37,7 +37,7 @@ const env = {
 const verify = spawnSync(process.execPath, [bin, 'verify'], { cwd: tmp, env, encoding: 'utf8' });
 process.stdout.write(verify.stdout);
 assert.equal(verify.status, 1, 'verify should fail on the seeded bugs');
-assert.match(verify.stdout, /3 passed · 2 failed/);
+assert.match(verify.stdout, /4 passed · 2 failed/);
 console.log('✔ verify catches 2 bugs');
 
 const loop = spawnSync(process.execPath, [bin, 'loop'], { cwd: tmp, env, encoding: 'utf8' });

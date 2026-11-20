@@ -3,7 +3,7 @@
 //     Stop hook and by `handoff loop`).
 //  2. runClaude(): runs Claude Code headless with that brief and streams what
 //     it does, so the loop can close without a human.
-import { resolveCli, launch } from './proc.js';
+import { resolveCli, launch, eachLine } from './proc.js';
 import { c, sym, truncate } from './ui.js';
 import { meaningfulEvidence } from './kane.js';
 
@@ -87,7 +87,6 @@ export function runClaude(brief, { cwd, model } = {}) {
     } catch (e) {
       return resolve({ ok: false, text: e.message, edits: [] });
     }
-    let buf = '';
     let finalText = '';
     let cost = null;
     const edits = new Set();
@@ -111,15 +110,11 @@ export function runClaude(brief, { cwd, model } = {}) {
       }
     };
 
-    child.stdout.on('data', (d) => {
-      buf += d.toString();
-      let i;
-      while ((i = buf.indexOf('\n')) >= 0) { onLine(buf.slice(0, i)); buf = buf.slice(i + 1); }
-    });
+    const flush = eachLine(child.stdout, onLine);
     child.stderr.on('data', (d) => { stderr += d.toString(); });
     child.on('error', (e) => resolve({ ok: false, text: e.message, edits: [] }));
     child.on('close', (code) => {
-      if (buf.trim()) onLine(buf);
+      flush();
       resolve({ ok: code === 0, text: finalText || truncate(stderr, 300), edits: [...edits], cost });
     });
     child.stdin.write(brief);

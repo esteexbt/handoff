@@ -55,7 +55,7 @@ export async function runRound(spec, checks, { kane, headed = false, live = true
     let r = await go();
     // Triage: when Kane says the failure was its own automation slipping (not the
     // app), re-run once before anyone touches the code.
-    const notTheApp = (x) => (x.status === 'failed' || x.status === 'timeout') && (isAutomationSlip(x) || isInfraFailure(x));
+    const notTheApp = (x) => isFailing(x) && (isAutomationSlip(x) || isInfraFailure(x));
     if (notTheApp(r) && retries > 0) {
       const why = isInfraFailure(r) ? 'Kane reports a platform problem, not an app bug' : 'Kane flagged its own automation';
       if (!quiet) console.log(`      ${sym.warn} ${c.yellow(why)} ${c.gray(truncate(r.oneLiner || r.verdict?.rootCause, 80))}\n      ${sym.arrow} ${c.gray('re-running before blaming the code')}`);
@@ -66,7 +66,7 @@ export async function runRound(spec, checks, { kane, headed = false, live = true
     }
     if (r.status === 'failed') r.slip = isAutomationSlip(r);
     // Still a platform failure after the retry: report it as environment, never as an app bug.
-    if ((r.status === 'failed' || r.status === 'timeout') && isInfraFailure(r)) r.status = 'error';
+    if (isFailing(r) && isInfraFailure(r)) r.status = 'error';
     const entry = { id: check.id, route: check.route || '', ...r };
     results.push(entry);
     if (!quiet) {
@@ -82,9 +82,12 @@ export async function runRound(spec, checks, { kane, headed = false, live = true
   return { label, startedAt, finishedAt: new Date().toISOString(), results };
 }
 
+// A check that needs the agent's attention (env errors never do).
+export const isFailing = (r) => r.status === 'failed' || r.status === 'timeout';
+
 export function tally(results) {
   const passed = results.filter((r) => r.status === 'passed').length;
-  const failed = results.filter((r) => r.status === 'failed' || r.status === 'timeout').length;
+  const failed = results.filter(isFailing).length;
   const errors = results.filter((r) => r.status === 'error').length;
   return { passed, failed, errors, total: results.length };
 }

@@ -6,7 +6,7 @@ import { spawn, execFileSync, execSync } from 'node:child_process';
 import fs from 'node:fs';
 import path from 'node:path';
 
-export const isWin = process.platform === 'win32';
+const isWin = process.platform === 'win32';
 
 function which(cmd) {
   try {
@@ -92,6 +92,17 @@ function firstLineIsNodeShebang(file) {
 function cmdQuote(arg) {
   if (/^[\w./:@=-]+$/.test(arg)) return arg;
   return '"' + String(arg).replace(/(\\*)"/g, '$1$1\\"').replace(/(\\+)$/, '$1$1').replace(/[%^&|<>!]/g, '^$&') + '"';
+}
+
+// Call fn for every complete line on a stream (NDJSON from Kane CLI and Claude Code).
+export function eachLine(stream, fn) {
+  let buf = '';
+  stream.on('data', (d) => {
+    buf += d.toString();
+    let i;
+    while ((i = buf.indexOf('\n')) >= 0) { fn(buf.slice(0, i)); buf = buf.slice(i + 1); }
+  });
+  return () => { if (buf.trim()) fn(buf); buf = ''; };
 }
 
 export function launch(resolved, args, opts = {}) {

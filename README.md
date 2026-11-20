@@ -9,7 +9,7 @@
 
 <p align="center"><a href="https://youtu.be/_quUkyEsaW0">Demo video</a> · <a href="https://handoffcli.vercel.app">Website</a> · <a href="https://handoffcli.vercel.app/proof/">Live proof page</a> · <a href="#quick-start">Quick start</a></p>
 
-<p align="center"><img src="docs/proof.png" alt="Handoff proof page: Sprout verified 6/6 by Kane CLI" width="860"></p>
+<p align="center"><img src="docs/site/proof.png" alt="Handoff proof page: Sprout verified 6/6 by Kane CLI" width="860"></p>
 
 
 A designer writes what must be true in plain English. A coding agent builds it and says "done". Then someone has to click through it and find that the email field accepts `ada@example`, or that the yearly price forgot the discount.
