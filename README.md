@@ -7,7 +7,7 @@
 
 <p align="center"><b>Your AI agent says "done". Handoff makes it prove it.</b></p>
 
-<p align="center"><a href="https://handoffcli.vercel.app">Website</a> · <a href="https://handoffcli.vercel.app/proof/">Live proof page</a> · <a href="#quick-start">Quick start</a></p>
+<p align="center"><a href="https://youtu.be/o4iyXFpvacM">Demo video</a> · <a href="https://handoffcli.vercel.app">Website</a> · <a href="https://handoffcli.vercel.app/proof/">Live proof page</a> · <a href="#quick-start">Quick start</a></p>
 
 <p align="center"><img src="docs/proof.png" alt="Handoff proof page: Sprout verified 6/6 by Kane CLI" width="860"></p>
 
